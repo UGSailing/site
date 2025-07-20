@@ -1,8 +1,16 @@
+"use client";
+import { usePathname } from "next/navigation";
+
+const activePageClasses = "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
+const defaultPageClasses = "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
+
 
 export function NavBar() {
+    const currentPath = usePathname();
+
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between p-3">
+            <div className="w-full flex flex-wrap items-center justify-between p-3">
                 <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/img/logos/cropped_logo.png" className="h-8" alt="UGS Logo" />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">UGent Sailing</span>
@@ -42,19 +50,49 @@ export function NavBar() {
                 <div className="content-start hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+                            <a 
+                                href="/" 
+                                className={currentPath === "/" ? activePageClasses : defaultPageClasses}
+                                aria-current={currentPath === "/" ? "page" : undefined}
+                            >
+                                Home
+                            </a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                            <a 
+                                href="/timeline" 
+                                className={currentPath === "/timeline" ? activePageClasses : defaultPageClasses}
+                                aria-current={currentPath === "/timeline" ? "page" : undefined}
+                            >
+                                Timeline
+                            </a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                            <a 
+                                href="/board" 
+                                className={currentPath === "/board" ? activePageClasses : defaultPageClasses}
+                                aria-current={currentPath === "/board" ? "page" : undefined}
+                            >
+                                Board
+                            </a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+                            <a 
+                                href="/join" 
+                                className={currentPath === "/join" ? activePageClasses : defaultPageClasses}
+                                aria-current={currentPath === "/join" ? "page" : undefined}
+                            >
+                                Join us
+                            </a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                            <a 
+                                href="/contact" 
+                                className={currentPath === "/contact" ? activePageClasses : defaultPageClasses}
+                                aria-current={currentPath === "/contact" ? "page" : undefined}
+                            >
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </div>
