@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const activePageClasses = "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
@@ -11,10 +12,10 @@ export function NavBar() {
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <div className="w-full flex flex-wrap items-center justify-between p-3">
-                <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/img/logos/cropped_logo.png" className="h-8" alt="UGS Logo" />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">UGent Sailing</span>
-                </a>
+                </Link>
                 <div className="content-start flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     {/* <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span className="sr-only">Open user menu</span>
@@ -27,16 +28,16 @@ export function NavBar() {
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
                             </li>
                             <li>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</Link>
                             </li>
                             <li>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</Link>
                             </li>
                             <li>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</Link>
                             </li>
                         </ul>
                     </div> */}
@@ -50,78 +51,78 @@ export function NavBar() {
                 <div className="content-start hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
-                            <a 
+                            <Link 
                                 href="/" 
                                 className={currentPath === "/" ? activePageClasses : defaultPageClasses}
                                 aria-current={currentPath === "/" ? "page" : undefined}
                             >
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a 
+                            <Link 
                                 href="/timeline" 
                                 className={currentPath === "/timeline" ? activePageClasses : defaultPageClasses}
                                 aria-current={currentPath === "/timeline" ? "page" : undefined}
                             >
                                 Timeline
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a 
+                            <Link 
                                 href="/board" 
                                 className={currentPath === "/board" ? activePageClasses : defaultPageClasses}
                                 aria-current={currentPath === "/board" ? "page" : undefined}
                             >
                                 Board
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a 
+                            <Link 
                                 href="/join" 
                                 className={currentPath === "/join" ? activePageClasses : defaultPageClasses}
                                 aria-current={currentPath === "/join" ? "page" : undefined}
                             >
                                 Join us
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a 
+                            <Link 
                                 href="/contact" 
                                 className={currentPath === "/contact" ? activePageClasses : defaultPageClasses}
                                 aria-current={currentPath === "/contact" ? "page" : undefined}
                             >
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
                 <div className="items-center md:order-3 space-x-2" id="navbar-socials">
                     <ul className="flex font-medium border border-gray-100 rounded-lg bg-gray-50 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li className="mx-3">
-                            <a className="nav-link" href="https://www.facebook.com/people/UGent-Sailing/61573219499660/" target="_blank" rel="noopener noreferrer">
+                            <Link className="nav-link" href="https://www.facebook.com/people/UGent-Sailing/61573219499660/" target="_blank" rel="noopener noreferrer">
                                 <i className="icon-[bi--facebook]"></i>
-                            </a>
+                            </Link>
                         </li>
                         <li className="mx-3">
-                            <a className="nav-link" href="https://www.instagram.com/ugentsailing/" target="_blank" rel="noopener noreferrer">
+                            <Link className="nav-link" href="https://www.instagram.com/ugentsailing/" target="_blank" rel="noopener noreferrer">
                                 <i className="icon-[bi--instagram]"></i>
-                            </a>
+                            </Link>
                         </li>
                         <li className="mx-3">
-                            <a className="nav-link" href="https://discord.gg/BmRtd6qb4z" target="_blank" rel="noopener noreferrer">
+                            <Link className="nav-link" href="https://discord.gg/BmRtd6qb4z" target="_blank" rel="noopener noreferrer">
                                 <i className="icon-[bi--discord]"></i>
-                            </a>
+                            </Link>
                         </li>
                         <li className="mx-3">
-                            <a className="nav-link" href="https://www.linkedin.com/company/ugent-sailing/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+                            <Link className="nav-link" href="https://www.linkedin.com/company/ugent-sailing/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
                                 <i className="icon-[bi--linkedin]"></i>
-                            </a>
+                            </Link>
                         </li>
                         <li className="mx-3">
-                            <a className="nav-link" href="https://github.com/UGSailing" target="_blank" rel="noopener noreferrer">
+                            <Link className="nav-link" href="https://github.com/UGSailing" target="_blank" rel="noopener noreferrer">
                                 <i className="icon-[bi--github]"></i>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
