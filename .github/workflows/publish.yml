@@ -34,10 +34,10 @@ jobs:
         run: npx next build
         
       - name: Debug directory
-        run: ls -la .next
+        run: ls -la .next/static
         
       - name: Debug directory
-        run: ls -la src
+        run: ls -la .next
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
