@@ -34,7 +34,7 @@ jobs:
         run: npx next build
         
       - name: Debug directory
-        run: ls -la ./pages
+        run: ls -la .
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
