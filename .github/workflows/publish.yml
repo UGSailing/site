@@ -41,6 +41,12 @@ jobs:
         
       - name: Debug directory
         run: ls -la .
+        
+      - name: Debug file
+        run: cat next.config.js
+        
+      - name: Debug file
+        run: cat next.config.ts
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
