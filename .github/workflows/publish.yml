@@ -38,6 +38,9 @@ jobs:
         
       - name: Debug directory
         run: ls -la .next
+        
+      - name: Debug directory
+        run: ls -la .
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
