@@ -46,7 +46,7 @@ const board: Board[] = [
             {
                 index: 0,
                 name: "Anaë Verbinnen",
-                image: "/img/people/anae.jpg",
+                image: "/img/people/Anaë Verbinnen.jpg",
                 positions: [
                     positions[2], // Treasurer
                     positions[7], // Team Construction
@@ -55,7 +55,7 @@ const board: Board[] = [
             {
                 index: 1,
                 name: "Jorien Baert",
-                image: "/img/people/jorien.jpg",
+                image: "/img/people/Jorien Baert.jpg",
                 positions: [
                     positions[0], // Captain Extern
                     positions[6], // Team Autonomous
@@ -64,7 +64,7 @@ const board: Board[] = [
             {
                 index: 2,
                 name: "Robin Aerts",
-                image: "/img/people/robin.jpg",
+                image: "/img/people/Robin Aerts.jpg",
                 positions: [
                     positions[1], // Captain Intern
                     positions[6], // Team Autonomous
@@ -73,7 +73,7 @@ const board: Board[] = [
             {
                 index: 3,
                 name: "Wannes Sys",
-                image: "/img/people/wannes.jpg",
+                image: "/img/people/Wannes Sys.jpg",
                 positions: [
                     positions[3], // Web
                 ]
@@ -81,7 +81,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Mathieu Moernaut",
-                image: "/img/people/mathieu.jpg",
+                image: "/img/people/Mathieu Moernaut.jpg",
                 positions: [
                     positions[7], // Team Construction
                 ]
@@ -89,7 +89,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Thomas Van Acker",
-                image: "/img/people/rodo_thomas.jpg",
+                image: "/img/people/Thomas Van Acker.jpg",
                 positions: [
                     positions[8], // Team Electronics
                 ]
@@ -97,7 +97,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Simeon Demeester",
-                image: "/img/people/simeon.jpg",
+                image: "/img/people/Simeon Demeester.jpg",
                 positions: [
                     positions[6], // Team Autonomous
                 ]
@@ -105,7 +105,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Michiel De Paepe",
-                image: "/img/people/michiel.jpg",
+                image: "/img/people/Michiel De Paepe.jpg",
                 positions: [
                     positions[13], // Volunteer Electronics
                 ]
@@ -113,7 +113,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Arne Moreels",
-                image: "/img/people/arne.jpg",
+                image: "/img/people/Arne Moreels.jpg",
                 positions: [
                     positions[13], // Volunteer Electronics
                 ]
@@ -121,7 +121,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "August Adams",
-                image: "/img/people/august.jpg",
+                image: "/img/people/August Adams.jpg",
                 positions: [
                     positions[13], // Volunteer Electronics
                 ]
@@ -129,7 +129,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Arthur Van Damme",
-                image: "/img/people/arthur.jpg",
+                image: "/img/people/Arthur Van Damme.jpg",
                 positions: [
                     positions[11], // Volunteer Autonomous
                 ]
@@ -137,15 +137,15 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Guillaume Verlodt",
-                image: "/img/people/guillaume.jpg",
+                image: "/img/people/Guillaume Verlodt.jpg",
                 positions: [
                     positions[11], // Volunteer Autonomous
                 ]
             },
             {
                 index: 4,
-                name: "Thomas De Meulenaar",
-                image: "/img/people/oranje_thomas.jpg",
+                name: "Thomas De Meulenaer",
+                image: "/img/people/Thomas De Meulenaer.jpg",
                 positions: [
                     positions[13], // Volunteer Electronics
                 ]
@@ -153,7 +153,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Sander Van Laere",
-                image: "/img/people/sander.jpg",
+                image: "/img/people/Sander Van Laere.jpg",
                 positions: [
                     positions[11], // Volunteer Autonomous
                 ]
