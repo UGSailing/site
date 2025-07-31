@@ -95,6 +95,15 @@ export function NavBar() {
                                 Contact
                             </Link>
                         </li>
+                        <li>
+                            <Link 
+                                href="/todos" 
+                                className={currentPath === "/todos" ? activePageClasses : defaultPageClasses}
+                                aria-current={currentPath === "/todos" ? "page" : undefined}
+                            >
+                                ToDo
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="items-center md:order-3 space-x-2" id="navbar-socials">
