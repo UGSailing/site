@@ -54,6 +54,7 @@ export function Sponsors() {
                             <Link 
                                 href={sponsor.website} 
                                 target="_blank" 
+                                rel="noopener noreferrer"
                                 key={sponsor.name}
                                 className="flex flex-col items-center w-1/2 md:w-1/3 lg:w-1/4"
                             >
