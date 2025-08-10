@@ -2,6 +2,8 @@
 
 export function Footer() {
     return (
-        <div></div>
+        <div className="bg-red-700">
+            
+        </div>
     )
 }
