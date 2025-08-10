@@ -14,6 +14,7 @@ type BoardMember = {
 type Board = {
     members: BoardMember[];
     name: string;
+    HTMLid: string;
     year: number;
 }
 
@@ -42,9 +43,10 @@ const positions: Record<string, Position> = {
 
 const board: Board[] = [
     {
-        "year": 2025,
-        "name": "Board 2024-2025",
-        "members": [
+        year: 2025, // used for sorting
+        name: "Board 2025-2026",
+        HTMLid: "2025-2026",
+        members: [
             {
                 index: 0,
                 name: "Anaë Verbinnen",
