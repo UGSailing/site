@@ -1,12 +1,12 @@
-import React from 'react';
-import Head from "next/head";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Timeline",
+    description: "Timeline of UGent Sailing",
+}
 
 const Timeline = () => {
     return <>
-        <Head>
-            <title>Timeline - UGent Sailing</title>
-            <meta name="description" content="Timeline of UGent Sailing" />
-        </Head>
         <div>
             Timeline
         </div>
