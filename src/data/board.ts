@@ -19,6 +19,14 @@ type Board = {
 }
 
 const positions: Record<string, Position> = {
+    // Legacy positions
+    "PR Extern": { name: 'PR Extern', description: 'Manages external public relations.' },
+    "PR Intern": { name: 'PR Intern', description: 'Handles internal public relations.' },
+    "Electronics (LV)": { name: 'Electronics (LV)', description: 'Responsible for low-voltage electronics.' },
+    "Electronics (HV)": { name: 'Electronics (HV)', description: 'Responsible for high-voltage electronics.' },
+    "AI": { name: 'AI', description: 'Focuses on artificial intelligence applications.' },
+
+    // Main board
     "Captain Extern": { name: 'Captain Extern', description: '' },
     "Captain Intern": { name: 'Captain Intern', description: '' },
     "Treasurer": { name: 'Treasurer', description: 'Manages the financial affairs of the organization.' },
@@ -32,6 +40,7 @@ const positions: Record<string, Position> = {
     "Team Electronics": { name: 'Team Electronics', description: 'Handles electronic components and systems.' },
     "Team Design": { name: 'Team Design', description: 'Focuses on design aspects of projects.' },
     "Team Energy": { name: 'Team Energy', description: 'Works on energy systems and sustainability.' },
+    "Team Naval": { name: 'Team Naval', description: 'Focuses on naval engineering and maritime projects.' },
 
     // Volunteers
     "Volunteer Autonomous": { name: 'Volunteer Autonomous', description: 'Assists the Autonomous team with various tasks.' },
@@ -162,6 +171,93 @@ const board: Board[] = [
                     positions["Volunteer Autonomous"]
                 ]
             },
+        ]
+    },
+    {
+        year: 2024, // used for sorting
+        name: "Founders",
+        HTMLid: "Founders",
+        members: [
+            {
+                index: 1,
+                name: "Jorien Baert",
+                image: "/img/people/Jorien Baert1.jpg",
+                positions: [
+                    positions["Captain Extern"],
+                ]
+            },
+            {
+                index: 2,
+                name: "Kathelyne Gryson",
+                image: "/img/people/Kathelyne Gryson.jpg",
+                positions: [
+                    positions["PR Extern"],
+                ]
+            },
+            {
+                index: 3,
+                name: "François Braibant",
+                image: "/img/people/François Braibant1.jpg",
+                positions: [
+                    positions["Captain Intern"],
+                ]
+            },
+            {
+                index: 4,
+                name: "Efsun Sultan Bulut",
+                image: "/img/people/Efsun Sultan Bulut.jpg",
+                positions: [
+                    positions["PR Intern"],
+                ]
+            },
+            {
+                index: 5,
+                name: "Arthur Van Damme",
+                image: "/img/people/Arthur Van Damme.jpg",
+                positions: [
+                    positions["Team Naval"],
+                ]
+            },
+            {
+                index: 6,
+                name: "Mateo Espin",
+                image: "/img/people/Mateo Espin1.jpg",
+                positions: [
+                    positions["Team Naval"],
+                ]
+            },
+            {
+                index: 7,
+                name: "Stefan Roland",
+                image: "/img/people/Stefan Roland1.jpg",
+                positions: [
+                    positions["Team Naval"],
+                ]
+            },
+            {
+                index: 8,
+                name: "August Adams",
+                image: "/img/people/August Adams1.jpg",
+                positions: [
+                    positions["Electronics (LV)"],
+                ]
+            },
+            {
+                index: 9,
+                name: "Thomas De Meulenaer",
+                image: "/img/people/Thomas De Meulenaer1.jpg",
+                positions: [
+                    positions["Electronics (HV)"],
+                ]
+            },
+            {
+                index: 10,
+                name: "Seppe Van de Vreken",
+                image: "/img/people/Seppe Van de Vreken.jpg",
+                positions: [
+                    positions["AI"],
+                ]
+            }
         ]
     }
 ]
