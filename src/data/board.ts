@@ -197,7 +197,7 @@ const board: Board[] = [
             {
                 index: 3,
                 name: "François Braibant",
-                image: "/img/people/François Braibant1.jpg",
+                image: "/img/people/Francois Braibant1.jpg",
                 positions: [
                     positions["Captain Intern"],
                 ]
@@ -213,7 +213,7 @@ const board: Board[] = [
             {
                 index: 5,
                 name: "Arthur Van Damme",
-                image: "/img/people/Arthur Van Damme.jpg",
+                image: "/img/people/Arthur Van Damme1.jpg",
                 positions: [
                     positions["Team Naval"],
                 ]

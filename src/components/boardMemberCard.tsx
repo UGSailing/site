@@ -10,7 +10,7 @@ const BoardMemberCard = ({ member }: { member: BoardMember }) => (
         />
         {/* Member Information */}
         <div className="h-full">
-            <h2 className="text-xl font-semibold h-2/5 mt-4 mb-2">{member.name}</h2>
+            <h3 className="text-xl font-semibold h-2/6 mt-3 mb-2">{member.name}</h3>
             <ul className="list-disc pl-5">
                 {
                     member.positions.map((position, posIndex) => (
