@@ -100,27 +100,52 @@ export function NavBar() {
                 <div className="items-center md:order-3 space-x-2" id="navbar-socials">
                     <ul className="flex font-medium border border-gray-100 rounded-lg bg-gray-50 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li className="mx-3">
-                            <Link className="nav-link" href="https://www.facebook.com/people/UGent-Sailing/61573219499660/" target="_blank" rel="noopener noreferrer">
+                            <Link 
+                                className="nav-link" 
+                                href="https://www.facebook.com/people/UGent-Sailing/61573219499660/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <i className="icon-[bi--facebook]"></i>
                             </Link>
                         </li>
                         <li className="mx-3">
-                            <Link className="nav-link" href="https://www.instagram.com/ugentsailing/" target="_blank" rel="noopener noreferrer">
+                            <Link 
+                                className="nav-link" 
+                                href="https://www.instagram.com/ugentsailing/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <i className="icon-[bi--instagram]"></i>
                             </Link>
                         </li>
                         <li className="mx-3">
-                            <Link className="nav-link" href="https://discord.gg/BmRtd6qb4z" target="_blank" rel="noopener noreferrer">
+                            <Link 
+                                className="nav-link" 
+                                href="https://discord.gg/BmRtd6qb4z" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <i className="icon-[bi--discord]"></i>
                             </Link>
                         </li>
                         <li className="mx-3">
-                            <Link className="nav-link" href="https://www.linkedin.com/company/ugent-sailing/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+                            <Link 
+                                className="nav-link" 
+                                href="https://www.linkedin.com/company/ugent-sailing/posts/?feedView=all" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <i className="icon-[bi--linkedin]"></i>
                             </Link>
                         </li>
                         <li className="mx-3">
-                            <Link className="nav-link" href="https://github.com/UGSailing" target="_blank" rel="noopener noreferrer">
+                            <Link 
+                                className="nav-link" 
+                                href="https://github.com/UGSailing" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <i className="icon-[bi--github]"></i>
                             </Link>
                         </li>
