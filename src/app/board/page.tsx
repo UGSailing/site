@@ -1,6 +1,10 @@
-'use client';
 import React from 'react';
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: "Board",
+    description: "UGent Sailing Board",
+}
 import board from '@/data/board';
 import Board from '@/components/board';
 
