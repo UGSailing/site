@@ -13,7 +13,7 @@ const Partners = () => {
             <div className="font-sans items-center justify-items-center min-h-screen px-6 mt-5">
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <Link href="/contact" className="w-full text-center">
-                        <Alert className="w-full">
+                        <Alert className="w-full border-red-500">
                             <AlertTitle>
                                 Want to become a partner? <span className="icon-[bi--arrow-right] h-3"></span> Contact us!
                             </AlertTitle>

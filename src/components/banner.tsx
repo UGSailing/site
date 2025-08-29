@@ -3,9 +3,10 @@ import React from 'react';
 interface BannerProps {
     color: string;
     message: string;
+    textColor?: string;
 }
 
-const Banner: React.FC<BannerProps> = ({ color, message }) => {
+const Banner: React.FC<BannerProps> = ({ color, message, textColor }) => {
     const bannerStyle = {
         backgroundColor: color,
         border: `2px solid ${darkenColor(color)}`,
@@ -13,7 +14,7 @@ const Banner: React.FC<BannerProps> = ({ color, message }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#fff',
+        color: textColor ? textColor : '#fff',
         fontWeight: 'bold',
         padding: '0 20px',
     };

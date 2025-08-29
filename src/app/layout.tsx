@@ -29,8 +29,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const bannerData = {
-        color: "#ff0000",
+        color: "#ffdb0b",
         message: "This website is under construction.",
+        textColor: "#111111"
     }
     return (
         <html lang="en">
