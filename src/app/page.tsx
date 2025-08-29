@@ -20,7 +20,8 @@ export default function Home() {
     const teamSlider = useRef<Slider>(null);
     const teamSliderSettings = {
         autoplaySpeed: 5000,
-        autoplay: true
+        autoplay: true,
+        speed: 1000,
     }
     return (
         <div>
