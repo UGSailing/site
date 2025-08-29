@@ -9,6 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@iconify-json/simple-icons": "^1.2.49",
         "@radix-ui/react-slot": "^1.2.3",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -21,6 +22,7 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
+        "@iconify-icon/react": "^3.0.0",
         "@iconify-json/bi": "^1.2.4",
         "@iconify/tailwind4": "^1.0.6",
         "@tailwindcss/postcss": "^4",
