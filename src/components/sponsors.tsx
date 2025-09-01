@@ -16,7 +16,7 @@ export function Sponsors() {
         speed: 1000,
         autoplaySpeed: 5000,
         cssEase: "linear",
-        arrows:false,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1024,
