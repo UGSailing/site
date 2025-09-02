@@ -32,11 +32,11 @@ export default function Home() {
             >
                 <span
                     onClick={() => teamSlider?.current?.slickPrev()} 
-                    className={`icon-[bi--arrow-left-circle-fill] w-6 h-6 absolute top-1/2 left-4 transform -translate-y-1/2 z-12 bg-white hover:bg-opacity-100 bg-opacity-75 transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
+                    className={`icon-[bi--arrow-left-circle-fill] w-6 h-6 absolute top-1/2 left-4 transform -translate-y-1/2 z-12 bg-white transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
                 ></span>
                 <span
                     onClick={() => teamSlider?.current?.slickNext()} 
-                    className={`icon-[bi--arrow-right-circle-fill] w-6 h-6 absolute top-1/2 right-4 transform -translate-y-1/2 z-12 bg-white hover:bg-opacity-100 bg-opacity-75 transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
+                    className={`icon-[bi--arrow-right-circle-fill] w-6 h-6 absolute top-1/2 right-4 transform -translate-y-1/2 z-12 bg-white transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
                 ></span>
                 <Slider ref={teamSlider} {...teamSliderSettings}>
                     {
