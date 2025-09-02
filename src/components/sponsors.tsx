@@ -4,6 +4,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { H2 } from "./typography";
 
 export function Sponsors() {
     const visibleLogos = sponsors.length
@@ -47,7 +48,7 @@ export function Sponsors() {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold text-center my-6">Our Sponsors</h2>
+            <H2 className="text-2xl font-bold text-center my-6">Our Sponsors</H2>
             <div className="h-18 slider-container justify-center">
                 <Slider {...settings}>
                     {

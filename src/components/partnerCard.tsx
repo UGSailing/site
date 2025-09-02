@@ -1,6 +1,7 @@
 import { type Partner, type Vacancy } from "@/data/partners";
 
 import Link from 'next/link';
+import { H4 } from "./typography";
 
 export function PartnerCard({ partner }: { partner: Partner }) {
     return (
@@ -9,7 +10,7 @@ export function PartnerCard({ partner }: { partner: Partner }) {
                 <img className="max-w-75 max-h-25 rounded-md" src={partner.logo} alt={`${partner.name} logo`} />
             </div>
             <div className="mx-3 w-125 flex-none">
-                <h2 className="text-lg text-red-700">{partner.name}</h2>
+                <H4>{partner.name}</H4>
                 <p>{partner.description}</p>
             </div>
             <div className="vacancies">
