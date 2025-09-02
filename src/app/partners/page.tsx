@@ -1,5 +1,6 @@
 import { Alert, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
+import { partners } from "@/data/partners";
+import { PartnerCard } from "@/components/partnerCard";
 import {Metadata} from "next";
 import Link from "next/link";
 
@@ -20,7 +21,11 @@ const Partners = () => {
                         </Alert>
                     </Link>
                     
-                    To be implemented
+                    {
+                        partners.map((partner) => (
+                            <PartnerCard key={partner.name} partner={ partner }></PartnerCard>
+                        ))
+                    }
                 </main>
             </div>
         </>

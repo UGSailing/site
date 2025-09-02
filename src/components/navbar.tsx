@@ -37,7 +37,7 @@ export function NavBar() {
     const currentPath = usePathname();
 
     return (
-        <nav className="bg-red-500 border-red-200 dark:bg-red-500">
+        <nav className="bg-red border-red-200 dark:bg-red-500">
             <div className="w-full flex flex-wrap items-center justify-between p-3">
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="/img/logos/cropped_logo.png" className="h-8" alt="UGS Logo" />
@@ -47,8 +47,8 @@ export function NavBar() {
                     <NavigationMenuList>
                         {
                             links.map((link) => (
-                                <NavigationMenuItem className="bg-red-500" key={link.name}>
-                                    <NavigationMenuLink asChild className={`group inline-flex h-9 text-lg text-white w-max items-center justify-center rounded-md ${currentPath == link.href ? "bg-red-700" : "bg-red-500"} px-4 py-2 font-semibold hover:${currentPath == link.href ? "bg-red-700" : "bg-red-600"} hover:text-white focus:${currentPath == link.href ? "bg-red-700" : "bg-red-600"} focus:text-white focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`}>
+                                <NavigationMenuItem className="red" key={link.name}>
+                                    <NavigationMenuLink asChild className={`group inline-flex h-9 text-lg text-white w-max items-center justify-center rounded-md ${currentPath == link.href ? "bg-red-700" : "bg-ugs-500"} px-4 py-2 font-semibold hover:${currentPath == link.href ? "bg-red-700" : "bg-red-600"} hover:text-white focus:${currentPath == link.href ? "bg-red-700" : "bg-red-600"} focus:text-white focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`}>
                                         <Link href={link.href}>{link.name}</Link>
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
@@ -57,7 +57,7 @@ export function NavBar() {
                     </NavigationMenuList>
                 </NavigationMenu>
                 <div className="items-center md:order-3 space-x-2" id="navbar-socials">
-                    <ul className="flex font-medium rounded-lg bg-red-500 text-white">
+                    <ul className="flex font-medium rounded-lg bg-red text-white">
                         {
                             socials.map((social) => (
                                 <li className="mx-3" key={social.href}>
