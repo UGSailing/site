@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useRef } from "react";
+import { H2 } from "@/components/typography";
 
 interface TeamImages {
     src: string;
@@ -56,27 +57,27 @@ export default function Home() {
                 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
-                        <h2 className="text-3xl font-bold mb-4">
+                        <H2 className="text-3xl font-bold mb-4">
                             Intro
-                        </h2>
+                        </H2>
                         Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
                     </section>
                     <section>
-                        <h2 className="text-3xl font-bold mb-4">
+                        <H2 className="text-3xl font-bold mb-4">
                             Calender
-                        </h2>
+                        </H2>
                         To be implemented
                     </section>
                     <section>
-                        <h2 className="text-3xl font-bold mb-4">
+                        <H2 className="text-3xl font-bold mb-4">
                             News
-                        </h2>
+                        </H2>
                         To be implemented
                     </section>
                     <section>
-                        <h2 className="text-3xl font-bold mb-4">
+                        <H2 className="text-3xl font-bold mb-4">
                             Board
-                        </h2>
+                        </H2>
                         To be implemented
                     </section>
                 </main>
