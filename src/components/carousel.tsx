@@ -1,6 +1,6 @@
 "use client";
 import {
-    Carousel,
+    Carousel as ChadcnCarousel,
     CarouselContent,
     type CarouselApi
 } from "@/components/ui/carousel"
@@ -29,7 +29,7 @@ function PreviousButton({ previousEvent }: { previousEvent?: (e: any) => void })
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function MyCarousel({ children }: { children?: React.ReactNode }) {
+export default function Carousel({ children }: { children?: React.ReactNode }) {
     const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function MyCarousel({ children }: { children?: React.ReactNode })
         }
       }, [api])
     return (
-        <Carousel
+        <ChadcnCarousel
             opts={{
                 align: "start",
                 watchDrag: false,
@@ -51,6 +51,6 @@ export default function MyCarousel({ children }: { children?: React.ReactNode })
             </CarouselContent>
             <PreviousButton previousEvent={(e) => api?.scrollPrev()}></PreviousButton>
             <NextButton nextEvent={(e) => api?.scrollNext()}></NextButton>
-        </Carousel>
+        </ChadcnCarousel>
     )
 }
