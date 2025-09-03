@@ -1,7 +1,8 @@
 import { BoardMember } from "@/data/board"
+import { H4 } from ".";
 
 const BoardMemberCard = ({ member }: { member: BoardMember }) => (
-    <div className="bg-white rounded-lg shadow p-6 flex items-center dark:bg-gray-800">
+    <div className="bg-white rounded-lg border border-red-500 p-6 flex items-center">
         {/* Circular Image */}
         <img 
             src={member.image || "/img/logos/cropped_logo.png"} 
@@ -10,7 +11,7 @@ const BoardMemberCard = ({ member }: { member: BoardMember }) => (
         />
         {/* Member Information */}
         <div className="h-full">
-            <h3 className="text-xl font-semibold h-2/6 mt-3 mb-2">{member.name}</h3>
+            <H4 className="text-xl font-semibold h-2/6 mt-3 mb-2">{member.name}</H4>
             <ul className="list-disc pl-5">
                 {
                     member.positions.map((position, posIndex) => (
