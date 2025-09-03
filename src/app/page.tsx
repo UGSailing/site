@@ -68,7 +68,7 @@ export default function Home() {
                     <section className="w-full">
                         <H2>Calender</H2>
 
-                        <Carousel buttonSettings={{ width: 12 }}>
+                        <Carousel>
                             {
                                 events.map((event, index) => (
                                     <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
@@ -90,7 +90,7 @@ export default function Home() {
                     <section className="w-full">
                         <H2>News</H2>
 
-                        <Carousel buttonSettings={{ width: 12 }}>
+                        <Carousel>
                             {
                                 news.map((item, index) => (
                                     <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">

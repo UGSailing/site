@@ -4,37 +4,89 @@ import {
     CarouselContent,
     type CarouselApi
 } from "@/components/ui/carousel"
+import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 
-function NextButton({ nextEvent, width, arrowSize }: { nextEvent?: (e: any) => void, width?: number, arrowSize?: number }) {
-    arrowSize = arrowSize ?? 12
-    const sizeClasses = `w-${arrowSize} h-${arrowSize}`
+const arrowSizes: Record<string, string> = {
+    sm: "w-6 h-6",
+    md: "w-8 h-8",
+    lg: "w-10 h-10",
+    xl: "w-12 h-12",
+}
+
+const defaultSize = "md"
+const spacingSizes: Record<string, [string, string]> = {
+    sm: ["left-1", "right-1"],
+    md: ["left-2", "right-2"],
+    lg: ["left-2", "right-2"],
+    xl: ["left-3", "right-3"],
+}
+
+const widthSizes: Record<string, string> = {
+    sm: "w-18",
+    md: "w-22",
+    lg: "w-26",
+    xl: "w-30",
+}
+
+function NextButton({ nextEvent, size }: { nextEvent?: (e: any) => void, size?: string }) {
+    size = size ?? defaultSize
     return (
-        <div onClick={ nextEvent } className={`w-${width ?? 30} h-full absolute top-1/2 right-0 transform -translate-y-1/2 z-12 hover:opacity-100 transition-opacity opacity-20 duration-300 cursor-pointer`}>
+        <div onClick={ nextEvent } className={
+            cn(
+                "h-full absolute top-1/2 right-0 transform -translate-y-1/2 z-12 hover:opacity-100 transition-opacity opacity-20 duration-300 cursor-pointer",
+                widthSizes[size]
+            )
+        }>
             <div className="bg-white w-full h-full opacity-20"></div>
-            <div className={`bg-white ${sizeClasses} absolute top-1/2 transform -translate-y-1/2 right-4 rounded-full`}>
-                <span className={`icon-[bi--arrow-right-circle-fill] ${sizeClasses} bg-red-500`}></span>
+            <div className={
+                cn(
+                    "bg-white absolute top-1/2 transform -translate-y-1/2 rounded-full",
+                    arrowSizes[size],
+                    spacingSizes[size][1]
+                )
+            }>
+                <span className={
+                    cn(
+                        "icon-[bi--arrow-right-circle-fill] bg-red-500",
+                        arrowSizes[size]
+                    )
+                }></span>
             </div>
         </div>
     )
 }
 
-function PreviousButton({ previousEvent, width, arrowSize }: { previousEvent?: (e: any) => void, width?: number, arrowSize?: number }) {
-    arrowSize = arrowSize ?? 12
-    console.log(arrowSize);
-    const sizeClasses = `w-${arrowSize} h-${arrowSize}`
+function PreviousButton({ previousEvent, size }: { previousEvent?: (e: any) => void, size?: string }) {
+    size = size ?? defaultSize
     return (
-        <div onClick={ previousEvent } className={`w-${width ?? 30} h-full absolute top-1/2 left-0 transform -translate-y-1/2 z-12 hover:opacity-100 transition-opacity opacity-20 duration-300 cursor-pointer`}>
+        <div onClick={ previousEvent } className={
+            cn(
+                "h-full absolute top-1/2 left-0 transform -translate-y-1/2 z-12 hover:opacity-100 transition-opacity opacity-20 duration-300 cursor-pointer",
+                widthSizes[size]
+            )
+        }>
             <div className="bg-white w-full h-full opacity-20"></div>
-            <div className={`bg-white ${sizeClasses} absolute top-1/2 transform -translate-y-1/2 left-4 rounded-full`}>
-                <span className={`icon-[bi--arrow-left-circle-fill] ${sizeClasses} bg-red-500`}></span>
+            <div className={
+                cn(
+                    "bg-white absolute top-1/2 transform -translate-y-1/2 rounded-full",
+                    arrowSizes[size],
+                    spacingSizes[size][0]
+                )
+            }>
+                <span className={
+                    cn(
+                        "icon-[bi--arrow-left-circle-fill] bg-red-500",
+                        arrowSizes[size]
+                    )
+                }></span>
             </div>
         </div>
     )
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function Carousel({ children, buttonSettings }: { children?: React.ReactNode, buttonSettings: { width?: number, arrowSize?: number } }) {
+export default function Carousel({ children, buttonSettings }: { children?: React.ReactNode, buttonSettings?: { size: string } }) {
     const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
