@@ -57,27 +57,23 @@ export default function Home() {
                 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
-                        <H2 className="text-3xl font-bold mb-4">
-                            Intro
-                        </H2>
+                        <H2>Intro</H2>
+
                         Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
                     </section>
                     <section>
-                        <H2 className="text-3xl font-bold mb-4">
-                            Calender
-                        </H2>
+                        <H2>Calender</H2>
+
                         To be implemented
                     </section>
                     <section>
-                        <H2 className="text-3xl font-bold mb-4">
-                            News
-                        </H2>
+                        <H2>News</H2>
+
                         To be implemented
                     </section>
                     <section>
-                        <H2 className="text-3xl font-bold mb-4">
-                            Board
-                        </H2>
+                        <H2>Board</H2>
+                        
                         To be implemented
                     </section>
                 </main>
