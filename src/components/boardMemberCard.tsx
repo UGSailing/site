@@ -4,7 +4,7 @@ const BoardMemberCard = ({ member }: { member: BoardMember }) => (
     <div className="bg-white rounded-lg shadow p-6 flex items-center dark:bg-gray-800">
         {/* Circular Image */}
         <img 
-            src={member.image} 
+            src={member.image || "/img/logos/cropped_logo.png"} 
             alt= {`image of ${member.name}`}
             className="w-36 h-36 object-cover rounded-full mr-6" 
         />
