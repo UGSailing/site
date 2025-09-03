@@ -47,8 +47,8 @@ export function Sponsors() {
     }
 
     return (
-        <div>
-            <H2 className="text-2xl font-bold text-center my-6">Our Sponsors</H2>
+        <div className="mx-6">
+            <H2 className="mb-6 pt-10">Our Sponsors</H2>
             <div className="h-18 slider-container justify-center">
                 <Slider {...settings}>
                     {
