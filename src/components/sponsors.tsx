@@ -4,7 +4,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { H2 } from "./typography";
+import { H2 } from ".";
 
 export function Sponsors() {
     const visibleLogos = sponsors.length

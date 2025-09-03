@@ -1,7 +1,7 @@
 import { type Partner, type Vacancy } from "@/data/partners";
 
 import Link from 'next/link';
-import { H4 } from "./typography";
+import { H4 } from ".";
 
 export function PartnerCard({ partner }: { partner: Partner }) {
     return (

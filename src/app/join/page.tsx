@@ -1,4 +1,4 @@
-import { H2 } from "@/components/typography";
+import { H2 } from "@/components";
 import { Button } from "@/components/ui/button";
 import {Metadata} from "next";
 import Link from "next/link";

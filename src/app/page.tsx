@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useRef } from "react";
-import { H2 } from "@/components/typography";
+import { H2, H4 } from "@/components";
 import Carousel, { CarouselItem } from "@/components/carousel";
 import { events } from "@/data/events";
 import { news } from "@/data/news";
@@ -75,7 +75,7 @@ export default function Home() {
                                         <div key={index} className="p-4 h-full">
                                             <div className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
                                                 <div>
-                                                    <h3 className="text-lg font-semibold text-red-700 mb-2 h-15">{event.title}</h3>
+                                                    <H4 className="mb-2 h-15">{event.title}</H4>
                                                     <p className="text-sm text-gray-600 mb-1"><span className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{event.date}</p>
                                                     <p className="text-sm text-gray-600"><span className="bg-gray-600 icon-[material-symbols--location-on]"></span>{event.location}</p>
                                                 </div>
@@ -97,7 +97,7 @@ export default function Home() {
                                         <div key={index} className="p-4 h-full">
                                             <div className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
                                                 <div>
-                                                    <h3 className="text-lg font-semibold text-red-700 mb-2 h-28">{item.title}</h3>
+                                                    <H4 className="h-28 mb-2">{item.title}</H4>
                                                     <p className="text-sm text-gray-600 mb-1"><span className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{item.date}</p>
                                                 </div>
                                                 <Link href={ item.link } target="_blank" rel="noopener noreferrer" className="text-md text-blue-600 mt-2 hover:underline">View article <span className="icon-[bi--box-arrow-up-right]"></span></Link>
@@ -111,7 +111,6 @@ export default function Home() {
                     <section className="w-full">
                         <H2>Board</H2>
                         
-                        To be implemented
                     </section>
                 </main>
             </div>

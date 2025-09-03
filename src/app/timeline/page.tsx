@@ -4,7 +4,7 @@ import { events } from "@/data/events";
 import { EventCard } from "@/components/eventCard";
 import { generations } from "@/data/generation";
 import { GenerationCard } from "@/components/genCard";
-import { H1 } from "@/components/typography";
+import { H1 } from "@/components";
 
 export const metadata: Metadata = {
     title: "Timeline",

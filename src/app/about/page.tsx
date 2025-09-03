@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { H2, Quote } from "@/components/typography";
+import { H2, Quote } from "@/components";
 
 export const metadata: Metadata = {
     title: "About",
