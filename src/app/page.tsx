@@ -7,6 +7,8 @@ import { useState, useRef } from "react";
 import { H2 } from "@/components/typography";
 import Carousel, { CarouselItem } from "@/components/carousel";
 import { events } from "@/data/events";
+import { news } from "@/data/news";
+import Link from "next/link";
 
 interface TeamImages {
     src: string;
@@ -88,7 +90,23 @@ export default function Home() {
                     <section className="w-full">
                         <H2>News</H2>
 
-                        To be implemented
+                        <Carousel buttonSettings={{ width: 12 }}>
+                            {
+                                news.map((item, index) => (
+                                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
+                                        <div key={index} className="p-4 h-full">
+                                            <div className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
+                                                <div>
+                                                    <h3 className="text-lg font-semibold text-red-700 mb-2 h-28">{item.title}</h3>
+                                                    <p className="text-sm text-gray-600 mb-1"><span className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{item.date}</p>
+                                                </div>
+                                                <Link href={ item.link } target="_blank" rel="noopener noreferrer" className="text-md text-blue-600 mt-2 hover:underline">View article <span className="icon-[bi--box-arrow-up-right]"></span></Link>
+                                            </div>
+                                        </div>
+                                    </CarouselItem>
+                                ))
+                            }
+                        </Carousel>
                     </section>
                     <section className="w-full">
                         <H2>Board</H2>
