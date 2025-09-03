@@ -12,7 +12,7 @@ const BoardPage = () => {
     board.sort((a, b) => b.year - a.year);
     
     return (
-        <div>
+        <div className="px-6 pt-5">
             <div>
                 <h1 className="text-3xl font-bold mb-4">Board</h1>
                 <p className="mb-8">Some yapping about what the board does maybe.</p>
