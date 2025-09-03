@@ -9,6 +9,8 @@ import Carousel, { CarouselItem } from "@/components/carousel";
 import { events } from "@/data/events";
 import { news } from "@/data/news";
 import Link from "next/link";
+import board from "@/data/board";
+import { BoardHomePage } from "@/components/boardHomePage";
 
 interface TeamImages {
     src: string;
@@ -71,8 +73,8 @@ export default function Home() {
                         <Carousel>
                             {
                                 events.map((event, index) => (
-                                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
-                                        <div key={index} className="p-4 h-full">
+                                    <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
+                                        <div className="p-4 h-full">
                                             <div className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
                                                 <div>
                                                     <H4 className="mb-2 h-15">{event.title}</H4>
@@ -93,8 +95,8 @@ export default function Home() {
                         <Carousel>
                             {
                                 news.map((item, index) => (
-                                    <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
-                                        <div key={index} className="p-4 h-full">
+                                    <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
+                                        <div className="p-4 h-full">
                                             <div className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
                                                 <div>
                                                     <H4 className="h-28 mb-2">{item.title}</H4>
@@ -111,6 +113,7 @@ export default function Home() {
                     <section className="w-full">
                         <H2>Board</H2>
                         
+                        <BoardHomePage />
                     </section>
                 </main>
             </div>
