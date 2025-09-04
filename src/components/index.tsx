@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 function H1({ className, ...opts }: React.ComponentProps<"h1"> ) {
     return <h1 className={cn("border-b w-full pb-2 text-4xl font-bold tracking-tight first:mt-0 text-red-700", className)} {...opts}/>;
@@ -13,7 +14,12 @@ function H3({ className, ...opts }: React.ComponentProps<"h3"> ) {
 }
 
 function H4({ className, ...opts }: React.ComponentProps<"h4"> ) {
-    return <h4 className={cn("text-lg text-red-700 font-semibold tracking-tight", className)} {...opts}/>;
+    return <h4 className={cn("text-lg text-black font-semibold tracking-tight", className)} {...opts}/>;
+}
+
+function A({ className, href, ...opts }: React.ComponentProps<"a"> ) {
+    href = href ?? "#";
+    return <Link className={cn("text-red-600 underline hover:text-red-800", className)} {...opts} href={href}/>;
 }
 
 function Quote({ className, ...opts }: React.ComponentProps<"blockquote"> ) {
@@ -26,5 +32,6 @@ export {
     H2,
     H3,
     H4,
+    A,
     Quote
 };
