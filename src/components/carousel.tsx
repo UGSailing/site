@@ -29,7 +29,7 @@ const widthSizes: Record<string, string> = {
     xl: "w-30",
 }
 
-function NextButton({ nextEvent, size }: { nextEvent?: (e: any) => void, size?: string }) {
+function NextButton({ nextEvent, size }: { nextEvent?: (e: React.MouseEvent<HTMLElement>) => void, size?: string }) {
     size = size ?? defaultSize
     return (
         <div onClick={ nextEvent } className={
@@ -57,7 +57,7 @@ function NextButton({ nextEvent, size }: { nextEvent?: (e: any) => void, size?: 
     )
 }
 
-function PreviousButton({ previousEvent, size }: { previousEvent?: (e: any) => void, size?: string }) {
+function PreviousButton({ previousEvent, size }: { previousEvent?: (e: React.MouseEvent<HTMLElement>) => void, size?: string }) {
     size = size ?? defaultSize
     return (
         <div onClick={ previousEvent } className={
@@ -106,8 +106,8 @@ export default function Carousel({ children, buttonSettings }: { children?: Reac
             <CarouselContent>
                 { children }
             </CarouselContent>
-            <PreviousButton previousEvent={(e) => api?.scrollPrev() } {...buttonSettings}></PreviousButton>
-            <NextButton nextEvent={(e) => api?.scrollNext()} {...buttonSettings}></NextButton>
+            <PreviousButton previousEvent={() => api?.scrollPrev() } {...buttonSettings}></PreviousButton>
+            <NextButton nextEvent={() => api?.scrollNext()} {...buttonSettings}></NextButton>
         </ChadcnCarousel>
     )
 }
