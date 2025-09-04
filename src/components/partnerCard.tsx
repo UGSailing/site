@@ -15,7 +15,7 @@ export function PartnerCard({ partner }: { partner: Partner }) {
             </div>
             <div className="vacancies">
                 {
-                    partner.vacancies ? (
+                    partner.vacancies && partner.vacancies.length ? (
                         <>
                             <h3>Vacancies:</h3>
                             {
