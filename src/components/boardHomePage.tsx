@@ -18,7 +18,7 @@ export function BoardHomePage() {
                                         alt={member.name} 
                                         className="w-full aspect-square object-cover rounded-full mb-4"
                                     />
-                                    <H4 className="mb-2 h-15">{member.name}</H4>
+                                    <H4 className="mb-2 text-gray-700 h-15">{member.name}</H4>
                                 </div>
                             </div>
                         </div>

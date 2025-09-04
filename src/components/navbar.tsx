@@ -2,21 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./ui/navigation-menu";
-
-interface LinkItem {
-    name: string;
-    href: string;
-}
-
-const links: LinkItem[] = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Board", href: "/board" },
-    { name: "Timeline", href: "/timeline" },
-    { name: "Partners", href: "/partners" },
-    { name: "Join us", href: "/join" },
-    { name: "Living Lab", href: "/living-lab" },
-]
+import { HamburgerMenu, NavMenu } from "./navMenu";
 
 interface SocialItem {
     icon: string;
@@ -34,8 +20,6 @@ const socials: SocialItem[] = [
 ]
 
 export function NavBar() {
-    const currentPath = usePathname();
-
     return (
         <nav className="bg-red border-red-200 dark:bg-red-500">
             <div className="w-full flex flex-wrap items-center justify-between p-3">
@@ -43,19 +27,8 @@ export function NavBar() {
                     <img src="/img/logos/cropped_logo.png" className="h-8" alt="UGS Logo" />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">UGent Sailing</span>
                 </Link>
-                <NavigationMenu>
-                    <NavigationMenuList>
-                        {
-                            links.map((link) => (
-                                <NavigationMenuItem className="red" key={link.name}>
-                                    <NavigationMenuLink asChild className={`group inline-flex h-9 text-lg text-white w-max items-center justify-center rounded-md ${currentPath == link.href ? "bg-red-700" : "bg-ugs-500"} px-4 py-2 font-semibold hover:${currentPath == link.href ? "bg-red-700" : "bg-red-600"} hover:text-white focus:${currentPath == link.href ? "bg-red-700" : "bg-red-600"} focus:text-white focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`}>
-                                        <Link href={link.href}>{link.name}</Link>
-                                    </NavigationMenuLink>
-                                </NavigationMenuItem>
-                            ))
-                        }
-                    </NavigationMenuList>
-                </NavigationMenu>
+                <NavMenu />
+                <HamburgerMenu />
             </div>
         </nav>
 
