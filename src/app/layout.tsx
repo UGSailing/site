@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/navbar";
-import { Sponsors } from "@/components/sponsors";
+import { Partners } from "@/components/partners";
 import Banner from "@/components/banner";
+import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,8 +30,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const bannerData = {
-        color: "#ff0000",
+        color: "#ffdb0b",
         message: "This website is under construction.",
+        textColor: "#111111"
     }
     return (
         <html lang="en">
@@ -40,7 +42,8 @@ export default function RootLayout({
                 <NavBar />
                 <Banner {...bannerData} />
                 {children}
-                <Sponsors />
+                <Partners />
+                <Footer />
             </body>
         </html>
     );
