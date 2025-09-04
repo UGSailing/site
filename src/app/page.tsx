@@ -9,7 +9,6 @@ import Carousel, { CarouselItem } from "@/components/carousel";
 import { events } from "@/data/events";
 import { news } from "@/data/news";
 import Link from "next/link";
-import board from "@/data/board";
 import { BoardHomePage } from "@/components/boardHomePage";
 
 interface TeamImages {

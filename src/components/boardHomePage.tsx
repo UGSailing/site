@@ -4,7 +4,6 @@ import { H4 } from ".";
 
 
 export function BoardHomePage() {
-    console.log(board);
     return (
         <Carousel>
             {

@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { A, H2, H3, H4 } from "@/components";
-import Link from "next/link";
 import socials from "@/components/socials";
 
 export const metadata: Metadata = {
@@ -49,7 +48,7 @@ const Contact = () => {
                         <H3>
                             Email
                         </H3>
-                        <p className="mb-4">Feel free to reach out to us via mail with any questions or inquiries. We're here to help! Below are the email addresses for specific topics: </p>
+                        <p className="mb-4">Feel free to reach out to us via mail with any questions or inquiries. We&apos;re here to help! Below are the email addresses for specific topics: </p>
                         <table>
                             <tbody>
                                 {
