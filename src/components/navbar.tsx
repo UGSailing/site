@@ -15,7 +15,5 @@ export function NavBar() {
                 <HamburgerMenu />
             </div>
         </nav>
-
-
     );
 }

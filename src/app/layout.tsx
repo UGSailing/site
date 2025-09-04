@@ -4,6 +4,7 @@ import "./globals.css";
 import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/partners";
 import Banner from "@/components/banner";
+import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
                 <Banner {...bannerData} />
                 {children}
                 <Partners />
+                <Footer />
             </body>
         </html>
     );
