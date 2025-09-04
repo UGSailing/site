@@ -7,7 +7,7 @@ const BoardMemberCard = ({ member }: { member: BoardMember }) => (
         <img 
             src={member.image || "/img/logos/cropped_logo.png"} 
             alt= {`image of ${member.name}`}
-            className="w-36 h-36 object-cover rounded-full mr-6" 
+            className="h-36 aspect-square object-cover rounded-full mr-6" 
         />
         {/* Member Information */}
         <div className="h-full">
