@@ -78,10 +78,10 @@ export default function Home() {
                                             <div className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
                                                 <div>
                                                     <H4 className="mb-2 h-15">{event.title}</H4>
-                                                    <p className="text-sm text-gray-600 mb-1"><span className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{event.date}</p>
-                                                    <p className="text-sm text-gray-600"><span className="bg-gray-600 icon-[material-symbols--location-on]"></span>{event.location}</p>
+                                                    <p className="text-sm text-gray-600 mb-1"><span className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{event.startDate} {event.endDate ? `- ${event.endDate}` : ""}</p>
+                                                    <p className="text-sm text-gray-600 h-8"><span className="bg-gray-600 icon-[material-symbols--location-on]"></span>{event.location}</p>
                                                 </div>
-                                                <p className="text-md text-gray-800 mt-2 h-25">{event.description}</p>
+                                                <p className="text-md text-gray-800 mt-2 h-25">{event.intro}</p>
                                             </div>
                                         </div>
                                     </CarouselItem>
