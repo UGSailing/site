@@ -142,7 +142,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Arthur Van Damme",
-                // image: "/img/people/Arthur Van Damme.jpg",
+                image: "/img/people/Arthur Van Damme.jpg",
                 positions: [
                     positions["Volunteer Autonomous"]
                 ]
@@ -150,7 +150,7 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Guillaume Verlodt",
-                // image: "/img/people/Guillaume Verlodt.jpg",
+                image: "/img/people/Guillaume Verlodt.jpg",
                 positions: [
                     positions["Volunteer Autonomous"]
                 ]
@@ -181,7 +181,7 @@ const board: Board[] = [
             {
                 index: 1,
                 name: "Jorien Baert",
-                // image: "/img/people/Jorien Baert1.jpg",
+                image: "/img/people/Jorien Baert1.jpg",
                 positions: [
                     positions["Captain Extern"],
                 ]
