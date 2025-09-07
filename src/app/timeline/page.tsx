@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const Timeline = () => {
     
     return (
-        <div className="font-sans items-center justify-items-center min-h-screen px-6">
+        <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-6">
             <main className="w-full flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                 <H1 className="text-center w-full">Events</H1>
                 <Carousel buttonSettings={{ size: "xl" }} key="timeline-carousel">

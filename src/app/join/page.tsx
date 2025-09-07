@@ -22,14 +22,14 @@ const Join = () => {
             <div className="font-sans items-center justify-items-center min-h-screen px-6 mt-5">
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
-                        <H2>Rollen</H2>
+                        <H2>Roles</H2>
 
-                        To be implemented
+                        Coming soon
                     </section>
                     <section>
                         <H2>Testimonies</H2>
                         
-                        To be implemented
+                        Coming soon
                     </section>
                 </main>
             </div>
