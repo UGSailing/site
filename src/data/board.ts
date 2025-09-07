@@ -53,7 +53,7 @@ const positions: Record<string, Position> = {
 const board: Board[] = [
     {
         year: 2025, // used for sorting
-        name: "Board 2025-2026",
+        name: "Crew 2025-2026",
         HTMLid: "2025-2026",
         members: [
             {
