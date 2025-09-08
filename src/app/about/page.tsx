@@ -25,7 +25,7 @@ const About = () => {
                     but we will also participated in the Sealab class from July 2027 on.
 
                     <H4>Our Goals</H4>
-                    As a student association, we pursue three main goals: (check dit even voor betere voorwaarden in onze statuten pls, die vind je online in UBOregister ofz)
+                    As a student association, we pursue three main goals:
                     <ol className="list-decimal list-inside">
                         <li>
                             Bringing together people with a passion for maritime engineering, technology, and automation.
