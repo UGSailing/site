@@ -16,8 +16,11 @@ const BoardPage = () => {
     return (
         <div className="px-6 pt-5">
             <div>
-                <H2 className="mb-4">Board</H2>
-                <p className="mb-8">Some yapping about what the board does maybe.</p>
+                <H2 className="mb-4">Crew</H2>
+                <p className="mb-8">
+                    Our crew is the driving force behind UGent Sailing. They create the designs, organize the design sprints, 
+                    and come up with the craziest ideas and smartest solutions. Want to meet them?
+                </p>
             </div>
             <div style={{position: "relative"}} className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-6">
                 { /* Main content */ }

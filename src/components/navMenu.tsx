@@ -33,7 +33,7 @@ type MenuItem = MenuLink | MenuSubmenu
 const menuItems: MenuItem[] = [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
-    { title: "Board", href: "/board" },
+    { title: "Crew", href: "/crew" },
     { title: "Timeline", href: "/timeline" },
     { title: "Partners", href: "/partners" },
     { title: "Join us", href: "/join" },

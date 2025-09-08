@@ -11,10 +11,10 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 
 export function GenerationCard({ generation }: { generation: Generation }) {
-    const grey = !generation.link;
+    const grey = !generation.dateLaunch;
     return (
         <div className="w-full h-full grid grid-flow-col py-1 justify-items-center">
-            <Card className={`w-full max-w-sm ${grey ? "border-grey-700 opacity-70" : "border-red-500"}`}>
+            <Card className={`w-full max-w-sm ${grey ? "border-gray-500 opacity-70" : "border-red-500"}`}>
                 <CardHeader>
                     <CardTitle className={`${grey ? "text-black" : "text-red-700"} text-lg`}>
                         { generation.name }
