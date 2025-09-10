@@ -17,9 +17,28 @@ function H4({ className, ...opts }: React.ComponentProps<"h4"> ) {
     return <h4 className={cn("text-lg text-black font-semibold tracking-tight", className)} {...opts}/>;
 }
 
-function A({ className, href, ...opts }: React.ComponentProps<"a"> ) {
+function A({ className, href, ...opts }: React.ComponentProps<"a">) {
     href = href ?? "#";
-    return <Link className={cn("text-red-600 underline hover:text-red-800", className)} {...opts} href={href}/>;
+    const isInternal = href.startsWith("/") || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:");
+    if (!isInternal) {
+        opts.target = "_blank";
+        opts.rel = "noopener noreferrer";
+        return (
+            <Link 
+                className={cn("text-red-600 underline hover:text-red-800", className)} 
+                {...opts} 
+                href={href}
+            >
+                {opts.children}
+                <span className="icon-[bi--box-arrow-up-right] mx-1"></span>
+            </Link>
+        )
+    }
+    return <Link 
+        className={cn("text-red-600 underline hover:text-red-800", className)} 
+        {...opts} 
+        href={href}
+    />;
 }
 
 function Quote({ className, ...opts }: React.ComponentProps<"blockquote"> ) {
