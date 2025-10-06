@@ -1,7 +1,7 @@
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { partners } from "@/data/partners";
 import { PartnerCard } from "@/components/partnerCard";
-import {Metadata} from "next";
+import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
