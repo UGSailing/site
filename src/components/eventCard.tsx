@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 
 export function EventCard({ event }: { event: EventType }) {
     const eventPassed = Date.parse(event.startDate) < Date.now() + 1.5 * 3600 * 1000;
-    const disabled = {disabled: eventPassed || !event.registration};
+    const disabled = { disabled: eventPassed || !event.registration };
     return (
         <div className="w-full grid grid-flow-col py-1 justify-items-center">
             <Card className={`w-full max-w-sm ${eventPassed ? "border-grey-700 opacity-70" : "border-red-500"}`}>

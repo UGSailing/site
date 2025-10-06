@@ -2,7 +2,8 @@
 import {
     Carousel as ChadcnCarousel,
     CarouselContent,
-    type CarouselApi
+    type CarouselApi,
+    type CarouselOptions
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -86,7 +87,7 @@ function PreviousButton({ previousEvent, size }: { previousEvent?: (e: React.Mou
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function Carousel({ children, buttonSettings }: { children?: React.ReactNode, buttonSettings?: { size: string } }) {
+export default function Carousel({ children, buttonSettings, padding = true, opts = {} }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions }) {
     const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
@@ -99,8 +100,9 @@ export default function Carousel({ children, buttonSettings }: { children?: Reac
             opts={{
                 align: "start",
                 watchDrag: false,
+                ...opts
             }}
-            className="w-full px-2 py-2 relative"
+            className={"w-full relative" + (padding ? "px-2 py-2 " : "")}
             setApi={setApi}
         >
             <CarouselContent>
