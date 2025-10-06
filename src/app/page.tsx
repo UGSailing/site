@@ -1,24 +1,38 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {H2, H4} from "@/components";
-import Carousel, {CarouselItem} from "@/components/carousel";
-import {events} from "@/data/events";
-import {news} from "@/data/news";
+import { H2, H4 } from "@/components";
+import Carousel, { CarouselItem } from "@/components/carousel";
+import { events } from "@/data/events";
+import { news } from "@/data/news";
 import Link from "next/link";
-import {BoardHomePage} from "@/components/boardHomePage";
-import {TeamImages, TeamSlider} from "@/components/teamSlider";
+import { BoardHomePage } from "@/components/boardHomePage";
 
-
+export interface TeamImages {
+    src: string;
+    alt: string;
+}
 const teamImages: TeamImages[] = [
-    {src: "/img/board2425.jpg", alt: "Board 2024-2025"},
-    {src: "/img/board2425.jpg", alt: "Board 2024-2025"},
+    { src: "/img/board2425.jpg", alt: "Board 2024-2025" },
+    { src: "/img/board2425.jpg", alt: "Board 2024-2025" },
 ];
 
 export default function Home() {
 
     return (
         <div>
-            <TeamSlider teamImages={teamImages}/>
+            <Carousel padding={false} opts={{ loop: true }}>
+                {
+                    teamImages.map((image, index) => (
+                        <CarouselItem key={index} className="w-full">
+                            <div key={index}>
+                                <img
+                                    src={image.src}
+                                    alt={image.alt}
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                        </CarouselItem>
+                    ))
+                }
+            </Carousel>
             <div className="font-sans items-center justify-items-center min-h-screen px-6">
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">

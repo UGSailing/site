@@ -1,13 +1,13 @@
 "use client";
 import Slider from "react-slick";
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 
 export interface TeamImages {
     src: string;
     alt: string;
 }
 
-export function TeamSlider({teamImages}: {teamImages: TeamImages[]}) {
+export function TeamSlider({ teamImages }: {teamImages: TeamImages[]}) {
     const [hover, setHover] = useState<boolean>(false);
     const teamSlider = useRef<Slider>(null);
     const teamSliderSettings = {
@@ -20,7 +20,7 @@ export function TeamSlider({teamImages}: {teamImages: TeamImages[]}) {
         <div
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
-            style={{position: "relative"}}
+            style={{ position: "relative" }}
         >
                 <span
                     onClick={() => teamSlider?.current?.slickPrev()}
