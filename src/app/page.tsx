@@ -43,7 +43,7 @@ export default function Home() {
                         CO₂-neutral vessel to compete in the Monaco Energy Boat Challenge.
 
                     </section>
-                    <section className="w-full">
+                    <section className="w-full max-w-full">
                         <H2>Calender</H2>
 
                         <Carousel>
@@ -71,7 +71,7 @@ export default function Home() {
                             }
                         </Carousel>
                     </section>
-                    <section className="w-full">
+                    <section className="w-full max-w-full">
                         <H2>News</H2>
 
                         <Carousel>
@@ -99,7 +99,7 @@ export default function Home() {
                             }
                         </Carousel>
                     </section>
-                    <section className="w-full">
+                    <section className="w-full max-w-full">
                         <H2>Board</H2>
 
                         <BoardHomePage/>
