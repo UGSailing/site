@@ -22,7 +22,7 @@ const BoardPage = () => {
                     and come up with the craziest ideas and smartest solutions. Want to meet them?
                 </p>
             </div>
-            <div style={{position: "relative"}} className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-6">
+            <div style={{ position: "relative" }} className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-6">
                 { /* Main content */ }
                 <div className="order-2 md:order-none">
                     <div>
