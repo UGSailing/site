@@ -64,9 +64,28 @@ const aClasses: string = [
     "hover:text-red-800"    // Hover color
 ].join(" ")
 
-function A({ className, href, ...opts }: React.ComponentProps<"a"> ) {
+function A({ className, href, ...opts }: React.ComponentProps<"a">) {
     href = href ?? "#";
-    return <Link className={cn(aClasses, className)} {...opts} href={href}/>;
+    const isInternal = href.startsWith("/") || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:");
+    if (!isInternal) {
+        opts.target = "_blank";
+        opts.rel = "noopener noreferrer";
+        return (
+            <Link 
+                className={cn(aClasses, className)} 
+                {...opts} 
+                href={href}
+            >
+                {opts.children}
+                <span className="icon-[bi--box-arrow-up-right] mx-1"></span>
+            </Link>
+        )
+    }
+    return <Link 
+        className={cn(aClasses, className)} 
+        {...opts} 
+        href={href}
+    />;
 }
 
 const quoteClasses: string = [

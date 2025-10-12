@@ -238,5 +238,6 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-  type CarouselOptions
+  type CarouselOptions,
+  type CarouselPlugin,
 }
