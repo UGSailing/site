@@ -3,7 +3,8 @@ import {
     Carousel as ChadcnCarousel,
     CarouselContent,
     type CarouselApi,
-    type CarouselOptions
+    type CarouselOptions,
+    type CarouselPlugin
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -87,7 +88,7 @@ function PreviousButton({ previousEvent, size }: { previousEvent?: (e: React.Mou
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function Carousel({ children, buttonSettings, padding = true, opts = {} }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions }) {
+export default function Carousel({ children, buttonSettings, padding = true, opts = {}, plugins = [] }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions, plugins?: CarouselPlugin }) {
     const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
@@ -102,6 +103,7 @@ export default function Carousel({ children, buttonSettings, padding = true, opt
                 watchDrag: false,
                 ...opts
             }}
+            plugins={[...plugins]}
             className={"w-full relative" + (padding ? "px-2 py-2 " : "")}
             setApi={setApi}
         >

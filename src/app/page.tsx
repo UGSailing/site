@@ -1,52 +1,27 @@
-"use client";
-
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {useState, useRef} from "react";
-import {H2, H4} from "@/components";
-import Carousel, {CarouselItem} from "@/components/carousel";
-import {events} from "@/data/events";
-import {news} from "@/data/news";
+import { H2, H4 } from "@/components";
+import Carousel, { CarouselItem } from "@/components/carousel";
+import { events } from "@/data/events";
+import { news } from "@/data/news";
 import Link from "next/link";
-import {BoardHomePage} from "@/components/boardHomePage";
+import { BoardHomePage } from "@/components/boardHomePage";
 
-interface TeamImages {
+export interface TeamImages {
     src: string;
     alt: string;
 }
-
 const teamImages: TeamImages[] = [
-    {src: "/img/board2425.jpg", alt: "Board 2024-2025"},
-    {src: "/img/board2425.jpg", alt: "Board 2024-2025"},
+    { src: "/img/board2425.jpg", alt: "Board 2024-2025" },
+    { src: "/img/board2425.jpg", alt: "Board 2024-2025" },
 ];
 
 export default function Home() {
-    const [hover, setHover] = useState<boolean>(false);
-    const teamSlider = useRef<Slider>(null);
-    const teamSliderSettings = {
-        autoplaySpeed: 5000,
-        autoplay: true,
-        speed: 1000,
-    }
+
     return (
         <div>
-            <div
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                style={{position: "relative"}}
-            >
-                <span
-                    onClick={() => teamSlider?.current?.slickPrev()}
-                    className={`icon-[bi--arrow-left-circle-fill] w-6 h-6 absolute top-1/2 left-4 transform -translate-y-1/2 z-12 bg-white transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
-                ></span>
-                <span
-                    onClick={() => teamSlider?.current?.slickNext()}
-                    className={`icon-[bi--arrow-right-circle-fill] w-6 h-6 absolute top-1/2 right-4 transform -translate-y-1/2 z-12 bg-white transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
-                ></span>
-                <Slider ref={teamSlider} {...teamSliderSettings}>
-                    {
-                        teamImages.map((image, index) => (
+            <Carousel padding={false} opts={{ loop: true }}>
+                {
+                    teamImages.map((image, index) => (
+                        <CarouselItem key={index} className="w-full">
                             <div key={index}>
                                 <img
                                     src={image.src}
@@ -54,11 +29,11 @@ export default function Home() {
                                     className="w-full h-auto"
                                 />
                             </div>
-                        ))
-                    }
-                </Slider>
-            </div>
-            <div className="font-sans items-center min-h-screen px-6 w-screen">
+                        </CarouselItem>
+                    ))
+                }
+            </Carousel>
+            <div className="font-sans items-center min-h-screen px-6">
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
