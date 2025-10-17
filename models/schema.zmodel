@@ -1,0 +1,19 @@
+// This is a sample model to get you started.
+
+/// A sample data source using local sqlite db.
+datasource db {
+    provider          = "postgresql"
+    url               = env("DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "../../src/prisma/client"
+}
+
+/// User model
+model User {
+    id   Int    @id
+    name String @length(1, 100)
+}
