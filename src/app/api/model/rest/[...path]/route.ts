@@ -1,10 +1,20 @@
 import { enhance } from '@zenstackhq/runtime';
 import { NextRequestHandler } from '@zenstackhq/server/next';
 import { RestApiHandler } from "@zenstackhq/server/api";
-import { prisma } from '@/prisma';
+import prisma from '@/prisma';
+import { auth } from '@/lib/auth';
 
 async function getPrisma() {
-    return enhance(prisma, { });
+    const session = await auth();
+    if (session?.user) {
+        const user = await prisma.user.findUniqueOrThrow({
+            where: { id: session.user.id },
+        });
+        return enhance(prisma, { user });
+    } else {
+        // anonymous user
+        return enhance(prisma);
+    }
 }
 
 const handler = NextRequestHandler({ getPrisma, useAppDir: true, handler: RestApiHandler({
