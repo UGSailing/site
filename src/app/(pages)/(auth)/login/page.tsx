@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     description: "Sign in to UGent Sailing",
 }
 
-const Timeline = async () => {
+const SignInPage = async () => {
     const session = await auth();
     return (
         <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-6">
@@ -46,4 +46,4 @@ const Timeline = async () => {
     )
 };
 
-export default Timeline;
+export default SignInPage;

@@ -11,6 +11,8 @@ npx auth secret --copy
 
 Paste this value as `AUTH_SECRET`.
 
+If you want to host this on your own website, edit HOST. If you run in dev mode, this is set to http://localhost:3000 and should work in this tutorial.
+
 ### Setting up postgres
 
 If you haven't set up postgres yet, you can use the [tutorial](https://www.geeksforgeeks.org/postgresql/install-postgresql-on-windows/) from geeksforgeeks.

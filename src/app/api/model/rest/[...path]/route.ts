@@ -18,7 +18,7 @@ async function getPrisma() {
 }
 
 const handler = NextRequestHandler({ getPrisma, useAppDir: true, handler: RestApiHandler({
-    endpoint: process.env.NODE_ENV == "development" ? 'http://localhost:3000/api/model/rest' : 'https://ugentsailing.be/api/model/rest',
+    endpoint: (process.env.HOST ?? 'http://localhost:3000') + '/api/model/rest',
 }) });
 
 export {
