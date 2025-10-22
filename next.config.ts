@@ -1,7 +1,8 @@
 const nextConfig = {
     /* config options here */
-    output: "export",
-    distDir: "pages",
+    experimental: {
+        nodeMiddleware: true,
+    }
 };
 
 export default nextConfig;

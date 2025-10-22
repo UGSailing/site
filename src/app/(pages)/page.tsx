@@ -50,7 +50,7 @@ export default function Home() {
                             {
                                 events.map((event, index) => (
                                     <CarouselItem key={index}
-                                                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
+                                        className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
                                         <div className="p-4 h-full">
                                             <div
                                                 className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
@@ -78,7 +78,7 @@ export default function Home() {
                             {
                                 news.map((item, index) => (
                                     <CarouselItem key={index}
-                                                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
+                                        className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
                                         <div className="p-4 h-full">
                                             <div
                                                 className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
@@ -89,7 +89,7 @@ export default function Home() {
                                                     </p>
                                                 </div>
                                                 <Link href={item.link} target="_blank" rel="noopener noreferrer"
-                                                      className="text-md text-blue-600 mt-2 hover:underline">View
+                                                    className="text-md text-blue-600 mt-2 hover:underline">View
                                                     article <span
                                                         className="icon-[bi--box-arrow-up-right]"></span></Link>
                                             </div>
@@ -102,7 +102,7 @@ export default function Home() {
                     <section className="w-full max-w-full">
                         <H2>Board</H2>
 
-                        <BoardHomePage/>
+                        <BoardHomePage />
                     </section>
                 </main>
             </div>
