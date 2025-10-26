@@ -41,7 +41,7 @@ export default function RootLayout({
             >
                 <NavBar />
                 {/* <Banner {...bannerData} /> */}
-                {children}
+                { children }
                 <Partners />
                 <Footer />
             </body>
