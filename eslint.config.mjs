@@ -14,6 +14,7 @@ const eslintConfig = [
     {
         rules: {
             "object-curly-spacing": ["error", "always"],
+            "indent": ["error", 4],
         }
     }
 ];
