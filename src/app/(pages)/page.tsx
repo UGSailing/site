@@ -1,9 +1,11 @@
+"use client";
 import { H2, H4 } from "@/components";
 import Carousel, { CarouselItem } from "@/components/carousel";
 import { events } from "@/data/events";
 import { news } from "@/data/news";
 import Link from "next/link";
 import { BoardHomePage } from "@/components/boardHomePage";
+import { useTranslations } from "next-intl";
 
 export interface TeamImages {
     src: string;
@@ -15,6 +17,7 @@ const teamImages: TeamImages[] = [
 ];
 
 export default function Home() {
+    const t = useTranslations("home");
 
     return (
         <div>
@@ -37,14 +40,13 @@ export default function Home() {
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
-                        <H2>Intro</H2>
+                        <H2>{t("intro.title")}</H2>
 
-                        We are UGent Sailing, a diverse team of students and young graduates building an autonomous,
-                        CO₂-neutral vessel to compete in the Monaco Energy Boat Challenge.
+                        {t("intro.body")}
 
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>Calender</H2>
+                        <H2>{t("calendar.title")}</H2>
 
                         <Carousel>
                             {
@@ -72,7 +74,7 @@ export default function Home() {
                         </Carousel>
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>News</H2>
+                        <H2>{t("news.title")}</H2>
 
                         <Carousel>
                             {
@@ -89,8 +91,7 @@ export default function Home() {
                                                     </p>
                                                 </div>
                                                 <Link href={item.link} target="_blank" rel="noopener noreferrer"
-                                                    className="text-md text-blue-600 mt-2 hover:underline">View
-                                                    article <span
+                                                    className="text-md text-blue-600 mt-2 hover:underline">{t("news.viewArticle")} <span
                                                         className="icon-[bi--box-arrow-up-right]"></span></Link>
                                             </div>
                                         </div>
@@ -100,7 +101,7 @@ export default function Home() {
                         </Carousel>
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>Board</H2>
+                        <H2>{t("board.title")}</H2>
 
                         <BoardHomePage />
                     </section>

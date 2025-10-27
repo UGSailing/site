@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { H4 } from ".";
 import socials from "./socials";
+import { LocaleSwitcher } from "./locale-switcher";
 
 export function Footer() {
     return (
@@ -12,6 +13,7 @@ export function Footer() {
                         <H4 className="text-white mb-2">UGent Sailing</H4>
                         <p>Follow us on instagram to receive the latest information</p>
                     </div>
+                    
                     {/* Final div */}
                     <div className="hidden">
                         <p className="mb-2">
@@ -24,6 +26,7 @@ export function Footer() {
                         </p>
                         <p>Come join us on { /* Next activity date or sum */ }</p>
                     </div>
+                    <LocaleSwitcher />
                 </div>
                 <div>
                     <div className="text-sm m-4">

@@ -1,0 +1,24 @@
+{
+  "home": {
+    "intro": {
+      "title": "Intro",
+      "body": "Wij zijn UGent Sailing, een divers team van studenten en jonge afgestudeerden dat een autonoom, CO₂-neutraal vaartuig bouwt om deel te nemen aan de Monaco Energy Boat Challenge."
+    },
+    "calendar": {
+      "title": "Kalender"
+    },
+    "news": {
+      "title": "Nieuws",
+      "viewArticle": "Artikel bekijken"
+    },
+    "board": {
+      "title": "Bestuur"
+    },
+    "banner": {
+      "underConstruction": "Deze website is in opbouw."
+    }
+  },
+  "common": {
+    "language": "Taal"
+  }
+}

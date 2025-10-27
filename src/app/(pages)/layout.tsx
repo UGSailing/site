@@ -5,6 +5,10 @@ import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/partners";
 import Banner from "@/components/banner";
 import { Footer } from "@/components/footer";
+import { cookies } from "next/headers";
+import Providers from "../Providers";
+import { getMessages, resolveLocale } from "@/i18n/config";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -24,26 +28,30 @@ export const metadata: Metadata = {
 }
 
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
     const bannerData = {
         color: "#ffdb0b",
         message: "This website is under construction.",
-        textColor: "#111111"
-    }
+        textColor: "#111111",
+    };
+
+    const cookieStore = await cookies();
+    const localeCookie = cookieStore.get("locale")?.value ?? null;
+    const locale = resolveLocale(localeCookie);
+    const messages = await getMessages(locale);
+
     return (
-        <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-                <NavBar />
-                {/* <Banner {...bannerData} /> */}
-                { children }
-                <Partners />
-                <Footer />
+        <html lang={locale}>
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <Providers locale={locale} messages={messages}>
+                    <NavBar />
+                    {/* <Banner {...bannerData} /> */}
+                    {children}
+                    <Partners />
+                    <Footer />
+                </Providers>
             </body>
         </html>
     );
