@@ -37,7 +37,7 @@ const schemaInfo: SchemaInfo = {
         description: {
             label: "Description",
             placeholder: "Event Description",
-            type: 'text',
+            type: 'textarea',
         },
         registration: {
             label: "Registration",
