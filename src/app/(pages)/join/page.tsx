@@ -11,7 +11,7 @@ const Join = () => {
     return (
         <>
             <div className="grid md:grid-cols-[50%_50%]">
-                <img src="/img/board2425.jpg" alt="Join Us" className="h-auto object-cover"/>
+                <img src="https://tinyurl.com/ugentsailing" alt="Join Us" className="h-auto object-cover"/>
                 <div className="grid h-full place-items-center">
                     <div className="text-center">
                         <p>Join us?</p>
