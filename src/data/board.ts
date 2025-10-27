@@ -1,4 +1,4 @@
-type Position = {
+ttype Position = {
     name: string;
     description: string;
     email?: string;
