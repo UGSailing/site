@@ -96,7 +96,7 @@ export default function Carousel({ children, buttonSettings, padding = true, opt
             return
         }
         api.scrollTo(startIndex, false); // can't use startIndex in opts because of jumping behavior
-      }, [api])
+    }, [api])
     return (
         <ChadcnCarousel
             opts={{

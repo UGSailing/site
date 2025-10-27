@@ -10,12 +10,12 @@ export function resolveLocale(input?: string | null): Locale {
 
 export async function getMessages(locale: Locale) {
     switch (locale) {
-        case 'nl':
-            return (await import('./locales/nl.json')).default;
-        case 'default':
-            return (await import('./locales/default.json')).default;
-        case 'en':
-        default:
-            return (await import('./locales/en.json')).default;
+    case 'nl':
+        return (await import('./locales/nl.json')).default;
+    case 'default':
+        return (await import('./locales/default.json')).default;
+    case 'en':
+    default:
+        return (await import('./locales/en.json')).default;
     }
 }

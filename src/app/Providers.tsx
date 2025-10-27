@@ -10,9 +10,9 @@ type ProvidersProps = {
 };
 
 export default function Providers({ children, locale, messages }: ProvidersProps) {
-  return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      {children}
-    </NextIntlClientProvider>
-  );
+    return (
+        <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+        </NextIntlClientProvider>
+    );
 }
