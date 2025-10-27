@@ -1,5 +1,6 @@
-const nextConfig = {
-    /* config options here */
+export default {
+    output: 'standalone',
+    experimental: {
+        nodeMiddleware: true,
+    }
 };
-
-export default nextConfig;
