@@ -14,6 +14,7 @@ generator client {
     provider = "prisma-client-js"
     previewFeatures = ["driverAdapters"]
 }
+
 ///////////////////
 /// Auth models ///
 ///////////////////
@@ -35,6 +36,8 @@ model Account {
 
     @@unique([provider, providerAccountId])
     @@map("accounts")
+
+    @@allow('read', auth().id == userId)
 }
 
 model Session {
@@ -45,18 +48,22 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@map("sessions")
+
+    @@allow('read', auth().id == userId)
 }
 
 model User {
     id            String    @id @default(cuid())
-    name          String?
+    name          String?   @allow('all', auth().id == id)
     email         String?   @unique
     emailVerified DateTime? @map("email_verified")
-    image         String?
+    image         String?   @allow('all', auth().id == id)
     accounts      Account[]
     sessions      Session[]
 
     @@map("users")
+
+    @@allow('read', auth().id == id)
 }
 
 model VerificationToken {
@@ -71,9 +78,23 @@ model VerificationToken {
 //////////////////
 /// App models ///
 //////////////////
-model TimeStampBase {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
-    name      String
+abstract model TimestampBase {
+    createdAt DateTime @default(now()) @map("created_at") @deny('update', true) @meta("zod", "omit()")
+    updatedAt DateTime @updatedAt @map("updated_at") @deny('update', true)
+}
+
+model Event extends TimestampBase {
+    id           Int      @unique @id @default(autoincrement())
+    title        String   @trim
+    startDate    DateTime
+    endDate      DateTime
+    location     String
+    intro        String
+    description  String?  @trim
+    // image        String? This should be media
+    registration Int?     @gte(0)
+
+    @@validate(startDate < endDate, "Event startDate must be before endDate")
+
+    @@allow('all', true)
 }
