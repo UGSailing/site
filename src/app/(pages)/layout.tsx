@@ -8,45 +8,45 @@ import { Footer } from "@/components/footer";
 import FlyingImage from "@/components/flyingImage";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "UGent Sailing",
-    template: "%s | UGent Sailing",
-  }
+    title: {
+        default: "UGent Sailing",
+        template: "%s | UGent Sailing",
+    }
 }
 
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const bannerData = {
-    color: "#ffdb0b",
-    message: "This website is under construction.",
-    textColor: "#111111"
-  }
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <NavBar />
-        {/* <Banner {...bannerData} /> */}
-        {children}
-        <Partners />
-        <FlyingImage />
-        <Footer />
-      </body>
-    </html>
-  );
+    const bannerData = {
+        color: "#ffdb0b",
+        message: "This website is under construction.",
+        textColor: "#111111"
+    }
+    return (
+        <html lang="en">
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
+                <NavBar />
+                {/* <Banner {...bannerData} /> */}
+                {children}
+                <Partners />
+                <FlyingImage />
+                <Footer />
+            </body>
+        </html>
+    );
 }
