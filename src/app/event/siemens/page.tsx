@@ -25,9 +25,9 @@ const partnerevent = {
 
 const Partnerevent = () => {
     const bannerData = {
-        color: "#840000",
-        message: "Siemens NX workshops — register now",
-        textColor: "#ffffff"
+        color: "#d40000",
+        message: "Siemens NX workshops - No registration required",
+        textColor: "#ffffff",
     }
 
     return (
