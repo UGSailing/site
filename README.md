@@ -2,6 +2,23 @@ This project is hosted on [ugentsailing.be](https://ugentsailing.be)
 
 ## Development
 
+### Tools
+
+Version for each tool (`Nodejs` and `Pnpm`) can be found in the [asdf file](./.tool-versions).
+If you're using `asdf` you can install the correct versions with `asdf install`.
+
+If you're not using `asdf` then here is a short Haiku to convince you to use it.
+
+```
+Version pain no more,
+asdf tool of the wise.
+Install. Transcend. Code.
+```
+
+Download [asdf](https://asdf-vm.com/) today!
+
+### Auth
+
 To run the code, first you need to fill out create the necessary environment variables. Start with making a copy of the `example.env.local` file and renaming it to `.env.local`.
 
 Let's start easy, first create the auth_secret. Next-auth has a cli tool for this:
