@@ -65,7 +65,7 @@ const Partnerevent = () => {
 
                         <H4>Preparation / Voorbereiding</H4>
                         <p className="text-sm mb-2">
-                            Please install Siemens NX locally before the sessions. Inloggen met je UGent‑email is required.
+                            Please install Siemens NX locally before the sessions. Log in with your UGent-Email.
                         </p>
                         <p className="text-sm mb-4">
                             Installation instructions:{" "}
