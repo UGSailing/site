@@ -9,6 +9,11 @@ async function getPrisma() {
     if (session?.user) {
         const user = await prisma.user.findUniqueOrThrow({
             where: { id: session.user.id },
+            include: {
+                roles: {
+                    include: { role: true }
+                }
+            }
         });
         return enhance(prisma, { user });
     } else {
@@ -17,9 +22,14 @@ async function getPrisma() {
     }
 }
 
-const handler = NextRequestHandler({ getPrisma, useAppDir: true, handler: RestApiHandler({
-    endpoint: (process.env.HOST ?? 'http://localhost:3000') + '/api/model/rest',
-}) });
+const handler = NextRequestHandler({
+    getPrisma, 
+    useAppDir: true, 
+    handler: RestApiHandler({
+        endpoint: (process.env.HOST ?? 'http://localhost:3000') + '/api/model/rest',
+    }),
+
+});
 
 export {
     handler as DELETE,
