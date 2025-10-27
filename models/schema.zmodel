@@ -131,5 +131,65 @@ model Event extends TimestampBase {
 
     @@validate(startDate < endDate, "Event startDate must be before endDate")
 
+    @@map("events")
+
     @@allow('all', true)
+}
+
+model Position extends TimestampBase {
+    name	String	@trim @unique @id
+    description	String	@trim
+    email	String? @trim
+
+    boardmembers BoardMemberPosition[]
+
+    @@map("positions")
+
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
+}
+
+model BoardMember extends TimestampBase {
+    id		BigInt		@id @default(autoincrement())
+    name	String		@trim
+    image	String?		@trim
+    index	Int
+    positions	BoardMemberPosition[]	
+
+    boardId BigInt @map("board_id")
+
+    board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+    @@map("boardmembers")
+
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
+}
+
+model BoardMemberPosition {
+    id     		Int    @id @default(autoincrement())
+    boardMemberId 	BigInt @map("boardmember_id")
+    positionId 		String @map("position_id")
+
+    boardmember   	BoardMember   	@relation(fields: [boardMemberId], references: [id], onDelete: Cascade)
+    position   		Position   	@relation(fields: [positionId], references: [name], onDelete: Cascade)
+
+    @@unique([boardMemberId, positionId])
+    @@map("boardmember_position")
+
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
+}
+
+model Board extends TimestampBase {
+    id		BigInt		@id @default(autoincrement())
+    year	Int 		@unique
+    name	String		@trim
+    htmlid	String		@trim
+    members	BoardMember[]
+
+    @@map("boards")
+
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
 }
