@@ -5,26 +5,27 @@ import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/partners";
 import Banner from "@/components/banner";
 import { Footer } from "@/components/footer";
+import FlyingImage from "@/components/flyingImage";
 import { cookies } from "next/headers";
 import Providers from "../Providers";
 import { getMessages, resolveLocale } from "@/i18n/config";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 
 const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-    title: {
-        default: "UGent Sailing",
-        template: "%s | UGent Sailing",
-    }
+  title: {
+    default: "UGent Sailing",
+    template: "%s | UGent Sailing",
+  }
 }
 
 
@@ -50,6 +51,7 @@ export default async function RootLayout({
                     {/* <Banner {...bannerData} /> */}
                     {children}
                     <Partners />
+                    <FlyingImage />
                     <Footer />
                 </Providers>
             </body>

@@ -12,8 +12,8 @@ export interface TeamImages {
     alt: string;
 }
 const teamImages: TeamImages[] = [
-    { src: "/img/board2425.jpg", alt: "Board 2024-2025" },
-    { src: "/img/board2425.jpg", alt: "Board 2024-2025" },
+    { src: "https://tinyurl.com/ugentsailing", alt: "Board 2024-2025" },
+    { src: "https://tinyurl.com/ugentsailing", alt: "Board 2024-2025" },
 ];
 
 export default function Home() {
