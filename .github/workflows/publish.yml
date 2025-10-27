@@ -31,20 +31,20 @@ jobs:
           static_site_generator: next
 
       - name: Build with Next.js 🏗️
-        run: npx next build
-        
+        run: pnpx next build
+
       - name: Debug directory
         run: ls -la .next/static
-        
+
       - name: Debug directory
         run: ls -la .next
-        
+
       - name: Debug directory
         run: ls -la .
-        
+
       - name: Debug file
         run: cat next.config.js
-        
+
       - name: Debug file
         run: cat next.config.ts
 

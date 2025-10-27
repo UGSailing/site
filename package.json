@@ -10,6 +10,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
+        "lint:fix": "next lint --fix",
         "db:makemigrations": "npx zenstack generate && npx prisma migrate --config models/prisma.config.ts dev --create-only",
         "db:migrate": "npx zenstack generate && npx prisma --config models/prisma.config.ts migrate deploy && npx prisma --config models/prisma.config.ts generate",
         "db:reset": "npx prisma --config models/prisma.config.ts migrate reset",

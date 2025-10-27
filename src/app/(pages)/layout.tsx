@@ -5,6 +5,7 @@ import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/partners";
 import Banner from "@/components/banner";
 import { Footer } from "@/components/footer";
+import FlyingImage from "@/components/flyingImage";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
     const bannerData = {
         color: "#ffdb0b",
@@ -41,8 +42,9 @@ export default function RootLayout({
             >
                 <NavBar />
                 {/* <Banner {...bannerData} /> */}
-                { children }
+                {children}
                 <Partners />
+                <FlyingImage />
                 <Footer />
             </body>
         </html>
