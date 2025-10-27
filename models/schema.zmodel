@@ -15,7 +15,8 @@ generator client {
 
 plugin openapi {
     provider = "@zenstackhq/openapi"
-    output = "prisma/openapi.json"
+    output = "../public/api/openapi.json"
+    flavor = "rest"
     title = "UGent Sailing site API"
     version = "1.0.0"
     prefix = "/api/model/rest"
