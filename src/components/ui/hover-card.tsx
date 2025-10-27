@@ -7,6 +7,12 @@ interface HoverCardProps {
     popupClassName?: string;
 }
 
+/**
+ * @param children - main content (normally)
+ * @param content - content hover
+ * @param className - extra CSS klasses for the main container
+ * @param popupClassName - Additional CSS classes for the popup overlay
+ */
 const HoverCard = (
     { children, content, className = "", popupClassName = "" }: HoverCardProps,
 ) => {

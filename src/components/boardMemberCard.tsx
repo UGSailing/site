@@ -2,7 +2,15 @@ import { BoardMember } from "@/data/board";
 import { H4 } from ".";
 import HoverCard from "./ui/hover-card";
 
-const BoardMemberCard = ({ member }: { member: BoardMember }) => {
+interface BoardMemberCardProps {
+    member: BoardMember;
+}
+
+/**
+ * A kaartje component that displays a board member's information with a hover :p.
+ * @param member - The board member data containing name, image, positions, studies, and email
+ */
+const BoardMemberCard = ({ member }: BoardMemberCardProps) => {
     const popupContent = (member.studies && member.studies.trim() !== "") ||
             (member.email && member.email.trim() !== "")
         ? (
