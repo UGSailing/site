@@ -163,18 +163,16 @@ export default function Form(
             }
           </FieldGroup>
         </form>
-        <CardFooter>
-          <Field orientation="horizontal">
+        <CardFooter className="px-0">
+          <div className="flex gap-4 pt-4 w-full justify-end">
             <Button type="button" variant="outline" onClick={() => form.reset()}>
               Reset
             </Button>
             <Button type="submit" form={`${schemaInfo.name}-form`}>
               Submit
             </Button>
-          </Field>
-          {serverError && (
-            <p className="text-red-600 text-sm">{serverError}</p>
-          )}
+          </div>
+          {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
         </CardFooter>
       </CardContent>
 
