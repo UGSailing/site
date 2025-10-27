@@ -12,20 +12,20 @@ import { getMessages, resolveLocale } from "@/i18n/config";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "UGent Sailing",
-    template: "%s | UGent Sailing",
-  }
+    title: {
+        default: "UGent Sailing",
+        template: "%s | UGent Sailing",
+    }
 }
 
 
