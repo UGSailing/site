@@ -12,7 +12,6 @@ datasource db {
 /// Prisma Client generator configuration
 generator client {
     provider = "prisma-client-js"
-    output   = "../../src/prisma/client"
     previewFeatures = ["driverAdapters"]
 }
 
@@ -112,11 +111,25 @@ model UserRole {
 //////////////////
 /// App models ///
 //////////////////
-model TimeStampBase {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
-    name      String
+abstract model TimestampBase {
+    createdAt DateTime @default(now()) @map("created_at") @deny('update', true) @meta("zod", "omit()")
+    updatedAt DateTime @updatedAt @map("updated_at") @deny('update', true)
 
     @@allow('read', auth().roles?[role.name == "IT"])
+}
+
+model Event extends TimestampBase {
+    id           Int      @unique @id @default(autoincrement())
+    title        String   @trim
+    startDate    DateTime
+    endDate      DateTime
+    location     String
+    intro        String
+    description  String?  @trim
+    // image        String? This should be media
+    registration Int?     @gte(0)
+
+    @@validate(startDate < endDate, "Event startDate must be before endDate")
+
+    @@allow('all', true)
 }
