@@ -3,9 +3,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ReactNode, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, ControllerRenderProps, ControllerFieldState } from 'react-hook-form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import {
   Field,
@@ -17,8 +17,9 @@ import {
 import { Input } from "./ui/input"
 import { DateTimePicker } from './ui/datetime-picker';
 import { Button } from './ui/button';
+import Markdown from './markdown';
 
-type FieldType = "text" | "number" | "datetime"
+type FieldType = "text" | "textarea" | "number" | "datetime"
 
 export interface FieldInfo {
   type: FieldType;
@@ -36,17 +37,44 @@ export function FormField({
   fieldName: string;
   fieldInfo: FieldInfo;
 }) {
-  let defaultValue = undefined;
-  switch (fieldInfo.type) {
-    case "text":
-      defaultValue = "";
-      break;
-    case "number":
-      defaultValue = 0;
-      break;
-    case "datetime":
-      defaultValue = new Date();
-      break;
+  let defaultValue = useMemo(() => {
+    switch (fieldInfo.type) {
+      case "text":
+      case "textarea":
+        return "";
+      case "number":
+        return 0;
+      case "datetime":
+        return new Date();
+    }
+  }, []);
+
+  const renderField = (field: ControllerRenderProps, fieldState: ControllerFieldState) => {
+    switch (fieldInfo.type) {
+      case "text":
+      case "number":
+        return <Input
+          {...field}
+          id={field.name}
+          placeholder={fieldInfo?.placeholder}
+          aria-invalid={fieldState.invalid}
+          autoComplete='off'
+          type={fieldInfo.type}
+          value={field.value ?? defaultValue}
+        />
+      case "datetime":
+        return <DateTimePicker
+          value={field.value as Date ?? defaultValue}
+          onChange={field.onChange}
+        />
+      case "textarea":
+        return <Markdown
+          {...field}
+          value={field.value as string ?? defaultValue}
+          onChange={field.onChange}
+          textareaProps={{ placeholder: fieldInfo.placeholder }}
+        />
+    }
   }
 
   return (
@@ -56,35 +84,13 @@ export function FormField({
       render={({ field, fieldState }) => (
         (
           <Field data-invalid={fieldState.invalid}>
-            {
-              fieldInfo?.label && (
-                <FieldLabel htmlFor={field.name}>{fieldInfo.label}</FieldLabel>
-              )
-            }
-            {
-              fieldInfo.type === 'datetime' ? (
-                <DateTimePicker value={field.value as Date ?? defaultValue} onChange={field.onChange} />
-              ) : (
-                <Input
-                  {...field}
-                  id={field.name}
-                  placeholder={fieldInfo?.placeholder}
-                  aria-invalid={fieldState.invalid}
-                  autoComplete='off'
-                  type={fieldInfo.type}
-                  value={field.value ?? defaultValue}
-                />
-              )
-            }
-            {
-              fieldInfo?.description && (
-                (
-                  <FieldDescription>
-                    {fieldInfo?.description}
-                  </FieldDescription>
-                )
-              )
-            }
+            {fieldInfo?.label && <FieldLabel htmlFor={field.name}>{fieldInfo.label}</FieldLabel>}
+            {renderField(field, fieldState)}
+            {fieldInfo?.description && (
+              <FieldDescription>
+                {fieldInfo?.description}
+              </FieldDescription>
+            )}
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
         )
