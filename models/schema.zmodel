@@ -18,7 +18,7 @@ plugin openapi {
     output = "prisma/openapi.json"
     title = "UGent Sailing site API"
     version = "1.0.0"
-    flavor = "rest"
+    prefix = "/api/model/rest"
 }
 
 ///////////////////
