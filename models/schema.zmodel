@@ -37,7 +37,7 @@ model Account {
     @@unique([provider, providerAccountId])
     @@map("accounts")
 
-    @@allow('read', auth().id == userId)
+    @@allow('read', auth().roles?[role.name == "Captain" || role.name == "IT"])
 }
 
 model Session {
@@ -49,21 +49,24 @@ model Session {
 
     @@map("sessions")
 
-    @@allow('read', auth().id == userId)
+    @@allow('read', auth().roles?[role.name == "IT"])
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?   @allow('all', auth().id == id)
-    email         String?   @unique
-    emailVerified DateTime? @map("email_verified")
-    image         String?   @allow('all', auth().id == id)
+    id            String     @id @default(cuid())
+    name          String?
+    email         String?    @unique
+    emailVerified DateTime?  @map("email_verified")
+    image         String?
     accounts      Account[]
     sessions      Session[]
 
+    roles         UserRole[]
+
     @@map("users")
 
-    @@allow('read', auth().id == id)
+    @@allow('read,update', auth() == this || auth().roles?[role.name == "Captain"])
+    @@allow('read', auth().roles?[role.name == "IT"])
 }
 
 model VerificationToken {
@@ -73,6 +76,36 @@ model VerificationToken {
 
     @@unique([identifier, token])
     @@map("verification_tokens")
+
+    @@allow('read', auth().roles?[role.name == "IT"])
+}
+
+///////////////////
+/// Permissions ///
+///////////////////
+
+model Role {
+    id    BigInt     @id
+    name  String     @unique
+    users UserRole[]
+    @@map("roles")
+
+    @@allow('read', auth().roles?[role.name == "Captain" || role.name == "IT"])
+}
+
+model UserRole {
+    id     Int    @id @default(autoincrement())
+    userId String @map("user_id")
+    roleId BigInt @map("role_id")
+
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+    @@unique([userId, roleId])
+    @@map("user_roles")
+
+    @@allow('read,create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create', auth().roles?[role.name == "Sponsor"] && this.role.name == "Sponsor")
 }
 
 //////////////////
@@ -81,6 +114,8 @@ model VerificationToken {
 abstract model TimestampBase {
     createdAt DateTime @default(now()) @map("created_at") @deny('update', true) @meta("zod", "omit()")
     updatedAt DateTime @updatedAt @map("updated_at") @deny('update', true)
+
+    @@allow('read', auth().roles?[role.name == "IT"])
 }
 
 model Event extends TimestampBase {

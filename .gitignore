@@ -3,6 +3,7 @@
 # custom
 pages
 models/prisma.env
+.zenstack_repl_history
 
 # auto generated
 src/prisma/*

@@ -72,6 +72,35 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Found an error, want to edit some code, improve this project. Please open an issue, or fork and submit a pull request.
 
+### Backend
+
+The backend is writting in zenstack. To create a new table and expose the API, simply edit `models/schema.zmodel`.
+
+To create migrations for the database, you can use `npm run db:makemigrations`, you can find the newly created migration file in `models/prisma/migrations/`. Check the migrations and if you are happy, run `npm run db:migrate` which will apply the migrations.
+
+After running all that, your newly created model will be availble under /api/model/rest/&lt;model-name&gt;.
+
+Zenstack automatically prevents users from reading, updating, creating an deleting entries. In order to allow users to update/create entries, add the following code:
+```zmodel
+@@allow("create,update,delete", auth().roles?[role.name == "role-name"])
+@@allow("read", true)
+```
+
+The most important roles are found here:
+
+|         id          |          name           | Role on site                   |
+|---------------------| :---------------------: | -----------------------------: |
+| 1424125799056806051 | Captain                 | Admin, can edit everything     |
+| 1362493283464380487 | Member                  | User                           |
+| 1422578278811828264 | MATES                   | Team member, can create events |
+| 1422579667914854440 | CREW                    | Team member, can create events |
+| 1432120129415549162 | Sponsors                | Partner, has own admin page    |
+
+The full list of currently available roles can be found at `models/prisma/migrations/20251027002933_roles/migration.sql`.
+
+The full Zenstack Documentation can be found [here](https://zenstack.dev/docs/the-complete-guide).
+
+
 ## Learn More
 
 ### Next.js
