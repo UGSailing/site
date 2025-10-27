@@ -15,8 +15,17 @@ const BoardMemberCard = ({ member }: BoardMemberCardProps) => {
             (member.email && member.email.trim() !== "")
         ? (
             <>
-                <p>{member.studies}</p>
-                <p>{member.email}</p>
+                {member.studies && member.studies.trim() !== "" && (
+                    <p>{member.studies}</p>
+                )}
+                {member.email && member.email.trim() !== "" && (
+                    <a
+                        href={`mailto:${member.email}`}
+                        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline"
+                    >
+                        📧 {member.email}
+                    </a>
+                )}
             </>
         )
         : (
