@@ -1,0 +1,24 @@
+{
+  "home": {
+    "intro": {
+      "title": "Intro",
+      "body": "We are UGent Sailing, a diverse team of students and young graduates building an autonomous, CO₂-neutral vessel to compete in the Monaco Energy Boat Challenge."
+    },
+    "calendar": {
+      "title": "Calendar"
+    },
+    "news": {
+      "title": "News",
+      "viewArticle": "View article"
+    },
+    "board": {
+      "title": "Board"
+    },
+    "banner": {
+      "underConstruction": "This website is under construction."
+    }
+  },
+  "common": {
+    "language": "Language"
+  }
+}

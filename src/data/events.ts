@@ -42,5 +42,25 @@ export const events: EventType[] = [
         description: "Our prototype boat, which we worked a whole semester on, will be launched. Together with all our partners, we will celebrate this milestone.",
         image: "/images/events/cropped_logo.png",
         registration: false,
+    },
+    {
+        id: "4",
+        title: "upcoming event",
+        startDate: "29-10-2025",
+        location: "Locus, Tech Lane Ghent Science Park, Campus A.",
+        intro: "Our prototype boat, which we worked a whole semester on, will be launched.",
+        description: "Our prototype boat, which we worked a whole semester on, will be launched. Together with all our partners, we will celebrate this milestone.",
+        image: "/images/events/cropped_logo.png",
+        registration: false,
+    },
+    {
+        id: "5",
+        title: "Further event",
+        startDate: "29-11-2025",
+        location: "Locus, Tech Lane Ghent Science Park, Campus A.",
+        intro: "Our prototype boat, which we worked a whole semester on, will be launched.",
+        description: "Our prototype boat, which we worked a whole semester on, will be launched. Together with all our partners, we will celebrate this milestone.",
+        image: "/images/events/cropped_logo.png",
+        registration: false,
     }
 ];
