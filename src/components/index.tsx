@@ -13,8 +13,8 @@ const h1Classes: string = [
     "text-red-700"          // Text color
 ].join(" ")
 
-function H1({ className, ...opts }: React.ComponentProps<"h1"> ) {
-    return <h1 className={cn(h1Classes, className)} {...opts}/>;
+function H1({ className, ...opts }: React.ComponentProps<"h1">) {
+    return <h1 className={cn(h1Classes, className)} {...opts} />;
 }
 
 const h2Classes: string = [
@@ -29,8 +29,8 @@ const h2Classes: string = [
     "text-red-700"          // Text color
 ].join(" ")
 
-function H2({ className, ...opts }: React.ComponentProps<"h2"> ) {
-    return <h2 className={cn(h2Classes, className)} {...opts}/>;
+function H2({ className, ...opts }: React.ComponentProps<"h2">) {
+    return <h2 className={cn(h2Classes, className)} {...opts} />;
 }
 
 const h3Classes: string = [
@@ -42,8 +42,8 @@ const h3Classes: string = [
     "text-red-700"          // Text color
 ].join(" ")
 
-function H3({ className, ...opts }: React.ComponentProps<"h3"> ) {
-    return <h3 className={cn(h3Classes, className)} {...opts}/>;
+function H3({ className, ...opts }: React.ComponentProps<"h3">) {
+    return <h3 className={cn(h3Classes, className)} {...opts} />;
 }
 
 const h4Classes: string = [
@@ -54,8 +54,8 @@ const h4Classes: string = [
     "text-black"            // Text color
 ].join(" ")
 
-function H4({ className, ...opts }: React.ComponentProps<"h4"> ) {
-    return <h4 className={cn(h4Classes, className)} {...opts}/>;
+function H4({ className, ...opts }: React.ComponentProps<"h4">) {
+    return <h4 className={cn(h4Classes, className)} {...opts} />;
 }
 
 const aClasses: string = [
@@ -71,9 +71,9 @@ function A({ className, href, ...opts }: React.ComponentProps<"a">) {
         opts.target = "_blank";
         opts.rel = "noopener noreferrer";
         return (
-            <Link 
-                className={cn(aClasses, className)} 
-                {...opts} 
+            <Link
+                className={cn(aClasses, className)}
+                {...opts}
                 href={href}
             >
                 {opts.children}
@@ -81,9 +81,9 @@ function A({ className, href, ...opts }: React.ComponentProps<"a">) {
             </Link>
         )
     }
-    return <Link 
-        className={cn(aClasses, className)} 
-        {...opts} 
+    return <Link
+        className={cn(aClasses, className)}
+        {...opts}
         href={href}
     />;
 }
@@ -96,8 +96,19 @@ const quoteClasses: string = [
     "italic"                // Italic text
 ].join(" ")
 
-function Quote({ className, ...opts }: React.ComponentProps<"blockquote"> ) {
-    return <blockquote className={cn(quoteClasses, className)} {...opts}/>;
+function Quote({ className, inline, ...opts }: React.ComponentProps<"blockquote"> & { inline?: boolean }) {
+    return (
+        inline ? (
+            <blockquote className={cn(quoteClasses, className)} {...opts} />
+        ) : (
+            <section
+                {...opts}
+                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-red-600"
+            />
+
+        )
+    )
+    return
 }
 
 
