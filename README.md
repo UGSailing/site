@@ -15,6 +15,14 @@ If you want to host this on your own website, edit `AUTH_URL`. If you run in dev
 
 ### Setting up postgres
 
+#### Using docker
+
+If you've docker installed you can use the docker dev compose to spin up a basic postgres db with the following command:
+
+`docker compose up`
+
+#### Postgres on your system
+
 If you haven't set up postgres yet, you can use the [tutorial](https://www.geeksforgeeks.org/postgresql/install-postgresql-on-windows/) from geeksforgeeks.
 
 Next create a table for this project:
