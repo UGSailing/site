@@ -1,6 +1,4 @@
-/// Prisma schema file
-
-
+/// Prisma schema file -*-js-*-
 
 /// Database connection configuration
 datasource db {
@@ -13,6 +11,14 @@ datasource db {
 generator client {
     provider = "prisma-client-js"
     previewFeatures = ["driverAdapters"]
+}
+
+plugin openapi {
+    provider = "@zenstackhq/openapi"
+    output = "prisma/openapi.json"
+    title = "UGent Sailing site API"
+    version = "1.0.0"
+    flavor = "rest"
 }
 
 ///////////////////

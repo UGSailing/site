@@ -111,6 +111,10 @@ Found an error, want to edit some code, improve this project. Please open an iss
 ## Backend
 
 The backend is written in zenstack.
+The code is auto generated from the `models/schema.zmodel` file, using the `npm run db:generate` command.
+
+An OpenAPI spec is also generated to `models/prisma/openapi.json`.
+
 To create a new table and expose it in the API, simply edit `models/schema.zmodel`.
 
 To create migrations for the database, you can use `pnpm run db:makemigrations`, you can find the newly created migration file in `models/prisma/migrations/`.
