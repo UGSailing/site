@@ -110,14 +110,16 @@ Found an error, want to edit some code, improve this project. Please open an iss
 
 ## Backend
 
-The backend is writting in zenstack. To create a new table and expose the API, simply edit `models/schema.zmodel`.
+The backend is written in zenstack.
+To create a new table and expose it in the API, simply edit `models/schema.zmodel`.
 
-To create migrations for the database, you can use `pnpm run db:makemigrations`, you can find the newly created migration file in `models/prisma/migrations/`. Check the migrations and if you are happy, run `pnpm run db:migrate` which will apply the migrations.
+To create migrations for the database, you can use `pnpm run db:makemigrations`, you can find the newly created migration file in `models/prisma/migrations/`.
+Check the migrations and if you are happy, run `pnpm run db:migrate` which will apply the migrations.
 
-After running all that, your newly created model will be availble under /api/model/rest/&lt;model-name&gt;.
+After running all that, your newly created model will be availble under `/api/model/rest/<model-name>`.
 
-Zenstack automatically prevents users from reading, updating, creating an deleting entries. In order to allow users to update/create entries, add the following code:
-
+Zenstack automatically prevents users from reading, updating, creating an deleting entries.
+In order to allow users to update/create entries, add the following code:
 ```zmodel
 @@allow("create,update,delete", auth().roles?[role.name == "role-name"])
 @@allow("read", true)
