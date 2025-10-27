@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 }
 
 function getNextEventIndex(events: typeof import('@/data/events').events) {
-    console.log(events)
     const now = new Date();
     const dates = events.map(event => parse(event.endDate ?? event.startDate, 'dd-MM-yyyy', new Date()));
     const deltas = dates.map(date => date.getTime() - now.getTime());
