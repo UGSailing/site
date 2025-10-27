@@ -20,14 +20,14 @@ const partnerevent = {
         { date: "25/11/2025", time: "09:00 - 12:00" },
         { date: "02/12/2025", time: "09:00 - 12:00" },
     ],
-    location: "Locus, Tech Lane Ghent Science Park, Campus Ardooie, 9000 Gent",
+    location: "Building 125 second floor, Tech Lane Ghent Science Park, Campus Ardoyen, 9000 Gent",
 }
 
 const Partnerevent = () => {
     const bannerData = {
-        color: "#ffdb0b",
+        color: "#840000",
         message: "Siemens NX workshops — register now",
-        textColor: "#111111"
+        textColor: "#ffffff"
     }
 
     return (
