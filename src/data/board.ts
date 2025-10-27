@@ -1,4 +1,4 @@
-type Position = {
+ttype Position = {
     name: string;
     description: string;
     email?: string;
@@ -329,10 +329,9 @@ const board: Board[] = [
 ];
 
 export default board;
-export { 
-    type Board, 
-    type BoardMember, 
-    type Position, 
-    positions 
-};
-
+export {
+    positions,
+    type Position,
+    type BoardMember,
+    type Board
+}
