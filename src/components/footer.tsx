@@ -12,7 +12,7 @@ export function Footer() {
                 </div>
                 <div className="flex-1 flex flex-col items-center gap-2">
                     <H4 className="text-white">Contact Us</H4>
-                    <p>Via mail: <a href="mailto:contact@ugentsailing.be"><u>contact@ugentsailing.be</u></a></p>
+                    <p><a href="mailto:contact@ugentsailing.be"><u>contact@ugentsailing.be</u></a></p>
                     
                 </div>
                 <div className="flex-1 flex flex-col items-center md:items-end gap-2 mt-6">
