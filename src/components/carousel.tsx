@@ -88,14 +88,15 @@ function PreviousButton({ previousEvent, size }: { previousEvent?: (e: React.Mou
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function Carousel({ children, buttonSettings, padding = true, opts = {}, plugins = [] }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions, plugins?: CarouselPlugin }) {
+export default function Carousel({ children, buttonSettings, padding = true, opts = {}, plugins = [], startIndex = 0 }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions, plugins?: CarouselPlugin, startIndex?: number }) {
     const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
         if (!api) {
             return
         }
-    }, [api])
+        api.scrollTo(startIndex, false); // can't use startIndex in opts because of jumping behavior
+      }, [api])
     return (
         <ChadcnCarousel
             opts={{
