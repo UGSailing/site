@@ -35,6 +35,7 @@ const menuItems: MenuItem[] = [
     { title: "About", href: "/about" },
     { title: "Crew", href: "/crew" },
     { title: "Timeline", href: "/timeline" },
+    { title: "Events", href: "/events" },
     { title: "Partners", href: "/partners" },
     { title: "Join us", href: "/join" },
     { title: "Living Lab", href: "/living-lab" },
