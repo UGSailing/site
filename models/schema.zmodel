@@ -84,15 +84,15 @@ abstract model TimestampBase {
 }
 
 model Event extends TimestampBase {
-    id           Int   @unique @id @default(autoincrement())
+    id           Int      @unique @id @default(autoincrement())
     title        String   @trim
     startDate    DateTime
     endDate      DateTime
     location     String
     intro        String
-    description  String? @trim
+    description  String?  @trim
     // image        String? This should be media
-    registration Int? @gte(0)
+    registration Int?     @gte(0)
 
     @@validate(startDate < endDate, "Event startDate must be before endDate")
 

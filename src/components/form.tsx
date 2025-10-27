@@ -78,7 +78,7 @@ export function FormField({
 }
 
 export interface SchemaInfo {
-    schema: z.ZodType<any>;
+    schema: z.ZodType<unknown>;
     fields: Record<string, FieldInfo>;
     name: string;
     formTitle: string;
@@ -92,9 +92,10 @@ export default function Form(
     fetchOptions: RequestInit = { method: 'POST', headers: { 'content-type': 'application/json' } }
 ) {
     type Input = z.TypeOf<typeof schemaInfo.schema>;
+    // @ts-expect-error - zodResolver types are broken
     const form = useForm<Input>({
         defaultValues: { description: '' },
-        // @ts-ignore
+        // @ts-expect-error - zodResolver types are broken
         resolver: zodResolver(schemaInfo.schema),
     });
 
@@ -131,6 +132,7 @@ export default function Form(
                             Object.entries(schemaInfo.fields).map(([fieldName, fieldInfo]) => (
                                 <FormField
                                     key={fieldName}
+                                    // @ts-expect-error - zodResolver types are broken
                                     form={form}
                                     fieldName={fieldName as keyof Input & string}
                                     fieldInfo={fieldInfo}
