@@ -15,7 +15,7 @@ export function Footer() {
           <p>Via mail: <a href="mailto:contact@ugentsailing.be"><u>contact@ugentsailing.be</u></a></p>
           <div className="flex gap-2">
             {socials.map(s => (
-              <Link className="nav-link" href={s.href} target="_blank" rel="noopener noreferrer">
+              <Link key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" className="nav-link" >
                 <p className={s.icon} />
               </Link>
             ))}
