@@ -2,22 +2,49 @@ This project is hosted on [ugentsailing.be](https://ugentsailing.be)
 
 ## Development
 
+### Tools
+
+Version for each tool (`Nodejs` and `Pnpm`) can be found in the [asdf file](./.tool-versions).
+If you're using `asdf` you can install the correct versions with `asdf install`.
+
+If you're not using `asdf` then here is a short Haiku to convince you to use it.
+
+```
+Version pain no more,
+asdf tool of the wise.
+Install. Transcend. Code.
+```
+
+Download [asdf](https://asdf-vm.com/) today!
+
+### Auth
+
 To run the code, first you need to fill out create the necessary environment variables. Start with making a copy of the `example.env.local` file and renaming it to `.env.local`.
 
 Let's start easy, first create the auth_secret. Next-auth has a cli tool for this:
+
 ```bash
-npx auth secret --copy
+pnpx auth secret --copy
 ```
 
 Paste this value as `AUTH_SECRET`.
 
-If you want to host this on your own website, edit `AUTH_URL`. If you run in dev mode, this is set to http://localhost:3000 and should work in this tutorial.
+If you want to host this on your own website, edit `AUTH_URL`. If you run in dev mode, this is set to <http://localhost:3000> and should work in this tutorial.
 
 ### Setting up postgres
+
+#### Using docker
+
+If you've docker installed you can use the docker dev compose to spin up a basic postgres db with the following command:
+
+`docker compose up`
+
+#### Postgres on your system
 
 If you haven't set up postgres yet, you can use the [tutorial](https://www.geeksforgeeks.org/postgresql/install-postgresql-on-windows/) from geeksforgeeks.
 
 Next create a table for this project:
+
 ```psql
 CREATE USER ugs_site WITH PASSWORD '*****';
 CREATE DATABASE ugs_site WITH OWNER = ugs_site;
@@ -25,6 +52,7 @@ GRANT ALL PRIVILEGES ON DATABASE ugs_site TO ugs_site;
 ```
 
 For development purposes, prisma allows to test migrations on a shadow database, configure a shadow database as well:
+
 ```psql
 CREATE USER ugs_site WITH PASSWORD '*****';
 CREATE DATABASE ugs_site WITH OWNER = ugs_site;
@@ -41,7 +69,6 @@ Now choose oauth2 and copy the client ID, this is the `AUTH_DISCORD_ID`.
 Reset the client secret and copy it to `AUTH_DISCORD_SECRET`.
 Add the following url to the redirects: `http://localhost:3000/api/auth/callback/discord`.
 
-
 Now the discord login should work.
 
 A very simular process is done for github. Let's surf to [the github developers settings](https://github.com/settings/developers). Create a new oauth app. Choose a name, use `http://localhost:3000` as Homepage URL, and set `http://localhost:3000/api/auth/callback/discord` as Authorization callback URL.
@@ -51,19 +78,21 @@ Copy the client ID to `AUTH_GITHUB_ID` and create a new secret and copy it as `A
 ### Finishing up
 
 First time running you will need to install all packages. Run the following:
+
 ```bash
-npm ci
+pnpm i --frozen-lockfile
 ```
 
 Next run the migrations and setup the database:
+
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 Now you are ready to run the development server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -76,11 +105,12 @@ Found an error, want to edit some code, improve this project. Please open an iss
 
 The backend is writting in zenstack. To create a new table and expose the API, simply edit `models/schema.zmodel`.
 
-To create migrations for the database, you can use `npm run db:makemigrations`, you can find the newly created migration file in `models/prisma/migrations/`. Check the migrations and if you are happy, run `npm run db:migrate` which will apply the migrations.
+To create migrations for the database, you can use `pnpm run db:makemigrations`, you can find the newly created migration file in `models/prisma/migrations/`. Check the migrations and if you are happy, run `pnpm run db:migrate` which will apply the migrations.
 
 After running all that, your newly created model will be availble under /api/model/rest/&lt;model-name&gt;.
 
 Zenstack automatically prevents users from reading, updating, creating an deleting entries. In order to allow users to update/create entries, add the following code:
+
 ```zmodel
 @@allow("create,update,delete", auth().roles?[role.name == "role-name"])
 @@allow("read", true)
@@ -100,10 +130,10 @@ The full list of currently available roles can be found at `models/prisma/migrat
 
 The full Zenstack Documentation can be found [here](https://zenstack.dev/docs/the-complete-guide).
 
-
 ## Learn More
 
 ### Next.js
+
 Next-js is used for the frontend rendering. Next-js also hosts the api, which is generated from the zenstack model.
 
 To learn more about Next.js, take a look at the following resources:
@@ -112,13 +142,15 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ### Zenstack
-Zenstack is used to handle all database and backend related setup. 
+
+Zenstack is used to handle all database and backend related setup.
 
 The Zenstack schema is used to create the necessary tables in the database. Zenstack limits crud operations to users which are allowed to perform the operation. Zenstack also allows to generate routes for all models.
 
 - [Zenstack Documentation](https://zenstack.dev/docs/the-complete-guide)
 
 ### Auth.js
+
 Nextauth is a flexible framework which implements authentication of users. It allows to handle multiple login systems simultaniously and provides interfaces to react and prisma (zenstack is built on top of prisma).
 
 - [Auth.js Documentation](https://next-auth.js.org/getting-started/introduction)
