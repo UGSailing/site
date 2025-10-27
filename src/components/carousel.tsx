@@ -93,9 +93,9 @@ export default function Carousel({ children, buttonSettings, padding = true, opt
 
     useEffect(() => {
         if (!api) {
-          return
+            return
         }
-      }, [api])
+    }, [api])
     return (
         <ChadcnCarousel
             opts={{
