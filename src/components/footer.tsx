@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { H4 } from ".";
 import socials from "./socials";
+import { LocaleSwitcher } from "./locale-switcher";
 
 export function Footer() {
     return (
@@ -9,11 +10,12 @@ export function Footer() {
                 <div className="flex-1 flex flex-col gap-2 items-center md:items-start">
                     <H4 className="text-white">UGent Sailing</H4>
                     <p>Follow us on instagram to receive the latest information</p>
+                    <LocaleSwitcher />
                 </div>
+                    
                 <div className="flex-1 flex flex-col items-center gap-2">
                     <H4 className="text-white">Contact Us</H4>
                     <p><a href="mailto:contact@ugentsailing.be"><u>contact@ugentsailing.be</u></a></p>
-                    
                 </div>
                 <div className="flex-1 flex flex-col items-center md:items-end gap-2 mt-6">
                     <div className="flex gap-2">
