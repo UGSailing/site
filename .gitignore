@@ -2,6 +2,15 @@
 
 # custom
 pages
+models/prisma.env
+.zenstack_repl_history
+
+# auto generated
+src/prisma/*
+!src/prisma/index.ts
+models/prisma/*
+!models/prisma/migrations
+migration_lock.toml
 
 # dependencies
 /node_modules

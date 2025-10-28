@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { NavBar } from "@/components/navbar";
-import { Partners } from "@/components/partners";
-import Banner from "@/components/banner";
-import { Footer } from "@/components/footer";
+import "@/app/(pages)/globals.css";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -23,27 +19,17 @@ export const metadata: Metadata = {
     }
 }
 
-
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const bannerData = {
-        color: "#ffdb0b",
-        message: "This website is under construction.",
-        textColor: "#111111"
-    }
     return (
         <html lang="en">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <NavBar />
-                {/* <Banner {...bannerData} /> */}
                 {children}
-                <Partners />
-                <Footer />
             </body>
         </html>
     );
