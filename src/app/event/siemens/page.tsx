@@ -20,7 +20,7 @@ const partnerevent = {
         { date: "25/11/2025", time: "09:00 - 12:00" },
         { date: "02/12/2025", time: "09:00 - 12:00" },
     ],
-    location: "Building 125 second floor, Tech Lane Ghent Science Park, Campus Ardoyen, 9000 Gent",
+    location: "Building 125, Local 0.3, Tech Lane Ghent Science Park, Campus Ardoyen, 9000 Gent",
 }
 
 const Partnerevent = () => {
@@ -55,7 +55,7 @@ const Partnerevent = () => {
                             {partnerevent.location}
                         </p>
 
-                        <H4>What you&apos;ll learn</H4>
+                        <H4>What you'll learn</H4>
                         <ul className="list-disc pl-5 mb-4 text-sm">
                             <li>Sketching and parametric modeling</li>
                             <li>Assemblies and constraints</li>
