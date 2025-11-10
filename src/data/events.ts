@@ -105,4 +105,13 @@ Let’s build the future of autonomous sailing together 🌊✨`,
         "registration": false,
         "link": "/event/siemens"
     },
+    {
+        "id": "9",
+        "title": "Future events coming soon!",
+        "startDate": "TBA",
+        "location": "TBA",
+        "intro": "Stay tuned for more exciting events and workshops in the near future. We have a lot planned and can't wait to share it with you!",
+        "image": "/img/logos/cropped_logo.png",
+        "registration": false
+    }
 ];
