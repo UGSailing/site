@@ -1,0 +1,14 @@
+services:
+  site:
+    build: .
+    env_file: .env.local
+    ports:
+      - 80:80
+  db:
+    image: postgres:17
+    env_file: .env.local
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
