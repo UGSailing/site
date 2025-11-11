@@ -128,16 +128,18 @@ export function NavMenu() {
     return (
         <NavigationMenu className="hidden lg:block bg-red">
             <NavigationMenuList>
-                {menuItems.map((menu) => (
-                    <NavigationMenuItem className="red" key={menu.title}>
-                        <NavigationMenuLink
-                            asChild
-                            className={`group inline-flex h-9 text-lg text-white w-max items-center justify-center rounded-md px-4 py-2 font-semibold hover:text-white focus:text-white focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`}
-                        >
-                            <MenuItemComponent item={menu} />
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
-                ))}
+                {
+                    menuItems.map((menu) => (
+                        <NavigationMenuItem className="red" key={menu.title}>
+                            <NavigationMenuLink
+                                asChild
+                                className={`group inline-flex h-9 text-lg text-white w-max items-center justify-center rounded-md px-4 py-2 font-semibold hover:text-white focus:text-white focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`}
+                            >
+                                <MenuItemComponent item={menu} />
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
+                    ))
+                }
             </NavigationMenuList>
         </NavigationMenu>
     );

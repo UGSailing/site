@@ -36,8 +36,9 @@ const BoardMemberCard = ({ member }: BoardMemberCardProps) => {
 
     return (
         <HoverCard
-            className="bg-white rounded-lg border border-red-500 p-6 flex items-center hover:bg-red-50 cursor-pointer"
+            className="bg-white rounded-lg border border-red-500 p-6 flex items-center hover:bg-red-50"
             content={popupContent}
+            popupClassName="transition-all duration-200 transform opacity-0 scale-95 hover:opacity-100 hover:scale-100"
         >
             {/* Circular Image */}
             <img
@@ -48,7 +49,7 @@ const BoardMemberCard = ({ member }: BoardMemberCardProps) => {
 
             {/* Member Info */}
             <div className="h-full flex-1">
-                <H4 className="text-xl font-semibold mt-3 mb-2">
+                <H4 className="text-xl font-semibold mt-3 mb-2 h-2/6">
                     {member.name}
                 </H4>
                 <ul className="list-disc pl-5 text-sm">

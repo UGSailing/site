@@ -9,8 +9,8 @@ type BoardMember = {
     positions: Position[];
     image?: string;
     index: number;
-    studies: string;
-    email: string;
+    studies?: string;
+    email?: string;
 };
 
 type Board = {
@@ -329,5 +329,10 @@ const board: Board[] = [
 ];
 
 export default board;
-export { type Board, type BoardMember, type Position, positions };
+export { 
+    type Board, 
+    type BoardMember, 
+    type Position, 
+    positions 
+};
 
