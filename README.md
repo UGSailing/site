@@ -33,11 +33,15 @@ If you run in dev mode, this is set to <http://localhost:3000> and should work i
 
 ### Using docker
 
-If you've docker installed you can use the docker dev compose to spin up a basic postgres db with the following command:
+If you have docker installed you can use the following command to spin up a basic postgres database:
 
-`docker compose up`
+```sh
+docker compose -f docker-compose.dev.yml up -d
+```
 
 ### Postgres on your system
+
+If for some reason you don't want to use docker, you can follow these instructions.
 
 If you haven't set up postgres yet, you can use the [tutorial](https://www.geeksforgeeks.org/postgresql/install-postgresql-on-windows/) from geeksforgeeks.
 
@@ -61,7 +65,9 @@ Now you can configure the `DATABASE_URL` and the `SHADOW_DATABASE_URL`.
 
 ## Setting up discord and github
 
-Currently we have github and discord providers configured. Go to [the discord developers portal](https://discord.com/developers/) and create a new app. Fill in the name and press create.
+Currently we have github and discord authentication providers configured.
+Go to [the discord developers portal](https://discord.com/developers/) and create a new app.
+Fill in the name and press create.
 Now choose oauth2 and copy the client ID, this is the `AUTH_DISCORD_ID`.
 
 Reset the client secret and copy it to `AUTH_DISCORD_SECRET`.
@@ -69,7 +75,9 @@ Add the following url to the redirects: `http://localhost:3000/api/auth/callback
 
 Now the discord login should work.
 
-A very simular process is done for github. Let's surf to [the github developers settings](https://github.com/settings/developers). Create a new oauth app. Choose a name, use `http://localhost:3000` as Homepage URL, and set `http://localhost:3000/api/auth/callback/discord` as Authorization callback URL.
+A very simular process is done for github. Let's surf to [the github developers settings](https://github.com/settings/developers).
+Create a new oauth app.
+Choose a name, use `http://localhost:3000` as Homepage URL, and set `http://localhost:3000/api/auth/callback/discord` as Authorization callback URL.
 
 Copy the client ID to `AUTH_GITHUB_ID` and create a new secret and copy it as `AUTH_GITHUB_SECRET`.
 
