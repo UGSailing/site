@@ -8,6 +8,8 @@ type BoardMember = {
     name: string;
     positions: Position[];
     image?: string;
+    width?: number;
+    height?: number;
     index: number;
 }
 
@@ -60,6 +62,8 @@ const board: Board[] = [
                 index: 0,
                 name: "Anaë Verbinnen",
                 image: "/img/people/Anaë Verbinnen.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Treasurer"],
                     positions["Team Construction"], 
@@ -69,6 +73,8 @@ const board: Board[] = [
                 index: 1,
                 name: "Jorien Baert",
                 image: "/img/people/Jorien Baert.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Captain Extern"],
                     positions["Team Autonomous"],
@@ -78,6 +84,8 @@ const board: Board[] = [
                 index: 2,
                 name: "Robin Aerts",
                 image: "/img/people/Robin Aerts.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Captain Intern"],
                     positions["Team Autonomous"],
@@ -87,6 +95,8 @@ const board: Board[] = [
                 index: 3,
                 name: "Wannes Sys",
                 image: "/img/people/Wannes Sys.jpg",
+                width: 1844,
+                height: 4000,
                 positions: [
                     positions["Web"],
                 ]
@@ -95,6 +105,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Mathieu Moernaut",
                 image: "/img/people/Mathieu Moernaut.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Team Construction"],
                 ]
@@ -103,6 +115,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Thomas Van Acker",
                 image: "/img/people/Thomas Van Acker.jpg",
+                width: 3024,
+                height: 4032,
                 positions: [
                     positions["Team Electronics"]
                 ]
@@ -111,6 +125,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Simeon Demeester",
                 image: "/img/people/Simeon Demeester.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Team Autonomous"]
                 ]
@@ -119,6 +135,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Michiel De Paepe",
                 image: "/img/people/Michiel De Paepe.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Volunteer Electronics"]
                 ]
@@ -126,6 +144,8 @@ const board: Board[] = [
             {
                 index: 4,
                 name: "Arne Moreels",
+                width: 3024,
+                height: 4032,
                 image: "/img/people/Arne Moreels.jpg",
                 positions: [
                     positions["Volunteer Electronics"]
@@ -135,6 +155,8 @@ const board: Board[] = [
                 index: 4,
                 name: "August Adams",
                 image: "/img/people/August Adams.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Volunteer Electronics"]
                 ]
@@ -143,6 +165,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Arthur Van Damme",
                 image: "/img/people/Arthur Van Damme.jpg",
+                width: 922,
+                height: 2000,
                 positions: [
                     positions["Volunteer Autonomous"]
                 ]
@@ -151,6 +175,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Guillaume Verlodt",
                 image: "/img/people/Guillaume Verlodt.jpg",
+                width: 1512,
+                height: 2016,
                 positions: [
                     positions["Volunteer Autonomous"]
                 ]
@@ -159,6 +185,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Thomas De Meulenaer",
                 image: "/img/people/Thomas De Meulenaer.jpg",
+                width: 3024,
+                height: 4032,
                 positions: [
                     positions["Volunteer Electronics"]
                 ]
@@ -167,6 +195,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Sander Van Laere",
                 image: "/img/people/Sander Van Laere.jpg",
+                width: 4284,
+                height: 5712,
                 positions: [
                     positions["Volunteer Autonomous"]
                 ]
@@ -182,6 +212,8 @@ const board: Board[] = [
                 index: 1,
                 name: "Jorien Baert",
                 image: "/img/people/Jorien Baert1.jpg",
+                width: 3810,
+                height: 3633,
                 positions: [
                     positions["Captain Extern"],
                 ]
@@ -190,6 +222,8 @@ const board: Board[] = [
                 index: 2,
                 name: "Kathelyne Gryson",
                 image: "/img/people/Kathelyne Gryson.jpg",
+                width: 800,
+                height: 800,
                 positions: [
                     positions["PR Extern"],
                 ]
@@ -198,6 +232,8 @@ const board: Board[] = [
                 index: 3,
                 name: "François Braibant",
                 image: "/img/people/Francois Braibant1.jpg",
+                width: 400,
+                height: 400,
                 positions: [
                     positions["Captain Intern"],
                 ]
@@ -206,6 +242,8 @@ const board: Board[] = [
                 index: 4,
                 name: "Efsun Sultan Bulut",
                 image: "/img/people/Efsun Sultan Bulut.jpg",
+                width: 800,
+                height: 800,
                 positions: [
                     positions["PR Intern"],
                 ]
@@ -214,6 +252,8 @@ const board: Board[] = [
                 index: 5,
                 name: "Arthur Van Damme",
                 image: "/img/people/Arthur Van Damme1.jpg",
+                width: 800,
+                height: 800,
                 positions: [
                     positions["Team Naval"],
                 ]
@@ -222,6 +262,8 @@ const board: Board[] = [
                 index: 6,
                 name: "Mateo Espin",
                 image: "/img/people/Mateo Espin1.jpg",
+                width: 518,
+                height: 518,
                 positions: [
                     positions["Team Naval"],
                 ]
@@ -230,6 +272,8 @@ const board: Board[] = [
                 index: 7,
                 name: "Stefan Roland",
                 image: "/img/people/Stefan Roland1.jpg",
+                width: 800,
+                height: 800,
                 positions: [
                     positions["Team Naval"],
                 ]
@@ -238,6 +282,8 @@ const board: Board[] = [
                 index: 8,
                 name: "August Adams",
                 image: "/img/people/August Adams1.jpg",
+                width: 800,
+                height: 800,
                 positions: [
                     positions["Electronics (LV)"],
                 ]
@@ -254,6 +300,8 @@ const board: Board[] = [
                 index: 10,
                 name: "Seppe Van de Vreken",
                 image: "/img/people/Seppe Van de Vreken.jpg",
+                width: 800,
+                height: 800,
                 positions: [
                     positions["AI"],
                 ]
