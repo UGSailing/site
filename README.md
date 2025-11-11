@@ -2,6 +2,8 @@ This project is hosted on [ugentsailing.be](https://ugentsailing.be)
 
 # Development
 
+Follow these instructions for setting up a development environment.
+
 ## Tools
 
 1. Install [asdf](https://asdf-vm.com/).
@@ -70,10 +72,11 @@ Copy the client ID to `AUTH_GITHUB_ID` and create a new secret and copy it as `A
 
 ## Finishing up
 
-First time running you will need to install all packages. Run the following:
+First time running you will need to install all packages.
+Run the following:
 
 ```bash
-pnpm i --frozen-lockfile
+pnpm install
 ```
 
 Next run the migrations and setup the database:
