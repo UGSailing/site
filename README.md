@@ -4,18 +4,11 @@ This project is hosted on [ugentsailing.be](https://ugentsailing.be)
 
 ## Tools
 
-Version for each tool (`Nodejs` and `Pnpm`) can be found in the [asdf file](./.tool-versions).
-If you're using `asdf` you can install the correct versions with `asdf install`.
-
-If you're not using `asdf` then here is a short Haiku to convince you to use it.
-
-```
-Version pain no more,
-asdf tool of the wise.
-Install. Transcend. Code.
-```
-
-Download [asdf](https://asdf-vm.com/) today!
+1. Install [asdf](https://asdf-vm.com/).
+2. Add the required asdf plugins: `sh .asdf-plugins`.
+3. Use these plugins to install the dependencies: `asdf install`.
+4. Run `asdf reshim`.
+5. Add `$HOME/.asdf/shims` to your `$PATH`.
 
 ## Auth
 
