@@ -55,7 +55,7 @@ const Partnerevent = () => {
                             {partnerevent.location}
                         </p>
 
-                        <H4>What you'll learn</H4>
+                        <H4>What you&apos;ll learn</H4>
                         <ul className="list-disc pl-5 mb-4 text-sm">
                             <li>Sketching and parametric modeling</li>
                             <li>Assemblies and constraints</li>
