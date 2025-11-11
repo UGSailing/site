@@ -20,7 +20,7 @@ const partnerevent = {
         { date: "25/11/2025", time: "09:00 - 12:00" },
         { date: "02/12/2025", time: "09:00 - 12:00" },
     ],
-    location: "Building 125 second floor, Tech Lane Ghent Science Park, Campus Ardoyen, 9000 Gent",
+    location: "Building 125, Local 0.3, Tech Lane Ghent Science Park, Campus Ardoyen, 9000 Gent",
 }
 
 const Partnerevent = () => {
