@@ -15,7 +15,7 @@ Follow these instructions for setting up a development environment.
 ## Environment variables
 
 To run the code, first you need to fill out create the necessary environment variables.
-Start with making a copy of the `example.env.local` file and renaming it to `.env.local`.
+Start with making a copy of the `example-dev.env.local` file and renaming it to `.env.local`.
 
 Let's start easy, first create the auth_secret.
 Next-auth has a cli tool for this:
