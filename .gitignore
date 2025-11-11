@@ -11,6 +11,7 @@ src/prisma/*
 models/prisma/*
 !models/prisma/migrations
 migration_lock.toml
+public/api
 
 # dependencies
 /node_modules
