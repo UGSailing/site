@@ -12,11 +12,13 @@ Follow these instructions for setting up a development environment.
 4. Run `asdf reshim`.
 5. Add `$HOME/.asdf/shims` to your `$PATH`.
 
-## Auth
+## Environment variables
 
-To run the code, first you need to fill out create the necessary environment variables. Start with making a copy of the `example.env.local` file and renaming it to `.env.local`.
+To run the code, first you need to fill out create the necessary environment variables.
+Start with making a copy of the `example.env.local` file and renaming it to `.env.local`.
 
-Let's start easy, first create the auth_secret. Next-auth has a cli tool for this:
+Let's start easy, first create the auth_secret.
+Next-auth has a cli tool for this:
 
 ```bash
 pnpx auth secret --copy
@@ -24,7 +26,8 @@ pnpx auth secret --copy
 
 Paste this value as `AUTH_SECRET`.
 
-If you want to host this on your own website, edit `AUTH_URL`. If you run in dev mode, this is set to <http://localhost:3000> and should work in this tutorial.
+If you want to host this on your own website, edit `AUTH_URL`.
+If you run in dev mode, this is set to <http://localhost:3000> and should work in this tutorial.
 
 ## Setting up postgres
 
