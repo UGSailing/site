@@ -1,7 +1,7 @@
 FROM docker.io/library/node:24-alpine AS base
 
 # See https://github.com/nodejs/docker-node/tree/b4117f9333#nodealpine
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat curl
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
@@ -35,9 +35,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static/ ./.next/static/
 
 USER nextjs
 
-EXPOSE 80
+EXPOSE 3000
 
 ENV HOSTNAME="0.0.0.0"
-ENV PORT=80
+ENV PORT=3000
 
 CMD ["node", "server.js"]
