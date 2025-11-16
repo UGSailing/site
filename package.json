@@ -50,6 +50,7 @@
         "react-dom": "19.1.0",
         "rehype-sanitize": "^6.0.0",
         "slick-carousel": "^1.8.1",
+        "swagger-ui-react": "^5.30.0",
         "tailwind-merge": "^3.3.1"
     },
     "devDependencies": {
@@ -63,6 +64,7 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "@types/react-slick": "^0.23.13",
+        "@zenstackhq/openapi": "^2.20.1",
         "eslint": "^9",
         "eslint-config-next": "15.4.2",
         "prisma": "6.16.x",
