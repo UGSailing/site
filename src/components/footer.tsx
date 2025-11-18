@@ -20,7 +20,7 @@ export function Footer() {
                 <div className="flex-1 flex flex-col items-center md:items-end gap-2 mt-6">
                     <div className="flex gap-2">
                         {socials.map(s => (
-                            <Link key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" className="nav-link" >
+                            <Link key={s.platform} href={s.href} target="_blank" rel="noopener noreferrer" className="nav-link" >
                                 <p className={s.icon + " w-6 h-6"} />
                             </Link>
                         ))}

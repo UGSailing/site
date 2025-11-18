@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/partners";
@@ -10,16 +9,7 @@ import { cookies } from "next/headers";
 import Providers from "../Providers";
 import { getMessages, resolveLocale } from "@/i18n/config";
 import { LocaleSwitcher } from "@/components/locale-switcher";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+import { Geist, Geist_Mono } from "next/font/google";
 
 export const metadata: Metadata = {
     title: {
@@ -44,17 +34,12 @@ export default async function RootLayout({
     const messages = await getMessages(locale);
 
     return (
-        <html lang={locale}>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Providers locale={locale} messages={messages}>
-                    <NavBar />
-                    {/* <Banner {...bannerData} /> */}
-                    {children}
-                    <Partners />
-                    <FlyingImage />
-                    <Footer />
-                </Providers>
-            </body>
-        </html>
+        <>
+            <NavBar />
+            {/* <Banner {...bannerData} /> */}
+            {children}
+            <Partners />
+            <Footer />
+        </>
     );
 }

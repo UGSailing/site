@@ -5,7 +5,6 @@ import { events } from "@/data/events";
 import { news } from "@/data/news";
 import Link from "next/link";
 import { BoardHomePage } from "@/components/boardHomePage";
-import { useTranslations } from "next-intl";
 
 export interface TeamImages {
     src: string;
@@ -17,8 +16,6 @@ const teamImages: TeamImages[] = [
 ];
 
 export default function Home() {
-    const t = useTranslations("home");
-
     return (
         <div>
             <Carousel padding={false} opts={{ loop: true }}>
@@ -40,13 +37,13 @@ export default function Home() {
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
-                        <H2>{t("intro.title")}</H2>
+                        <H2>{"Some intro"}</H2>
 
-                        {t("intro.body")}
+                        {"Some intro text about the sailing club."}
 
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>{t("calendar.title")}</H2>
+                        <H2>{"Some other stuff"}</H2>
 
                         <Carousel>
                             {
@@ -74,7 +71,7 @@ export default function Home() {
                         </Carousel>
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>{t("news.title")}</H2>
+                        <H2>{"News"}</H2>
 
                         <Carousel>
                             {
@@ -90,9 +87,9 @@ export default function Home() {
                                                         className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{item.date}
                                                     </p>
                                                 </div>
-                                                <Link href={item.link} target="_blank" rel="noopener noreferrer"
-                                                    className="text-md text-blue-600 mt-2 hover:underline">{t("news.viewArticle")} <span
-                                                        className="icon-[bi--box-arrow-up-right]"></span></Link>
+                                                <Link href={item.link} target="_blank" rel="noopener noreferrer" className="text-md text-blue-600 mt-2 hover:underline">{"viewArticle"} 
+                                                    <span className="icon-[bi--box-arrow-up-right]"></span>
+                                                </Link>
                                             </div>
                                         </div>
                                     </CarouselItem>
@@ -101,7 +98,7 @@ export default function Home() {
                         </Carousel>
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>{t("board.title")}</H2>
+                        <H2>{"Board"}</H2>
 
                         <BoardHomePage />
                     </section>
