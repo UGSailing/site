@@ -20,6 +20,19 @@ type Board = {
     year: number;
 };
 
+type SimpleBoardMember = {
+    name: string;
+    image: string | null;
+    index: number;
+};
+
+type SimpleBoard = {
+    members: SimpleBoardMember[];
+    name: string;
+    HTMLid: string;
+    year: number;
+}
+
 const positions: Record<string, Position> = {
     // Legacy positions
     "PR Extern": {
@@ -329,10 +342,11 @@ const board: Board[] = [
 ];
 
 export default board;
-export { 
-    type Board, 
-    type BoardMember, 
-    type Position, 
-    positions 
-};
-
+export {
+    positions,
+    type Position,
+    type BoardMember,
+    type Board,
+    type SimpleBoardMember,
+    type SimpleBoard
+}
