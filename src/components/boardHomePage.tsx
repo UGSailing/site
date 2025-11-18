@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import type { SimpleBoard } from "@/data/board";
 import Carousel, { CarouselItem } from "./carousel";
 import { H4 } from ".";
-import { client } from "@/prisma";
+import { client } from "@/prisma/apiclient";
 
 async function getMember(id: string) {
     return client.GET(`/api/model/rest/boardMember/{id}`, {

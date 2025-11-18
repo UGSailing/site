@@ -8,6 +8,7 @@ models/prisma.env
 # auto generated
 src/prisma/*
 !src/prisma/index.ts
+!src/prisma/apiclient.ts
 models/prisma/*
 !models/prisma/migrations
 migration_lock.toml

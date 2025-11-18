@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 import Providers from "../Providers";
 import { getMessages, resolveLocale } from "@/i18n/config";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
