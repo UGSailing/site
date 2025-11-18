@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import type { Board, SimpleBoard } from "@/data/board";
+import type { SimpleBoard } from "@/data/board";
 import Carousel, { CarouselItem } from "./carousel";
 import { H4 } from ".";
 import { client } from "@/prisma";
@@ -25,33 +25,36 @@ async function getMember(id: string) {
 }
 
 export function BoardHomePage() {
-    const [boards, setBoards] = useState<SimpleBoard | null>(null);
+    const [board, setBoard] = useState<SimpleBoard | null | "None">(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         client.GET('/api/model/rest/board')
             .then(async (res) => {
-                if (!res.response.ok) throw new Error(`HTTP ${res.response.status}\n${res.error!.errors}`);
-                const current_board = res.data!.data[res.data!.data.length - 1];
+                if (!res.response.ok) {
+                    setBoard("None");
+                    throw new Error(`HTTP ${res.response.status}\n${res.error!.errors}`);
+                }
+                const current_board = res.data!.data.sort((a, b) => b.attributes.year - a.attributes.year)[0];
                 const data = {
                     year: current_board.attributes.year,
                     name: current_board.attributes.name,
                     HTMLid: current_board.attributes.htmlid,
                     members: await Promise.all(current_board.relationships!.members!.data.map(async (m) => (await getMember(m.id))))
                 };
-                setBoards(data);
+                setBoard(data);
             })
             .catch((err) => setError(err.message));
     }, []);
 
     if (error) return <div>Error: {error}</div>;
-    if (!boards) return <div>Loading…</div>;
-    if (boards.length == 0) return <div>No Board</div>;
-    console.log(boards[0]);
+    if (board === null) return <div>Loading…</div>;
+    if (board === "None") return <div>No Board</div>;
+    console.log(board);
     return (
         <Carousel>
             {
-                boards.sort((a, b) => b.year - a.year)[0]!.members.map((member, index) => (
+                board!.members.map((member, index) => (
                     <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
                         <div className="p-4 h-full">
                             <div className="border border-red-500 rounded-lg p-4 text-center items-center w-full h-full flex flex-col justify-between">
