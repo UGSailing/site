@@ -1,43 +1,49 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import type { Board } from "@/data/board";
+import type { Board, SimpleBoard } from "@/data/board";
 import Carousel, { CarouselItem } from "./carousel";
 import { H4 } from ".";
+import { client } from "@/prisma";
 
-async function getMember(id) {
-	return fetch(`/api/model/rest/boardMember/${id}`)
-	.then(async (res) => {
-	  const json = await res.json();
-	  const data = json.data;
-	  return {
-	    index: data.attributes.index,
-	    name: data.attributes.name,
-	    image: data.attributes.image
-	  }
-	})
+async function getMember(id: string) {
+    return client.GET(`/api/model/rest/boardMember/{id}`, {
+        params: {
+            path : {
+                id
+            }
+        }
+    }).then(res => {
+        if (!res.response.ok) throw new Error(`HTTP ${res.response.status}`);
+        const attributes = res.data!.data.attributes;
+        return {
+            name: attributes.name,
+            image: attributes.image || null,
+            index: attributes.index
+        };
+    });
 }
 
 export function BoardHomePage() {
-    const [boards, setBoards] = useState<Board[] | null>(null);
+    const [boards, setBoards] = useState<SimpleBoard | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-	fetch('/api/model/rest/board')
-      	.then(async (res) => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-	    const json = await res.json();
-	    const data = await Promise.all(json.data.map(async (b) => ({
-	      year: b.attributes.year,
-	      name: b.attributes.name,
-	      HTMLid: b.attributes.htmlid,
-	      members: await Promise.all(b.relationships.members.data.map(async (m) => (await getMember(m.id))))
-	    })));
-            setBoards(data);
-      	})
-      	.catch((err) => setError(err.message));
+        client.GET('/api/model/rest/board')
+            .then(async (res) => {
+                if (!res.response.ok) throw new Error(`HTTP ${res.response.status}\n${res.error!.errors}`);
+                const current_board = res.data!.data[res.data!.data.length - 1];
+                const data = {
+                    year: current_board.attributes.year,
+                    name: current_board.attributes.name,
+                    HTMLid: current_board.attributes.htmlid,
+                    members: await Promise.all(current_board.relationships!.members!.data.map(async (m) => (await getMember(m.id))))
+                };
+                setBoards(data);
+            })
+            .catch((err) => setError(err.message));
     }, []);
-    
+
     if (error) return <div>Error: {error}</div>;
     if (!boards) return <div>Loading…</div>;
     if (boards.length == 0) return <div>No Board</div>;
@@ -50,9 +56,9 @@ export function BoardHomePage() {
                         <div className="p-4 h-full">
                             <div className="border border-red-500 rounded-lg p-4 text-center items-center w-full h-full flex flex-col justify-between">
                                 <div>
-                                    <img 
-                                        src={member.image || "/img/logos/cropped_logo.png"} 
-                                        alt={member.name} 
+                                    <img
+                                        src={member.image || "/img/logos/cropped_logo.png"}
+                                        alt={member.name}
                                         className="w-full aspect-square object-cover rounded-full mb-4"
                                     />
                                     <H4 className="mb-2 text-gray-700 h-15">{member.name}</H4>
