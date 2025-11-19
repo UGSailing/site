@@ -10,7 +10,8 @@ const h1Classes: string = [
     "font-bold",            // Bold font
     "tracking-tight",       // Tight letter spacing
     "first:mt-0",           // No top margin for the first element
-    "text-red-700"          // Text color
+    "text-red-700",         // Text color
+    "mb-8"                  // Margin bottom
 ].join(" ")
 
 function H1({ className, ...opts }: React.ComponentProps<"h1">) {
@@ -21,12 +22,12 @@ const h2Classes: string = [
     "border-b",             // Add a bottom border
     "border-red-700",       // Border color
     "w-full",               // Full width
-    "mb-4",                 // Margin bottom
+    "mb-6",                 // Margin bottom
     "text-3xl",             // Font size
     "font-semibold",        // Semi-bold font
     "tracking-tight",       // Tight letter spacing
     "first:mt-0",           // No top margin for the first element
-    "text-red-700"          // Text color
+    "text-red-700",         // Text color
 ].join(" ")
 
 function H2({ className, ...opts }: React.ComponentProps<"h2">) {

@@ -28,10 +28,7 @@ const Join = () => {
                 <main className="max-w-6xl mx-auto px-6 py-20">
                     {/* Roles Section */}
                     <section className="mb-20">
-                        <div className="mb-12">
-                            <H2 className="text-4xl font-bold mb-4">Available Roles</H2>
-                            <div className="w-20 h-1 bg-red-600 rounded"></div>
-                        </div>
+                        <H2>Available Roles</H2>
                         <div className="grid md:grid-cols-3 gap-8">
                             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                                 <H3 className="text-xl font-semibold mb-3">Meme Captain</H3>
@@ -42,10 +39,7 @@ const Join = () => {
 
                     {/* Testimonies Section */}
                     <section className="mb-20">
-                        <div className="mb-12">
-                            <H2 className="text-4xl font-bold mb-4">Member Stories</H2>
-                            <div className="w-20 h-1 bg-red-600 rounded"></div>
-                        </div>
+                        <H2>Member Stories</H2>
                         <div className="grid md:grid-cols-2 gap-8">
                             <Quote inline={false}>
                                 <H3 className="text-gray-700 italic mb-4">Merkel</H3>
