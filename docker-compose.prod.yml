@@ -1,0 +1,29 @@
+services:
+  site:
+    build: .
+    container_name: site
+    env_file: .env.local
+    healthcheck:
+      test: curl --fail -s http://localhost:3000
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - db-site
+    ports:
+      - 3000:3000
+
+  db:
+    image: postgres:17
+    container_name: postgres
+    env_file: .env.local
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - db-site
+
+volumes:
+  db_data:
+
+networks:
+  db-site:
