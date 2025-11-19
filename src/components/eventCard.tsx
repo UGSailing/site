@@ -10,10 +10,12 @@ import { type EventType } from "@/data/events";
 import { Button } from "./ui/button";
 
 export function EventCard({ event }: { event: EventType }) {
-    const eventPassed = Date.parse(event.startDate) < Date.now() + 1.5 * 3600 * 1000;
+    const [d, m, y] = event.startDate.split("-").map(Number);
+    const eventDate = new Date(y, m - 1, d);
+    const eventPassed = eventDate <= new Date();
     const disabled = { disabled: eventPassed || !event.registration };
     return (
-        <div className="w-full grid grid-flow-col py-1 justify-items-center">
+        <div className="grid grid-flow-col py-1 justify-items-center">
             <Card className={`w-full max-w-sm ${eventPassed ? "border-grey-700 opacity-70" : "border-red-500"}`}>
                 <CardHeader>
                     <CardTitle className={`${eventPassed ? "text-black" : "text-red-700"} text-lg`}>
