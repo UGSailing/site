@@ -21,7 +21,7 @@ importers:
         specifier: ^6.17.1
         version: 6.17.1
       '@prisma/client':
-        specifier: 6.16.x
+        specifier: ^6.16.3
         version: 6.16.3(prisma@6.16.3(typescript@5.8.3))(typescript@5.8.3)
       '@prisma/extension-accelerate':
         specifier: ^2.0.2
@@ -169,7 +169,7 @@ importers:
         specifier: ^7.10.1
         version: 7.10.1(typescript@5.8.3)
       prisma:
-        specifier: 6.16.x
+        specifier: ^6.16.3
         version: 6.16.3(typescript@5.8.3)
       tailwindcss:
         specifier: ^4
