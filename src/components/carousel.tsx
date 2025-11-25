@@ -88,7 +88,7 @@ function PreviousButton({ previousEvent, size }: { previousEvent?: (e: React.Mou
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function Carousel({ children, buttonSettings, padding = true, opts = {}, plugins = [] }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions, plugins?: CarouselPlugin }) {
+export default function Carousel({ children, buttonSettings, padding = true, opts = {}, plugins = [], className = "" }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions, plugins?: CarouselPlugin, className?: string }) {
     const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
@@ -104,7 +104,7 @@ export default function Carousel({ children, buttonSettings, padding = true, opt
                 ...opts
             }}
             plugins={[...plugins]}
-            className={"w-full relative" + (padding ? "px-2 py-2 " : "")}
+            className={cn("w-full relative" + (padding ? "px-2 py-2 " : ""), className)}
             setApi={setApi}
         >
             <CarouselContent>
