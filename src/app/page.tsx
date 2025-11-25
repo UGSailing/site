@@ -43,27 +43,27 @@ export default function Home() {
                         CO₂-neutral vessel to compete in the Monaco Energy Boat Challenge.
 
                     </section>
-                    <section className="w-full max-w-full">
+                    <section className="w-full max-w-full h-full">
                         <H2>Calender</H2>
 
-                        <Carousel>
+                        <Carousel className="h-full">
                             {
                                 events.map((event, index) => (
                                     <CarouselItem key={index}
-                                                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-full">
-                                        <div className="p-4 h-full">
+                                                  className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 h-[350px]">
+                                        <div className="p-4 h-[180px]">
                                             <div
-                                                className="border border-red-500 rounded-lg p-4 w-full h-full flex flex-col justify-between">
+                                                className="border border-red-500 rounded-lg p-4 w-full flex flex-col justify-between">
                                                 <div>
-                                                    <H4 className="mb-2 h-15">{event.title}</H4>
-                                                    <p className="text-sm text-gray-600 mb-1"><span
+                                                    <H4 className="mb-2 h-[60px]">{event.title}</H4>
+                                                    <p className="text-sm text-gray-600 mb-1 h-[40px]"><span
                                                         className="bg-gray-600 icon-[material-symbols--calendar-today]"></span>{event.startDate} {event.endDate ? `- ${event.endDate}` : ""}
                                                     </p>
-                                                    <p className="text-sm text-gray-600 h-8"><span
+                                                    <p className="text-sm text-gray-600 h-[60px]"><span
                                                         className="bg-gray-600 icon-[material-symbols--location-on]"></span>{event.location}
                                                     </p>
                                                 </div>
-                                                <p className="text-md text-gray-800 mt-2 h-25">{event.intro}</p>
+                                                <p className="text-md text-gray-800 mt-2 mb-2 h-[100px] overflow-hidden">{event.intro}</p>
                                             </div>
                                         </div>
                                     </CarouselItem>
