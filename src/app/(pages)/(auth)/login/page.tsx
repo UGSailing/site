@@ -22,7 +22,7 @@ const SignInPage = async () => {
                         <div className="space-y-4">
                             <div className="text-center">
                                 <p className="text-gray-300">Signed in as:</p>
-                                <p className="text-white">{session.user?.email}</p>
+                                <p className="text-red-500">{session.user?.name}</p>
                             </div>
 
                             <div className="text-center">
