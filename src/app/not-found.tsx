@@ -18,13 +18,13 @@ export default function NotFound() {
                     <h1 className="text-7xl font-bold text-red-600 mb-4">404</h1>
                     <h2 className="text-4xl font-bold text-gray-800 mb-6">Lost at Sea! ⛵</h2>
                     <p className="text-xl text-gray-700 mb-4">
-                        Looks like we've sailed off course!
+                        Looks like we&apos;ve sailed off course!
                     </p>
                     <p className="text-lg text-gray-600 mb-8 italic">
-                        "We tried to navigate to this page, but our compass must be broken.
-                        We're not sure if we're coming or going... guess you could say we've
+                        &quot;We tried to navigate to this page, but our compass must be broken.
+                        We&apos;re not sure if we&apos;re coming or going... guess you could say we&apos;ve
                         <span className="font-bold text-red-600"> lost our way at sea! </span>
-                        🧭"
+                        🧭&quot;
                     </p>
                     <Link
                         href="/"

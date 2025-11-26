@@ -66,6 +66,7 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "@types/react-slick": "^0.23.13",
+        "@types/swagger-ui-react": "^5.18.0",
         "@zenstackhq/openapi": "^2.20.1",
         "@zenstackhq/trpc": "^2.21.1",
         "eslint": "^9",
