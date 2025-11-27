@@ -19,7 +19,7 @@ import { DateTimePicker } from './ui/datetime-picker';
 import { Button } from './ui/button';
 import Markdown from './markdown';
 
-type FieldType = "text" | "textarea" | "number" | "datetime"
+type FieldType = "text" | "textarea" | "number" | "datetime" | "checkbox";
 
 export interface FieldInfo {
     type: FieldType;
@@ -49,6 +49,8 @@ export function FormField({
                 return 0;
             case "datetime":
                 return new Date();
+            case "checkbox":
+                return false;
         }
     }, []);
 
@@ -86,6 +88,14 @@ export function FormField({
                     value={field.value as string ?? defaultValue}
                     onChange={handleChange}
                     textareaProps={{ placeholder: fieldInfo.placeholder }}
+                />
+            case "checkbox":
+                return <input
+                    {...field}
+                    id={field.name}
+                    type="checkbox"
+                    checked={field.value as boolean ?? defaultValue}
+                    onChange={handleChange}
                 />
         }
     }
@@ -139,6 +149,7 @@ export default function Form(
     const [serverError, setServerError] = useState<string>("");
 
     async function onSubmit(data: Input) {
+        console.log(data);
         const resp = await fetch(schemaInfo.endpoint, {
             ...fetchOptions,
             body: JSON.stringify({ data: { type: schemaInfo.name, attributes: data } }),
