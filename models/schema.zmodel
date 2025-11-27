@@ -68,6 +68,9 @@ model User {
     accounts      Account[]
     sessions      Session[]
 
+    partner_id    Int?       @map("partner_id")
+    partner       Partner?   @relation(fields: [partner_id], references: [id], onDelete: SetNull)
+
     roles         UserRole[]
 
     @@map("users")
@@ -144,9 +147,9 @@ model Event extends TimestampBase {
 }
 
 model Position extends TimestampBase {
-    name	String	@trim @unique @id
-    description	String	@trim
-    email	String? @trim
+    name         String                @trim @unique @id
+    description  String                @trim
+    email        String?               @trim
 
     boardmembers BoardMemberPosition[]
 
@@ -157,15 +160,15 @@ model Position extends TimestampBase {
 }
 
 model BoardMember extends TimestampBase {
-    id		BigInt		@id @default(autoincrement())
-    name	String		@trim
-    image	String?		@trim
-    index	Int
-    positions	BoardMemberPosition[]	
+    id        BigInt                @id @default(autoincrement())
+    name      String                @trim
+    image     String?               @trim
+    index     Int
+    positions BoardMemberPosition[]
 
-    boardId BigInt @map("board_id")
+    boardId   BigInt                @map("board_id")
 
-    board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+    board     Board                 @relation(fields: [boardId], references: [id], onDelete: Cascade)
 
     @@map("boardmembers")
 
@@ -174,12 +177,12 @@ model BoardMember extends TimestampBase {
 }
 
 model BoardMemberPosition {
-    id     		Int    @id @default(autoincrement())
-    boardMemberId 	BigInt @map("boardmember_id")
-    positionId 		String @map("position_id")
+    id            Int         @id @default(autoincrement())
+    boardMemberId BigInt      @map("boardmember_id")
+    positionId    String      @map("position_id")
 
-    boardmember   	BoardMember   	@relation(fields: [boardMemberId], references: [id], onDelete: Cascade)
-    position   		Position   	@relation(fields: [positionId], references: [name], onDelete: Cascade)
+    boardmember   BoardMember @relation(fields: [boardMemberId], references: [id], onDelete: Cascade)
+    position      Position    @relation(fields: [positionId], references: [name], onDelete: Cascade)
 
     @@unique([boardMemberId, positionId])
     @@map("boardmember_position")
@@ -189,14 +192,46 @@ model BoardMemberPosition {
 }
 
 model Board extends TimestampBase {
-    id		BigInt		@id @default(autoincrement())
-    year	Int 		@unique
-    name	String		@trim
-    htmlid	String		@trim
-    members	BoardMember[]
+    id      BigInt        @id @default(autoincrement())
+    year    Int           @unique
+    name    String        @trim
+    htmlid  String        @trim
+    members BoardMember[]
 
     @@map("boards")
 
     @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
     @@allow('read', true)
+}
+
+model Partner extends TimestampBase {
+    id          Int     @id @default(autoincrement())
+    name        String  @trim
+    active      Boolean @default(true)
+    url         String  @trim
+    logo        String  @trim
+    description String?
+
+    users       User[]
+    vacancies   Vacancy[]
+
+    @@map("partners")
+
+    @@allow('create,update', (auth().roles?[role.name == "Captain" || role.name == "IT"] || (this.users?[id == auth().id] && this.active == true)))
+    @@allow('read', this.active == true || auth().roles?[role.name == "Captain" || role.name == "IT"])
+}
+
+model Vacancy extends TimestampBase {
+    id          Int      @id @default(autoincrement())
+    title       String   @trim
+    description String?  @trim
+    url         String   @trim
+
+    partnerId   Int      @map("partner_id")
+    partner     Partner  @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+
+    @@map("vacancies")
+
+    @@allow('create,update,delete', (auth().roles?[role.name == "Captain" || role.name == "IT"] || (this.partner.users?[id == auth().id] && this.partner.active == true)))
+    @@allow('read', this.partner.active == true || auth().roles?[role.name == "Captain" || role.name == "IT"])
 }
