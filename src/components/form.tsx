@@ -27,6 +27,7 @@ export interface FieldInfo {
     description?: string | ReactNode;
     placeholder?: string;
     onChange?: (value: any) => void;
+    fieldProps?: Partial<ControllerRenderProps>;
 }
 
 export function FormField({
@@ -58,6 +59,12 @@ export function FormField({
         field: ControllerRenderProps, 
         fieldState: ControllerFieldState
     ) => {
+        if (field.name === "createdAt" || field.name === "updatedAt") {
+            const value = new Date(field.value).toLocaleString();
+            if (value !== "Invalid Date") {
+                field.value = value;
+            }
+        }
         const handleChange = (value: any) => {
             field.onChange(value);
             if (customOnChange) {
@@ -69,6 +76,7 @@ export function FormField({
             case "number":
                 return <Input
                     {...field}
+                    {...fieldInfo.fieldProps}
                     id={field.name}
                     placeholder={fieldInfo?.placeholder}
                     aria-invalid={fieldState.invalid}
@@ -79,12 +87,15 @@ export function FormField({
                 />
             case "datetime":
                 return <DateTimePicker
+                    {...field}
+                    {...fieldInfo.fieldProps}
                     value={field.value as Date ?? defaultValue}
                     onChange={handleChange}
                 />
             case "textarea":
                 return <Markdown
                     {...field}
+                    {...fieldInfo.fieldProps}
                     value={field.value as string ?? defaultValue}
                     onChange={handleChange}
                     textareaProps={{ placeholder: fieldInfo.placeholder }}
@@ -92,7 +103,10 @@ export function FormField({
             case "checkbox":
                 return <input
                     {...field}
+                    {...fieldInfo.fieldProps}
                     id={field.name}
+                    placeholder={fieldInfo?.placeholder}
+                    aria-invalid={fieldState.invalid}
                     type="checkbox"
                     checked={field.value as boolean ?? defaultValue}
                     onChange={handleChange}
