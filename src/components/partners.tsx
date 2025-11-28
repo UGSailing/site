@@ -6,45 +6,6 @@ import Autoplay from 'embla-carousel-autoplay';
 import { H2 } from ".";
 
 export function Partners() {
-    const visibleLogos = partners.length
-
-    const settings = {
-        infinite: true,
-        slidesToShow: Math.min(visibleLogos, 4),
-        slidesToScroll: Math.min(visibleLogos, 4),
-        autoplay: visibleLogos < partners.length,
-        speed: 1000,
-        autoplaySpeed: 5000,
-        cssEase: "linear",
-        arrows: false,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: Math.min(visibleLogos, 3),
-                    slidesToScroll: Math.min(visibleLogos, 3),
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: Math.min(visibleLogos, 2),
-                    slidesToScroll: Math.min(visibleLogos, 2),
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    }
-
     return (
         <div className="mx-6">
             <H2 className="mb-6 pt-10">Our Partners</H2>
