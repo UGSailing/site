@@ -13,14 +13,22 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import Link from 'next/link';
 
 type Partner = paths["/api/model/rest/partner"]["get"]["responses"][200]["content"]["application/vnd.api+json"]["data"][0];
 
 function ListItem({ partner }: { partner: Partner }) {
     return (
         <AccordionItem value={partner.id.toString()} className="border border-1 border-b rounded-lg border-red w-full">
-            <AccordionTrigger arrow_size="size-6" className="border border-red px-6 text-red-500"><H3>{partner.attributes.name}</H3></AccordionTrigger>
-            <AccordionContent className="border-red gap-4 p-4 text-balance pb-1">
+            <AccordionTrigger arrow_size="size-10" className="border border-red px-6 text-red-500">
+                <div className="flex justify-between w-full">
+                    <H3>{partner.attributes.name}</H3>
+                    <Link href={`/admin/partner/${partner.id}`}>
+                        <Button>Manage</Button>
+                    </Link>
+                </div>
+            </AccordionTrigger>
+            <AccordionContent className="border-red gap-4 p-4 text-balance">
                 <div className='relative'>
                     <img src={partner.attributes.logo} className="float-right w-full h-full max-w-72 max-h-48 object-contain ml-4 mb-2"></img>
                     {
