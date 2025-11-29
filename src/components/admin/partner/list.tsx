@@ -47,8 +47,8 @@ function ListItem({ partner }: { partner: Partner }) {
 
 
 
-export default function PartnerList({ partnersProp }: { partnersProp: Partner[] | null }) {
-    const [partners, setPartners] = useState<Partner[] | null>(partnersProp || null);
+export default function PartnerList() {
+    const [partners, setPartners] = useState<Partner[] | null>(null);
 
     async function fetchPartners() {
         const response = await client.GET("/api/model/rest/partner", {})
@@ -58,9 +58,11 @@ export default function PartnerList({ partnersProp }: { partnersProp: Partner[] 
             setPartners([]);
         }
     }
+    if (partners === null)
+        fetchPartners();
 
     return (
-        <div>
+        <div className="mx-4 mt-4">
             <H2 className="flex justify-between items-center">Partners
                 <Button onClick={fetchPartners}>Refresh</Button>
             </H2>
