@@ -141,17 +141,18 @@ export interface SchemaInfo {
     fields: Record<string, FieldInfo>;
     name: string;
     formTitle: string;
-    endpoint: string | URL | globalThis.Request;
+    onSubmit: (data: any, setErrors: (value: React.SetStateAction<string>) => void) => void;
     formDescription?: string | ReactNode;
     onChange?: (data: any) => void;
     formProps?: Partial<UseFormProps<any>>;
 }
 
 
-export default function Form(
-    schemaInfo: SchemaInfo,
-    fetchOptions: RequestInit = { method: 'POST', headers: { 'content-type': 'application/json' } }
-) {
+export default function Form({
+    schemaInfo
+} : {
+    schemaInfo: SchemaInfo;
+}) {
     type Input = z.TypeOf<typeof schemaInfo.schema>;
     // @ts-expect-error - zodResolver types are broken
     const form = useForm<Input>({
@@ -163,17 +164,7 @@ export default function Form(
     const [serverError, setServerError] = useState<string>("");
 
     async function onSubmit(data: Input) {
-        console.log(data);
-        const resp = await fetch(schemaInfo.endpoint, {
-            ...fetchOptions,
-            body: JSON.stringify({ data: { type: schemaInfo.name, attributes: data } }),
-        });
-
-        if (resp.status !== 201) {
-            setServerError((await resp.text()));
-        } else {
-            alert('Submitted form successfully!');
-        }
+        schemaInfo.onSubmit(data, setServerError);
     }
 
     return (
