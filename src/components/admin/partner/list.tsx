@@ -3,9 +3,7 @@
 import React from 'react';
 import { A, Button, H2, H3 } from "@/components"
 import { useState } from 'react';
-import { client, paths } from '@/prisma/apiclient';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import Image from 'next/image';
+import { client, ApiTypes } from '@/prisma/apiclient';
 
 import {
     Accordion,
@@ -15,7 +13,7 @@ import {
 } from "@/components/ui/accordion"
 import Link from 'next/link';
 
-type Partner = paths["/api/model/rest/partner"]["get"]["responses"][200]["content"]["application/vnd.api+json"]["data"][0];
+type Partner = ApiTypes["Partner"];
 
 function ListItem({ partner }: { partner: Partner }) {
     return (

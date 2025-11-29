@@ -1,7 +1,7 @@
-"use server";
+"use client";
 
 import React from 'react';
-import { client, paths } from '@/prisma';
+import { client } from '@/prisma/apiclient';
 import PartnerUpdate from '@/components/admin/partner/update';
 
 export default async function PartnerPage({ params }: { params: Promise<{ id: string }> }) {
