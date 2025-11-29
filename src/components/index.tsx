@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const h1Classes: string = [
     "border-b",             // Add a bottom border
@@ -109,7 +110,29 @@ function Quote({ className, inline, ...opts }: React.ComponentProps<"blockquote"
 
         )
     )
-    return
+}
+
+const redButtonClasses: string = [
+    "mt-2",
+    "text-white",
+    "bg-red-500",
+    "hover:bg-red-600",
+    "cursor-pointer",
+].join(" ");
+
+const blackButtonClasses: string = [
+    "mt-2",
+    "text-white",
+    "bg-black",
+    "hover:bg-gray-800",
+    "cursor-pointer",
+].join(" ");
+
+function myButton({ disabled = false, active = true, ...props }: React.ComponentProps<"button"> & { disabled?: boolean, active?: boolean }) {
+    const isDisabled = { disabled };
+    return (
+        <Button {...isDisabled} variant="secondary" size="sm" className={active ? redButtonClasses : blackButtonClasses} {...props} />
+    )
 }
 
 
@@ -119,5 +142,6 @@ export {
     H3,
     H4,
     A,
-    Quote
+    Quote,
+    myButton as Button
 };
