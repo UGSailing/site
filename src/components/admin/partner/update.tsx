@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 import { client, ApiTypes } from '@/prisma/apiclient';
 
 type Partner = ApiTypes["Partner"]; 
+type PartnerUpdate = ApiTypes["PartnerUpdateRequest"]["data"]["attributes"];
 
 export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
     const [partner, setPartner] = React.useState<Partner | null | undefined>(null);
@@ -63,8 +64,9 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
         }
     }
     const onSubmit: SchemaInfo["onSubmit"] = async (data, setErrors) => {
-        delete data.createdAt;
-        delete data.updatedAt;
+        const attributes = data as PartnerUpdate;
+        delete attributes.createdAt;
+        delete attributes.updatedAt;
         const response = await client.PATCH("/api/model/rest/partner/{id}", {
             params: { 
                 path: { 
@@ -75,14 +77,15 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
                 data: {
                     type: "partner",
                     id: Number(partnerId),
-                    attributes: data
+                    attributes: attributes
                 }
             }
         })
         if (response.response.status === 200) {
             redirect(`/admin/partner/${partnerId}`);
         } else {
-            setErrors(response.error as any);
+            const errors = response.error
+            setErrors(errors as unknown as string);
         }
     };
     

@@ -4,7 +4,9 @@ import React from 'react';
 import { PartnerCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
-import { client } from '@/prisma/apiclient';
+import { client, type ApiTypes } from '@/prisma/apiclient';
+
+type PartnerType = ApiTypes["PartnerCreateRequest"]["data"]["attributes"];
 
 export default function Partner() {
     const schemaInfo: SchemaInfo = {
@@ -16,7 +18,7 @@ export default function Partner() {
                 body: {
                     data: {
                         type: "partner",
-                        attributes: data
+                        attributes: data as PartnerType
                     }
                 }
             });
@@ -24,7 +26,8 @@ export default function Partner() {
             if (response.response.status === 201) {
                 redirect(`/admin/partner/${response.data!.data.id}`);
             } else {
-                setErrors(response.error as any);
+                const errors = response.error
+                setErrors(errors as unknown as string);
             }
         },
         formDescription: "Here you can create a new partner.",

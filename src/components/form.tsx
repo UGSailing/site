@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ReactNode, useState } from 'react';
 import { useForm, Controller, ControllerRenderProps, ControllerFieldState, UseFormProps } from 'react-hook-form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
@@ -26,7 +26,7 @@ export interface FieldInfo {
     label?: string;
     description?: string | ReactNode;
     placeholder?: string;
-    onChange?: (value: any) => void;
+    onChange?: (value: unknown) => void;
     fieldProps?: Partial<ControllerRenderProps>;
 }
 
@@ -39,21 +39,21 @@ export function FormField({
     form: ReturnType<typeof useForm>;
     fieldName: string;
     fieldInfo: FieldInfo;
-    customOnChange?: (value: any) => void;
+    customOnChange?: (value: unknown) => void;
 }) {
-    const defaultValue = useMemo(() => {
+    const defaultValue = (() => {
         switch (fieldInfo.type) {
-            case "text":
-            case "textarea":
-                return "";
-            case "number":
-                return 0;
-            case "datetime":
-                return new Date();
-            case "checkbox":
-                return false;
+        case "text":
+        case "textarea":
+            return "";
+        case "number":
+            return 0;
+        case "datetime":
+            return new Date();
+        case "checkbox":
+            return false;
         }
-    }, []);
+    })();
 
     const renderField = (
         field: ControllerRenderProps, 
@@ -65,52 +65,52 @@ export function FormField({
                 field.value = value;
             }
         }
-        const handleChange = (value: any) => {
+        const handleChange = (value: unknown) => {
             field.onChange(value);
             if (customOnChange) {
                 customOnChange(value);
             }
         }
         switch (fieldInfo.type) {
-            case "text":
-            case "number":
-                return <Input
-                    {...field}
-                    {...fieldInfo.fieldProps}
-                    id={field.name}
-                    placeholder={fieldInfo?.placeholder}
-                    aria-invalid={fieldState.invalid}
-                    autoComplete='off'
-                    type={fieldInfo.type}
-                    value={field.value ?? defaultValue}
-                    onChange={handleChange}
-                />
-            case "datetime":
-                return <DateTimePicker
-                    {...field}
-                    {...fieldInfo.fieldProps}
-                    value={field.value as Date ?? defaultValue}
-                    onChange={handleChange}
-                />
-            case "textarea":
-                return <Markdown
-                    {...field}
-                    {...fieldInfo.fieldProps}
-                    value={field.value as string ?? defaultValue}
-                    onChange={handleChange}
-                    textareaProps={{ placeholder: fieldInfo.placeholder }}
-                />
-            case "checkbox":
-                return <input
-                    {...field}
-                    {...fieldInfo.fieldProps}
-                    id={field.name}
-                    placeholder={fieldInfo?.placeholder}
-                    aria-invalid={fieldState.invalid}
-                    type="checkbox"
-                    checked={field.value as boolean ?? defaultValue}
-                    onChange={handleChange}
-                />
+        case "text":
+        case "number":
+            return <Input
+                {...field}
+                {...fieldInfo.fieldProps}
+                id={field.name}
+                placeholder={fieldInfo?.placeholder}
+                aria-invalid={fieldState.invalid}
+                autoComplete='off'
+                type={fieldInfo.type}
+                value={field.value ?? defaultValue}
+                onChange={handleChange}
+            />
+        case "datetime":
+            return <DateTimePicker
+                {...field}
+                {...fieldInfo.fieldProps}
+                value={field.value as Date ?? defaultValue}
+                onChange={handleChange}
+            />
+        case "textarea":
+            return <Markdown
+                {...field}
+                {...fieldInfo.fieldProps}
+                value={field.value as string ?? defaultValue}
+                onChange={handleChange}
+                textareaProps={{ placeholder: fieldInfo.placeholder }}
+            />
+        case "checkbox":
+            return <input
+                {...field}
+                {...fieldInfo.fieldProps}
+                id={field.name}
+                placeholder={fieldInfo?.placeholder}
+                aria-invalid={fieldState.invalid}
+                type="checkbox"
+                checked={field.value as boolean ?? defaultValue}
+                onChange={handleChange}
+            />
         }
     }
 
@@ -141,10 +141,11 @@ export interface SchemaInfo {
     fields: Record<string, FieldInfo>;
     name: string;
     formTitle: string;
-    onSubmit: (data: any, setErrors: (value: React.SetStateAction<string>) => void) => void;
+    onSubmit: (data: unknown, setErrors: (value: React.SetStateAction<string>) => void) => void;
     formDescription?: string | ReactNode;
-    onChange?: (data: any) => void;
-    formProps?: Partial<UseFormProps<any>>;
+    onChange?: (data: unknown) => void;
+    // @ts-expect-error - zodResolver types are broken
+    formProps?: Partial<UseFormProps<unknown>>;
 }
 
 
@@ -186,7 +187,7 @@ export default function Form({
                                     form={form}
                                     fieldName={fieldName as keyof Input & string}
                                     fieldInfo={fieldInfo}
-                                    customOnChange={(value: any) => {fieldInfo.onChange?.(value); schemaInfo.onChange?.(form.getValues());}}
+                                    customOnChange={(value: unknown) => {fieldInfo.onChange?.(value); schemaInfo.onChange?.(form.getValues());}}
                                 />
                             ))
                         }
