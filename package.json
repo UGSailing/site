@@ -12,7 +12,7 @@
         "lint": "next lint",
         "lint:fix": "next lint --fix",
         "db:makemigrations": "npx zenstack generate && npx prisma migrate --config models/prisma.config.ts dev --create-only",
-        "db:migrate": "npx prisma --config models/prisma.config.ts migrate deploy && npm run db:generate",
+        "db:migrate": "npx zenstack generate && npx prisma --config models/prisma.config.ts migrate deploy && npm run db:generate",
         "db:reset": "npx prisma --config models/prisma.config.ts migrate reset",
         "db:generate": "npx zenstack generate && npx prisma --config models/prisma.config.ts generate && npx openapi-typescript public/api/openapi.json -o src/prisma/openapits.d.ts"
     },
