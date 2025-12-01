@@ -692,10 +692,16 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
         },
         ref,
     ) => {
+        const [isClient, setIsClient] = React.useState(false);
         const [month, setMonth] = React.useState<Date>(value ?? defaultPopupValue);
         const buttonRef = useRef<HTMLButtonElement>(null);
         const [displayDate, setDisplayDate] = React.useState<Date | undefined>(value ?? undefined);
         onMonthChange ||= onChange;
+
+        // Prevent hydration mismatch
+        React.useEffect(() => {
+            setIsClient(true);
+        }, []);
 
         /**
      * Makes sure display date updates when value change on
@@ -782,7 +788,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
                         ref={buttonRef}
                     >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {displayDate ? (
+                        {isClient && displayDate ? (
                             format(
                                 displayDate,
                                 hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12,

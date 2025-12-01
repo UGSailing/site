@@ -94,18 +94,18 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         await fs.writeFile(fullFilePath, buffer);
 
         // Here you would save to Prisma
-        // const mediaRecord = await prisma.media.create({
-        //     data: {
-        //         id,
-        //         filename: uploadedFilename,
-        //         filepath,
-        //         mimetype,
-        //         size: buffer.length,
-        //         width,
-        //         height,
-        //         uploadedById: session.user.id,
-        //     },
-        // });
+        const mediaRecord = await prisma.media.create({
+            data: {
+                id,
+                filename: uploadedFilename,
+                filepath,
+                mimetype,
+                size: buffer.length,
+                width,
+                height,
+                uploadedById: session.user.id,
+            },
+        });
 
         const response: UploadResponse = {
             id,
