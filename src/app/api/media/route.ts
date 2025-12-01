@@ -26,6 +26,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         if (!session?.user?.id) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
+        // const session = { user: { id: 'test-user-id' } }; // Placeholder for testing without auth
 
         // Parse form data
         const formData = await request.formData();
@@ -50,10 +51,19 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
 
         // Validate file extension matches MIME type (optional but recommended)
         const uploadedExt = path.extname(uploadedFilename).toLowerCase().slice(1);
-        const detectedExt = fileTypeResult?.ext || uploadedExt;
+        var detectedExt = fileTypeResult?.ext || uploadedExt;
         if (uploadedExt && detectedExt && uploadedExt !== detectedExt) {
+            if (formData.get('ignoreExtensionMismatch') !== 'true') {
+                return NextResponse.json(
+                    { 
+                        error: `File extension does not match file content: .${uploadedExt} vs .${detectedExt}` 
+                    }, { 
+                        status: 400 
+                    }
+                );
+            }
             console.warn(`File extension mismatch: ${uploadedExt} vs ${detectedExt}`);
-            // You can choose to reject or just warn
+            detectedExt = uploadedExt;
         }
 
         // Generate IDs and paths
@@ -63,6 +73,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         const fileExtension = detectedExt || uploadedExt || 'bin';
         const filepath = `/media/${filename}_${shortId}.${fileExtension}`;
         const fullFilePath = path.join(MEDIA_DIR, `${filename}_${shortId}.${fileExtension}`);
+
         // Get image dimensions if applicable
         let width: number | undefined;
         let height: number | undefined;
