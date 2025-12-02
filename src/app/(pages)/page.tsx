@@ -5,14 +5,15 @@ import { events } from "@/data/events";
 import { news } from "@/data/news";
 import Link from "next/link";
 import { BoardHomePage } from "@/components/boardHomePage";
+import teamImage from "@/../public/img/board2425.jpg";
 
 export interface TeamImages {
     src: string;
     alt: string;
 }
 const teamImages: TeamImages[] = [
-    { src: "https://tinyurl.com/ugentsailing", alt: "Board 2024-2025" },
-    { src: "https://tinyurl.com/ugentsailing", alt: "Board 2024-2025" },
+    { src: teamImage.src, alt: "Board 2024-2025" },
+    { src: teamImage.src, alt: "Board 2024-2025" },
 ];
 
 export default function Home() {
