@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/globals.css";
 import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/partners";
 import Banner from "@/components/banner";
