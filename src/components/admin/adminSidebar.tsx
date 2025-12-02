@@ -11,7 +11,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Home } from "lucide-react";
 
 interface AdminPagesListItem {
     title: string;
@@ -38,27 +38,9 @@ export default function AdminSidebar() {
                     regex: /^\/admin\/?$/
                 },
                 {
-                    title: "Inbox",
-                    href: "#",
-                    icon: Inbox,
-                    regex: /^\/admin\/inbox\/?$/
-                },
-                {
-                    title: "Calendar",
-                    href: "#",
-                    icon: Calendar,
-                    regex: /^\/admin\/calendar\/?$/
-                },
-                {
-                    title: "Search",
-                    href: "#",
-                    icon: Search,
-                    regex: /^\/admin\/search\/?$/
-                },
-                {
-                    title: "Settings",
+                    title: "Events",
                     href: "/admin/event",
-                    icon: Settings,
+                    icon: Calendar,
                     regex: /^\/admin\/event\/?$/
                 },
             ]
