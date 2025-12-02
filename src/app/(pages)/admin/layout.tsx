@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
     return (
         <SessionProvider session={session}>
             <SidebarProvider>
-                <AdminSidebar className="w-full md:w-[300px]" />
+                <AdminSidebar className="w-full md:w-[300px]" user={session.user} />
                 <main className="flex-1 m-4 overflow-auto md:w-full md:block hidden">
                     {children}
                 </main>
