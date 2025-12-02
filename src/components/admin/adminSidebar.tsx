@@ -25,7 +25,7 @@ interface AdminPagesListGroup {
     items: AdminPagesListItem[];
 }
 
-export default function AdminSidebar() {
+export default function AdminSidebar({ className }: { className?: string }) {
     const pathname = usePathname();
     const groups: AdminPagesListGroup[] = [
         {
@@ -47,7 +47,7 @@ export default function AdminSidebar() {
         }
     ]
     return (
-        <Sidebar collapsible="none" variant="sidebar" className="h-full m-4">
+        <Sidebar collapsible="none" variant="sidebar" className={`h-full m-4 ${className}`}>
             <SidebarContent>
                 <SidebarGroup>
                     {

@@ -29,11 +29,14 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
     return (
         <SessionProvider session={session}>
             <SidebarProvider>
-                <AdminSidebar />
-                <main className="flex-1 m-4 overflow-auto w-full">
+                <AdminSidebar className="w-full md:w-[300px]" />
+                <main className="flex-1 m-4 overflow-auto md:w-full md:block hidden">
                     {children}
                 </main>
             </SidebarProvider>
+            <div className="md:hidden block">
+                {children}
+            </div>
         </SessionProvider>
     )
 }
