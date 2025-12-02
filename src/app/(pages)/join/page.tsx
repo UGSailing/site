@@ -1,4 +1,4 @@
-import { H1, H2, H3, H4 } from "@/components";
+import { H2, H3 } from "@/components";
 import { Quote } from "@/components";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
