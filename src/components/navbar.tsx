@@ -12,7 +12,7 @@ export function NavBar() {
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <Image 
                         src={logo} 
-                        className="h-8" 
+                        className="h-8 w-auto" 
                         alt="UGS Logo" 
                     />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">UGent Sailing</span>
