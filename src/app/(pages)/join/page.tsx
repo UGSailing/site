@@ -3,6 +3,8 @@ import { Quote } from "@/components";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import board from "@/../public/img/board2425.jpg";
 
 export const metadata: Metadata = {
     title: "Join",
@@ -13,7 +15,11 @@ const Join = () => {
         <>
             {/* Hero Section */}
             <div className="relative w-full h-96">
-                <img src="https://tinyurl.com/ugentsailing" alt="Join Us" className="w-full h-full object-cover" />
+                <Image 
+                    src={board} 
+                    alt="Join Us" 
+                    className="w-full h-full object-cover" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center justify-center md:justify-end">
                     <div className="text-center md:text-right md:pr-16 text-white max-w-md">
                         <h1 className="text-5xl md:text-6xl font-bold mb-4">Join Our Crew</h1>

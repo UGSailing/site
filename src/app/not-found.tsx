@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import lost_at_sea_image from "@/../public/img/404-sea.png"
 
 export default function NotFound() {
     return (
@@ -6,8 +8,8 @@ export default function NotFound() {
             <div className="grid lg:grid-cols-2 gap-8 max-w-6xl items-center">
                 {/* Image Section */}
                 <div className="flex justify-center items-center h-full">
-                    <img
-                        src="https://tinyurl.com/ugentsailing"
+                    <Image
+                        src={lost_at_sea_image}
                         alt="Lost at Sea"
                         className="rounded-lg shadow-lg w-full h-70 object-cover"
                     />
