@@ -72,6 +72,7 @@ model User {
     partner       Partner?   @relation(fields: [partner_id], references: [id], onDelete: SetNull)
 
     roles         UserRole[]
+    news          News[]
 
     @@map("users")
 
@@ -205,11 +206,11 @@ model Board extends TimestampBase {
 }
 
 model Partner extends TimestampBase {
-    id          Int     @id @default(autoincrement())
-    name        String  @trim
-    active      Boolean @default(true)
-    url         String  @trim
-    logo        String  @trim
+    id          Int       @id @default(autoincrement())
+    name        String    @trim
+    active      Boolean   @default(true)
+    url         String    @trim
+    logo        String    @trim
     description String?
 
     users       User[]
@@ -222,16 +223,26 @@ model Partner extends TimestampBase {
 }
 
 model Vacancy extends TimestampBase {
-    id          Int      @id @default(autoincrement())
-    title       String   @trim
-    description String?  @trim
-    url         String   @trim
+    id          Int     @id @default(autoincrement())
+    title       String  @trim
+    description String? @trim
+    url         String  @trim
 
-    partnerId   Int      @map("partner_id")
-    partner     Partner  @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+    partnerId   Int     @map("partner_id")
+    partner     Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
 
     @@map("vacancies")
 
     @@allow('create,update,delete', (auth().roles?[role.name == "Captain" || role.name == "IT"] || (this.partner.users?[id == auth().id] && this.partner.active == true)))
     @@allow('read', this.partner.active == true || auth().roles?[role.name == "Captain" || role.name == "IT"])
+}
+
+model News extends TimestampBase {
+    id     Int      @id @default(autoincrement())
+    title  String   @trim
+    link   String   @trim
+    date   DateTime
+
+    userId String   @map("user_id")
+    user   User     @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
