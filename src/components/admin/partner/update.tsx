@@ -45,7 +45,7 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
         },
         description: {
             label: "Description",
-            placeholder: "Event Description",
+            placeholder: "Partner Description",
             type: 'textarea',
         },
         createdAt: {

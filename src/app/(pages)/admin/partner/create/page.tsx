@@ -53,7 +53,7 @@ export default function Partner() {
             },
             description: {
                 label: "Description",
-                placeholder: "Event Description",
+                placeholder: "Partner Description",
                 type: 'textarea',
             },
         }

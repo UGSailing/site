@@ -195,10 +195,10 @@ export default function Form({
                 </form>
                 <CardFooter className="px-0">
                     <div className="flex gap-4 pt-4 w-full justify-end">
-                        <Button type="button" variant="outline" onClick={() => form.reset()}>
+                        <Button type="button" variant="outline" className="pointer" onClick={() => form.reset()}>
                             Reset
                         </Button>
-                        <Button type="submit" form={`${schemaInfo.name}-form`}>
+                        <Button type="submit" form={`${schemaInfo.name}-form`} className="pointer">
                             Submit
                         </Button>
                     </div>
