@@ -3,9 +3,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ReactNode, useState } from 'react';
-import { useForm, Controller, ControllerRenderProps, ControllerFieldState } from 'react-hook-form';
+import { useForm, Controller, ControllerRenderProps, ControllerFieldState, UseFormProps } from 'react-hook-form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import {
     Field,
@@ -19,25 +19,29 @@ import { DateTimePicker } from './ui/datetime-picker';
 import { Button } from './ui/button';
 import Markdown from './markdown';
 
-type FieldType = "text" | "textarea" | "number" | "datetime"
+type FieldType = "text" | "textarea" | "number" | "datetime" | "checkbox";
 
 export interface FieldInfo {
-  type: FieldType;
-  label?: string;
-  description?: string | ReactNode;
-  placeholder?: string;
+    type: FieldType;
+    label?: string;
+    description?: string | ReactNode;
+    placeholder?: string;
+    onChange?: (value: unknown) => void;
+    fieldProps?: Partial<ControllerRenderProps>;
 }
 
 export function FormField({
     form,
     fieldName,
     fieldInfo,
+    customOnChange,
 }: {
-  form: ReturnType<typeof useForm>;
-  fieldName: string;
-  fieldInfo: FieldInfo;
+    form: ReturnType<typeof useForm>;
+    fieldName: string;
+    fieldInfo: FieldInfo;
+    customOnChange?: (value: unknown) => void;
 }) {
-    const defaultValue = useMemo(() => {
+    const defaultValue = (() => {
         switch (fieldInfo.type) {
         case "text":
         case "textarea":
@@ -46,33 +50,66 @@ export function FormField({
             return 0;
         case "datetime":
             return new Date();
+        case "checkbox":
+            return false;
         }
-    }, []);
+    })();
 
-    const renderField = (field: ControllerRenderProps, fieldState: ControllerFieldState) => {
+    const renderField = (
+        field: ControllerRenderProps, 
+        fieldState: ControllerFieldState
+    ) => {
+        if (field.name === "createdAt" || field.name === "updatedAt") {
+            const value = new Date(field.value).toLocaleString();
+            if (value !== "Invalid Date") {
+                field.value = value;
+            }
+        }
+        const handleChange = (value: unknown) => {
+            field.onChange(value);
+            if (customOnChange) {
+                customOnChange(value);
+            }
+        }
         switch (fieldInfo.type) {
         case "text":
         case "number":
             return <Input
                 {...field}
+                {...fieldInfo.fieldProps}
                 id={field.name}
                 placeholder={fieldInfo?.placeholder}
                 aria-invalid={fieldState.invalid}
                 autoComplete='off'
                 type={fieldInfo.type}
                 value={field.value ?? defaultValue}
+                onChange={handleChange}
             />
         case "datetime":
             return <DateTimePicker
+                {...field}
+                {...fieldInfo.fieldProps}
                 value={field.value as Date ?? defaultValue}
-                onChange={field.onChange}
+                onChange={handleChange}
             />
         case "textarea":
             return <Markdown
                 {...field}
+                {...fieldInfo.fieldProps}
                 value={field.value as string ?? defaultValue}
-                onChange={field.onChange}
+                onChange={handleChange}
                 textareaProps={{ placeholder: fieldInfo.placeholder }}
+            />
+        case "checkbox":
+            return <input
+                {...field}
+                {...fieldInfo.fieldProps}
+                id={field.name}
+                placeholder={fieldInfo?.placeholder}
+                aria-invalid={fieldState.invalid}
+                type="checkbox"
+                checked={field.value as boolean ?? defaultValue}
+                onChange={handleChange}
             />
         }
     }
@@ -100,82 +137,79 @@ export function FormField({
 }
 
 export interface SchemaInfo {
-  schema: z.ZodType<unknown>;
-  fields: Record<string, FieldInfo>;
-  name: string;
-  formTitle: string;
-  endpoint: string | URL | globalThis.Request;
-  formDescription?: string | ReactNode;
+    schema: z.ZodType<unknown>;
+    fields: Record<string, FieldInfo>;
+    name: string;
+    formTitle: string;
+    onSubmit: (data: unknown, setErrors: (value: React.SetStateAction<string>) => void) => void;
+    formDescription?: string | ReactNode;
+    onChange?: (data: unknown) => void;
+    // @ts-expect-error - zodResolver types are broken
+    formProps?: Partial<UseFormProps<unknown>>;
 }
 
 
-export default function Form(
-    schemaInfo: SchemaInfo,
-    fetchOptions: RequestInit = { method: 'POST', headers: { 'content-type': 'application/json' } }
-) {
-  type Input = z.TypeOf<typeof schemaInfo.schema>;
-  // @ts-expect-error - zodResolver types are broken
-  const form = useForm<Input>({
-      defaultValues: { description: '' },
-      // @ts-expect-error - zodResolver types are broken
-      resolver: zodResolver(schemaInfo.schema),
-  });
+export default function Form({
+    schemaInfo
+} : {
+    schemaInfo: SchemaInfo;
+}) {
+    type Input = z.TypeOf<typeof schemaInfo.schema>;
+    // @ts-expect-error - zodResolver types are broken
+    const form = useForm<Input>({
+        ...schemaInfo.formProps,
+        // @ts-expect-error - zodResolver types are broken
+        resolver: zodResolver(schemaInfo.schema),
+    });
 
-  const [serverError, setServerError] = useState<string>("");
+    const [serverError, setServerError] = useState<string>("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-  async function onSubmit(data: Input) {
-      console.log(data);
-      const resp = await fetch(schemaInfo.endpoint, {
-          ...fetchOptions,
-          body: JSON.stringify({ data: { type: schemaInfo.name, attributes: data } }),
-      });
+    async function onSubmit(data: Input) {
+        try {
+            setIsSubmitting(true);
+            await schemaInfo.onSubmit(data, setServerError);
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
 
-      if (resp.status !== 201) {
-          setServerError((await resp.text()));
-      } else {
-          alert('Submitted form successfully!');
-      }
-  }
-  console.log(serverError);
-  console.log(form);
+    return (
+        <Card className="w-full">
+            <CardHeader>
+                <CardTitle>{schemaInfo.formTitle}</CardTitle>
+                <CardDescription>
+                    {schemaInfo.formDescription}
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <form id={`${schemaInfo.name}-form`} onSubmit={form.handleSubmit(onSubmit)}>
+                    <FieldGroup>
+                        {
+                            Object.entries(schemaInfo.fields).map(([fieldName, fieldInfo]) => (
+                                <FormField
+                                    key={fieldName}
+                                    // @ts-expect-error - zodResolver types are broken
+                                    form={form}
+                                    fieldName={fieldName as keyof Input & string}
+                                    fieldInfo={fieldInfo}
+                                    customOnChange={(value: unknown) => {fieldInfo.onChange?.(value); schemaInfo.onChange?.(form.getValues());}}
+                                />
+                            ))
+                        }
+                    </FieldGroup>
+                </form>
+                <div className="flex gap-4 pt-4 w-full justify-end">
+                    <Button type="button" disabled={isSubmitting} variant="outline" className="cursor-pointer" onClick={() => form.reset()}>
+                        Reset
+                    </Button>
+                    <Button type="submit" disabled={isSubmitting} form={`${schemaInfo.name}-form`} className="cursor-pointer">
+                        Submit
+                    </Button>
+                </div>
+                {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
+            </CardContent>
 
-  return (
-      <Card className="w-full sm:max-w-md">
-          <CardHeader>
-              <CardTitle>Create new Event</CardTitle>
-              <CardDescription>
-          Here you can create a new event.
-              </CardDescription>
-          </CardHeader>
-          <CardContent>
-              <form id={`${schemaInfo.name}-form`} onSubmit={form.handleSubmit(onSubmit)}>
-                  <FieldGroup>
-                      {
-                          Object.entries(schemaInfo.fields).map(([fieldName, fieldInfo]) => (
-                              <FormField
-                                  key={fieldName}
-                                  // @ts-expect-error - zodResolver types are broken
-                                  form={form}
-                                  fieldName={fieldName as keyof Input & string}
-                                  fieldInfo={fieldInfo}
-                              />
-                          ))
-                      }
-                  </FieldGroup>
-              </form>
-              <CardFooter className="px-0">
-                  <div className="flex gap-4 pt-4 w-full justify-end">
-                      <Button type="button" variant="outline" onClick={() => form.reset()}>
-              Reset
-                      </Button>
-                      <Button type="submit" form={`${schemaInfo.name}-form`}>
-              Submit
-                      </Button>
-                  </div>
-                  {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
-              </CardFooter>
-          </CardContent>
-
-      </Card>
-  );
+        </Card>
+    );
 }
