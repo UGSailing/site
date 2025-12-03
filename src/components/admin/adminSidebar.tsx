@@ -42,14 +42,14 @@ const groups: AdminPagesListGroup[] = [
                 title: "Events",
                 href: "/admin/event",
                 icon: Calendar,
-                regex: /^\/admin\/event\/?$/,
+                regex: /^\/admin\/event\/?.*$/,
                 roles: ROLES.TEAM_MEMBER,
             },
             {
                 title: "Partners",
                 href: "/admin/partner",
                 icon: Users,
-                regex: /^\/admin\/partner\/?$/,
+                regex: /^\/admin\/partner\/?.*$/,
                 roles: ROLES.MATES,
             }
         ]
