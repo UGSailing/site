@@ -175,7 +175,7 @@ export default function Form({
     }
 
     return (
-        <Card className="w-full">
+        <Card className="w-full border-none shadow-none">
             <CardHeader>
                 <CardTitle>{schemaInfo.formTitle}</CardTitle>
                 <CardDescription>
