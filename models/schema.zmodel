@@ -130,19 +130,23 @@ abstract model TimestampBase {
 /// Media models ///
 ////////////////////
 model Media extends TimestampBase {
-    id           String   @id @unique
-    filename     String   @trim
-    filepath     String   @trim @unique
-    mimetype     String   @trim
-    size         Int      @gte(0)
+    id            String        @id @unique
+    filename      String        @trim
+    filepath      String        @trim @unique
+    mimetype      String        @trim
+    size          Int           @gte(0)
 
     // Image metadata
-    width        Int?     @gte(0)
-    height       Int?     @gte(0)
+    width         Int?          @gte(0)
+    height        Int?          @gte(0)
 
     // Uploader
-    uploadedById String?  @map("uploaded_by_id")
-    uploadedBy   User?    @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+    uploadedById  String?       @map("uploaded_by_id")
+    uploadedBy    User?         @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+
+    events        Event[]
+    board_members BoardMember[]
+    partners      Partner[]
 
     @@map("media")
 }
@@ -159,8 +163,10 @@ model Event extends TimestampBase {
     location     String
     intro        String
     description  String?  @trim
-    // image        String? This should be media
     registration Int?     @gte(0)
+
+    imageId      String?  @map("image_id")
+    image        Media?   @relation(fields: [imageId], references: [id], onDelete: SetNull)
 
     @@validate(startDate < endDate, "Event startDate must be before endDate")
 
@@ -185,8 +191,11 @@ model Position extends TimestampBase {
 model BoardMember extends TimestampBase {
     id        BigInt                @id @default(autoincrement())
     name      String                @trim
-    image     String?               @trim
     index     Int
+
+    imageId   String?               @map("image_id")
+    image     Media?                @relation(fields: [imageId], references: [id], onDelete: SetNull)
+
     positions BoardMemberPosition[]
 
     boardId   BigInt                @map("board_id")
@@ -232,8 +241,10 @@ model Partner extends TimestampBase {
     name        String    @trim
     active      Boolean   @default(true)
     url         String    @trim
-    logo        String    @trim
     description String?
+
+    logoId      String?   @map("logo_id")
+    logo        Media?    @relation(fields: [logoId], references: [id], onDelete: SetNull)
 
     users       User[]
     vacancies   Vacancy[]

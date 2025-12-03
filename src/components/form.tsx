@@ -118,7 +118,7 @@ export function FormField({
             />
         case "image":
             return <ImageUpload
-                preview={imagePreview}
+                preview={imagePreview || (typeof field.value.attributes?.filepath === 'string' ? field.value.attributes.filepath : null)}
                 onImageSelected={async (file) => {
                     // Upload file immediately
                     
