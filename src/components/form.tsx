@@ -163,9 +163,15 @@ export default function Form({
     });
 
     const [serverError, setServerError] = useState<string>("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     async function onSubmit(data: Input) {
-        schemaInfo.onSubmit(data, setServerError);
+        try {
+            setIsSubmitting(true);
+            await schemaInfo.onSubmit(data, setServerError);
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -194,10 +200,10 @@ export default function Form({
                     </FieldGroup>
                 </form>
                 <div className="flex gap-4 pt-4 w-full justify-end">
-                    <Button type="button" variant="outline" className="cursor-pointer" onClick={() => form.reset()}>
+                    <Button type="button" disabled={isSubmitting} variant="outline" className="cursor-pointer" onClick={() => form.reset()}>
                         Reset
                     </Button>
-                    <Button type="submit" form={`${schemaInfo.name}-form`} className="cursor-pointer">
+                    <Button type="submit" disabled={isSubmitting} form={`${schemaInfo.name}-form`} className="cursor-pointer">
                         Submit
                     </Button>
                 </div>
