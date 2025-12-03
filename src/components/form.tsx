@@ -193,17 +193,15 @@ export default function Form({
                         }
                     </FieldGroup>
                 </form>
-                <CardFooter className="px-0">
-                    <div className="flex gap-4 pt-4 w-full justify-end">
-                        <Button type="button" variant="outline" className="pointer" onClick={() => form.reset()}>
-                            Reset
-                        </Button>
-                        <Button type="submit" form={`${schemaInfo.name}-form`} className="pointer">
-                            Submit
-                        </Button>
-                    </div>
-                    {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
-                </CardFooter>
+                <div className="flex gap-4 pt-4 w-full justify-end">
+                    <Button type="button" variant="outline" className="cursor-pointer" onClick={() => form.reset()}>
+                        Reset
+                    </Button>
+                    <Button type="submit" form={`${schemaInfo.name}-form`} className="cursor-pointer">
+                        Submit
+                    </Button>
+                </div>
+                {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
             </CardContent>
 
         </Card>

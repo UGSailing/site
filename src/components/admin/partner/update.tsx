@@ -67,6 +67,12 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
         const attributes = data as PartnerUpdate;
         delete attributes.createdAt;
         delete attributes.updatedAt;
+        
+        // Ensure URL starts with https
+        if (attributes.url && !attributes.url.startsWith('http')) {
+            attributes.url = `https://${attributes.url}`;
+        }
+        
         const response = await client.PATCH("/api/model/rest/partner/{id}", {
             params: { 
                 path: { 

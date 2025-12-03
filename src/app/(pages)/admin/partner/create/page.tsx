@@ -14,11 +14,18 @@ export default function Partner() {
         name: "partner-create-form",
         formTitle: "Create new Partner",
         onSubmit: async (data, setErrors) => {
+            const attributes = data as PartnerType;
+        
+            // Ensure URL starts with https
+            if (attributes.url && !attributes.url.startsWith('http')) {
+                attributes.url = `https://${attributes.url}`;
+            }
+            
             const response = await client.POST("/api/model/rest/partner", {
                 body: {
                     data: {
                         type: "partner",
-                        attributes: data as PartnerType
+                        attributes: attributes
                     }
                 }
             });
