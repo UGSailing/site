@@ -5,6 +5,7 @@ import { fileTypeFromBuffer } from 'file-type';
 import { auth } from '@/lib/auth'; // adjust import to your auth setup
 import fs from 'fs/promises';
 import path from 'path';
+import prisma from "@/prisma";
 
 const MEDIA_DIR = process.env.MEDIA_DIR || './public/media';
 
@@ -52,7 +53,13 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         // Validate file extension matches MIME type (optional but recommended)
         const uploadedExt = path.extname(uploadedFilename).toLowerCase().slice(1);
         var detectedExt = fileTypeResult?.ext || uploadedExt;
-        if (uploadedExt && detectedExt && uploadedExt !== detectedExt) {
+        
+        // Check if both are images (image extensions are interchangeable)
+        const isUploadedImage = mimetype.startsWith('image/');
+        const isDetectedImage = fileTypeResult?.mime?.startsWith('image/');
+        const extensionMismatch = uploadedExt && detectedExt && uploadedExt !== detectedExt && !(isUploadedImage && isDetectedImage);
+        
+        if (extensionMismatch) {
             if (formData.get('ignoreExtensionMismatch') !== 'true') {
                 return NextResponse.json(
                     { 
