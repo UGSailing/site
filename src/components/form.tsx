@@ -43,6 +43,7 @@ export function FormField({
     customOnChange?: (value: unknown) => void;
 }) {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
 
     const defaultValue = (() => {
         switch (fieldInfo.type) {
@@ -119,8 +120,17 @@ export function FormField({
         case "image":
             return <ImageUpload
                 preview={imagePreview || (field.value && (typeof field.value.attributes?.filepath === 'string' ? field.value.attributes.filepath : null)) || null}
-                onImageSelected={async (file) => {
-                    // Upload file immediately
+                isUploading={isUploading}
+                onImageSelected={async (file, setError) => {
+                    // Show preview immediately
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        setImagePreview(e.target?.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                    
+                    setError?.(null);
+                    setIsUploading(true);
                     
                     try {
                         const formData = new FormData();
@@ -133,16 +143,27 @@ export function FormField({
                         });
                         
                         if (!response.ok) {
-                            throw new Error('Failed to upload image');
+                            const errorData = await response.json().catch(() => ({}));
+                            const errorMessage = errorData.error || `Upload failed with status ${response.status}`;
+                            console.log(errorMessage);
+                            setError?.(errorMessage);
+                            setImagePreview(null);
+                            setIsUploading(false);
+                            return;
                         }
                         
                         const data = await response.json();
                         
                         // Set the media ID to the form field (not the file)
                         field.onChange(data.id);
-                        setImagePreview(data.filepath);
+                        handleChange(data.id);
+                        setIsUploading(false);
                     } catch (error) {
+                        const errorMessage = error instanceof Error ? error.message : 'Failed to upload image';
                         console.error('Image upload failed:', error);
+                        setError?.(errorMessage);
+                        setImagePreview(null);
+                        setIsUploading(false);
                     }
                 }}
                 onImageRemoved={() => {

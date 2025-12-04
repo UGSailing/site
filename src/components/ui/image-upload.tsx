@@ -6,11 +6,13 @@ import { Upload, X } from "lucide-react";
 
 export interface ImageUploadProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange"> {
-    onImageSelected?: (file: File) => void;
+    onImageSelected?: (file: File, setError?: (error: string | null) => void) => void;
     onImageRemoved?: () => void;
     preview?: string | null;
     maxSize?: number; // in bytes, default 10MB
     accept?: string;
+    isUploading?: boolean;
+    error?: string | null;
 }
 
 const ImageUpload = React.forwardRef<HTMLInputElement, ImageUploadProps>(
@@ -23,6 +25,7 @@ const ImageUpload = React.forwardRef<HTMLInputElement, ImageUploadProps>(
             maxSize = 10 * 1024 * 1024, // 10MB default
             accept = "image/*",
             disabled,
+            isUploading = false,
             ...props
         },
         ref
@@ -51,7 +54,7 @@ const ImageUpload = React.forwardRef<HTMLInputElement, ImageUploadProps>(
 
         const handleFileSelect = (file: File) => {
             if (validateFile(file)) {
-                onImageSelected?.(file);
+                onImageSelected?.(file, setError);
             }
         };
 
@@ -139,10 +142,15 @@ const ImageUpload = React.forwardRef<HTMLInputElement, ImageUploadProps>(
                                 alt="Preview"
                                 className="h-auto w-full rounded-md object-cover"
                             />
+                            {isUploading && (
+                                <div className="absolute inset-0 flex items-center justify-center rounded-md bg-black/50">
+                                    <p className="text-sm font-medium text-white">Uploading...</p>
+                                </div>
+                            )}
                             <button
                                 type="button"
                                 onClick={handleRemove}
-                                disabled={disabled}
+                                disabled={disabled || isUploading}
                                 className="absolute right-2 top-2 rounded-full bg-destructive p-1 text-destructive-foreground shadow-lg hover:bg-destructive/90 disabled:opacity-50"
                             >
                                 <X className="h-4 w-4" />
@@ -163,7 +171,7 @@ const ImageUpload = React.forwardRef<HTMLInputElement, ImageUploadProps>(
                     )}
                 </div>
 
-                {error && (
+                {(error) && (
                     <p className="text-sm font-medium text-destructive">{error}</p>
                 )}
             </div>
