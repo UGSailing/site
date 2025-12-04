@@ -5,6 +5,8 @@ pages
 models/prisma.env
 .zenstack_repl_history
 docker-compose.server.yml
+public/media
+.vscode
 
 # auto generated
 src/prisma/*

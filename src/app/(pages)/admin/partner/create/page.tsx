@@ -56,7 +56,7 @@ export default function Partner() {
             logo: {
                 label: "Logo",
                 placeholder: "Partner Logo URL",
-                type: 'text',
+                type: 'image',
             },
             description: {
                 label: "Description",

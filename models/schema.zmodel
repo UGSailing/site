@@ -72,6 +72,7 @@ model User {
     partner       Partner?   @relation(fields: [partner_id], references: [id], onDelete: SetNull)
 
     roles         UserRole[]
+    uploadedMedia Media[]
 
     @@map("users")
 
@@ -118,9 +119,6 @@ model UserRole {
     @@allow('create', auth().roles?[role.name == "Sponsor"] && this.role.name == "Sponsor")
 }
 
-//////////////////
-/// App models ///
-//////////////////
 abstract model TimestampBase {
     createdAt DateTime @default(now()) @map("created_at") @deny('update', true) @meta("zod", "omit()")
     updatedAt DateTime @updatedAt @map("updated_at") @deny('update', true)
@@ -128,6 +126,35 @@ abstract model TimestampBase {
     @@allow('read', auth().roles?[role.name == "IT"])
 }
 
+////////////////////
+/// Media models ///
+////////////////////
+model Media extends TimestampBase {
+    id            String        @id @unique
+    filename      String        @trim
+    filepath      String        @trim @unique
+    mimetype      String        @trim
+    size          Int           @gte(0)
+
+    // Image metadata
+    width         Int?          @gte(0)
+    height        Int?          @gte(0)
+
+    // Uploader
+    uploadedById  String?       @map("uploaded_by_id")
+    uploadedBy    User?         @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+
+    events        Event[]
+    board_members BoardMember[]
+    partners      Partner[]
+
+    @@map("media")
+}
+
+
+//////////////////
+/// App models ///
+//////////////////
 model Event extends TimestampBase {
     id           Int      @unique @id @default(autoincrement())
     title        String   @trim
@@ -136,8 +163,10 @@ model Event extends TimestampBase {
     location     String
     intro        String
     description  String?  @trim
-    // image        String? This should be media
     registration Int?     @gte(0)
+
+    imageId      String?  @map("image_id")
+    image        Media?   @relation(fields: [imageId], references: [id], onDelete: SetNull)
 
     @@validate(startDate < endDate, "Event startDate must be before endDate")
 
@@ -162,8 +191,11 @@ model Position extends TimestampBase {
 model BoardMember extends TimestampBase {
     id        BigInt                @id @default(autoincrement())
     name      String                @trim
-    image     String?               @trim
     index     Int
+
+    imageId   String?               @map("image_id")
+    image     Media?                @relation(fields: [imageId], references: [id], onDelete: SetNull)
+
     positions BoardMemberPosition[]
 
     boardId   BigInt                @map("board_id")
@@ -205,12 +237,14 @@ model Board extends TimestampBase {
 }
 
 model Partner extends TimestampBase {
-    id          Int     @id @default(autoincrement())
-    name        String  @trim
-    active      Boolean @default(true)
-    url         String  @trim
-    logo        String  @trim
+    id          Int       @id @default(autoincrement())
+    name        String    @trim
+    active      Boolean   @default(true)
+    url         String    @trim
     description String?
+
+    logoId      String?   @map("logo_id")
+    logo        Media?    @relation(fields: [logoId], references: [id], onDelete: SetNull)
 
     users       User[]
     vacancies   Vacancy[]
@@ -222,13 +256,13 @@ model Partner extends TimestampBase {
 }
 
 model Vacancy extends TimestampBase {
-    id          Int      @id @default(autoincrement())
-    title       String   @trim
-    description String?  @trim
-    url         String   @trim
+    id          Int     @id @default(autoincrement())
+    title       String  @trim
+    description String? @trim
+    url         String  @trim
 
-    partnerId   Int      @map("partner_id")
-    partner     Partner  @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+    partnerId   Int     @map("partner_id")
+    partner     Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
 
     @@map("vacancies")
 

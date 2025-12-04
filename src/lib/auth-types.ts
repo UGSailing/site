@@ -17,6 +17,11 @@ export const ROLES: Record<string, BigInt[]> = {
         BigInt("1422686308253302874"), // IT
         BigInt("1424125799056806051"), // Captain
     ],
+    MATES: [
+        BigInt("1422686308253302874"), // IT
+        BigInt("1424125799056806051"), // Captain
+        BigInt("1422578278811828264"), // MATES
+    ],
     TEAM_MEMBER: [
         BigInt("1422579667914854440"), // CREW
         BigInt("1422578278811828264"), // MATES

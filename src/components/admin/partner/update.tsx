@@ -3,22 +3,38 @@
 import React from 'react';
 import Form, { type SchemaInfo } from '@/components/form';
 import { PartnerCreateSchema } from '@zenstackhq/runtime/zod/models';
-import { redirect } from 'next/navigation';
-import { client, ApiTypes } from '@/prisma/apiclient';
+import { useRouter } from 'next/navigation';
+import { ApiTypes, client } from '@/prisma/apiclient';
 
 type Partner = ApiTypes["Partner"]; 
 type PartnerUpdate = ApiTypes["PartnerUpdateRequest"]["data"]["attributes"];
 
+type ExtendedPartner = Partner & {
+    attributes: Partner["attributes"] & {
+        logo?: ApiTypes["Media"] | null;
+    }
+};
+
 export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
-    const [partner, setPartner] = React.useState<Partner | null | undefined>(null);
+    const [partner, setPartner] = React.useState<ExtendedPartner | null | undefined>(null);
+    const { push } = useRouter();
 
     async function loadForm(id: string) {
         const response = await client.GET("/api/model/rest/partner/{id}", {
             params: {
-                path: { id }
+                path: { id },
+                query: {
+                    include: "logo",
+                }
             }
         });
-        setPartner(response.response.status === 200 ? response.data!.data : undefined);
+        if (response.response.status === 200) {
+            const data: ExtendedPartner = {...response.data!.data};
+            data.attributes.logo = (response.data!.included?.filter(a => a.type === "media")[0] as unknown as ApiTypes["Media"]) || null;
+            setPartner(data);
+        } else {
+            setPartner(undefined);
+        }
     }
     if (partner === null)
         loadForm(partnerId);
@@ -41,7 +57,7 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
         logo: {
             label: "Logo",
             placeholder: "Partner Logo URL",
-            type: 'text',
+            type: 'image',
         },
         description: {
             label: "Description",
@@ -88,7 +104,7 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
             }
         })
         if (response.response.status === 200) {
-            redirect(`/admin/partner/${partnerId}`);
+            push(`/admin/partner/${partnerId}`);
         } else {
             const errors = response.error
             setErrors(errors as unknown as string);

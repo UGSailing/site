@@ -15,11 +15,12 @@ import {
     FieldLabel,
 } from "./ui/field"
 import { Input } from "./ui/input"
+import { ImageUpload } from "./ui/image-upload"
 import { DateTimePicker } from './ui/datetime-picker';
 import { Button } from './ui/button';
 import Markdown from './markdown';
 
-type FieldType = "text" | "textarea" | "number" | "datetime" | "checkbox";
+type FieldType = "text" | "textarea" | "number" | "datetime" | "checkbox" | "image";
 
 export interface FieldInfo {
     type: FieldType;
@@ -41,6 +42,9 @@ export function FormField({
     fieldInfo: FieldInfo;
     customOnChange?: (value: unknown) => void;
 }) {
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
+
     const defaultValue = (() => {
         switch (fieldInfo.type) {
         case "text":
@@ -50,6 +54,8 @@ export function FormField({
             return 0;
         case "datetime":
             return new Date();
+        case "image":
+            return null;
         case "checkbox":
             return false;
         }
@@ -111,6 +117,60 @@ export function FormField({
                 checked={field.value as boolean ?? defaultValue}
                 onChange={handleChange}
             />
+        case "image":
+            return <ImageUpload
+                preview={imagePreview || (field.value && (typeof field.value.attributes?.filepath === 'string' ? field.value.attributes.filepath : null)) || null}
+                isUploading={isUploading}
+                onImageSelected={async (file, setError) => {
+                    // Show preview immediately
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        setImagePreview(e.target?.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                    
+                    setError?.(null);
+                    setIsUploading(true);
+                    
+                    try {
+                        const formData = new FormData();
+                        formData.append('file', file);
+                        formData.append('filename', file.name);
+                        
+                        const response = await fetch('/api/media', {
+                            method: 'POST',
+                            body: formData,
+                        });
+                        
+                        if (!response.ok) {
+                            const errorData = await response.json().catch(() => ({}));
+                            const errorMessage = errorData.error || `Upload failed with status ${response.status}`;
+                            console.log(errorMessage);
+                            setError?.(errorMessage);
+                            setImagePreview(null);
+                            setIsUploading(false);
+                            return;
+                        }
+                        
+                        const data = await response.json();
+                        
+                        // Set the media ID to the form field (not the file)
+                        field.onChange(data.id);
+                        handleChange(data.id);
+                        setIsUploading(false);
+                    } catch (error) {
+                        const errorMessage = error instanceof Error ? error.message : 'Failed to upload image';
+                        console.error('Image upload failed:', error);
+                        setError?.(errorMessage);
+                        setImagePreview(null);
+                        setIsUploading(false);
+                    }
+                }}
+                onImageRemoved={() => {
+                    field.onChange(null);
+                    setImagePreview(null);
+                }}
+            />
         }
     }
 
@@ -164,7 +224,7 @@ export default function Form({
 
     const [serverError, setServerError] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-
+    
     async function onSubmit(data: Input) {
         try {
             setIsSubmitting(true);
