@@ -6,6 +6,9 @@ export async function Partners() {
     const partners = await prisma.partner.findMany({
         include: {
             logo: true,
+        },
+        where: {
+            active: true,
         }
     });
 
