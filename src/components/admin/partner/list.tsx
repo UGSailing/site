@@ -28,7 +28,7 @@ function ListItem({ partner }: { partner: Partner }) {
             </AccordionTrigger>
             <AccordionContent className="border-red gap-4 p-4 text-balance">
                 <div className='relative'>
-                    <img src={partner.attributes.logo} className="float-right w-full h-full max-w-72 max-h-48 object-contain ml-4 mb-2"></img>
+                    {/* <img src={partner.attributes.logoId} className="float-right w-full h-full max-w-72 max-h-48 object-contain ml-4 mb-2"></img> */}
                     {
                         partner.attributes.active ? (
                             <p className="text-green-700 font-bold">Active Partner</p>

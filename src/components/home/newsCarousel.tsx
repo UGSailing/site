@@ -1,6 +1,5 @@
 "use client";
 import Carousel, { CarouselItem } from "@/components/carousel";
-import Link from "next/link";
 import { H4, A } from "@/components";
 
 type News = {

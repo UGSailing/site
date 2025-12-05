@@ -6,7 +6,7 @@ import * as z from 'zod';
 import React from 'react';
 import { ReactNode, useState } from 'react';
 import { useForm, Controller, ControllerRenderProps, ControllerFieldState, UseFormProps } from 'react-hook-form';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import {
     Field,
     FieldDescription,
