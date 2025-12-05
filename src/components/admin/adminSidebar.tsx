@@ -11,7 +11,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Users } from "lucide-react";
+import { Calendar, Home, Newspaper, Users } from "lucide-react";
 import { type Session } from "next-auth";
 import { ROLES } from "@/lib/auth-types";
 
@@ -50,6 +50,13 @@ const groups: AdminPagesListGroup[] = [
                 href: "/admin/partner",
                 icon: Users,
                 regex: /^\/admin\/partner\/?.*$/,
+                roles: ROLES.MATES,
+            },
+            {
+                title: "News",
+                href: "/admin/news",
+                icon: Newspaper,
+                regex: /^\/admin\/news\/?.*$/,
                 roles: ROLES.MATES,
             }
         ]
