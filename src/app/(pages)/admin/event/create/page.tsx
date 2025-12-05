@@ -58,7 +58,7 @@ export default function Event() {
                 type: 'textarea',
             },
 
-            image: {
+            imageId: {
                 label: "Event Image",
                 placeholder: "Event Image URL",
                 type: 'image',

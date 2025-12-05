@@ -63,7 +63,7 @@ export default function EventUpdate({ eventId }: { eventId: string }) {
             type: 'textarea',
         },
 
-        image: {
+        imageId: {
             label: "Event Image",
             placeholder: "Event Image URL",
             type: 'image',
