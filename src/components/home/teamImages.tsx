@@ -10,7 +10,7 @@ const teamImages: TeamImages[] = [
     { src: teamImage.src, alt: "Board 2024-2025" },
 ];
 
-export default function TeamImages() {
+export default function TeamImagesSection() {
     return (
         <Carousel padding={false} opts={{ loop: true }}>
             {
