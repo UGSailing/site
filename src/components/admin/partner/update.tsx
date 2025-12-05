@@ -54,7 +54,7 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
             placeholder: "Partner Site URL",
             type: 'text',
         },
-        logo: {
+        logoId: {
             label: "Logo",
             placeholder: "Partner Logo URL",
             type: 'image',

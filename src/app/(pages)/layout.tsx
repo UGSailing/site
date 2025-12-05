@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { NavBar } from "@/components/navbar";
-import { Partners } from "@/components/partners";
+import { Partners } from "@/components/layout/partners";
 import { Footer } from "@/components/footer";
 // import { cookies } from "next/headers";
 // import { getMessages, resolveLocale } from "@/i18n/config";
