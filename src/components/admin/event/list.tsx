@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { A, Button, H2, H3 } from "@/components"
+import { Button, H2, H3 } from "@/components"
 import { useState } from 'react';
 import { client, ApiTypes } from '@/prisma/apiclient';
 

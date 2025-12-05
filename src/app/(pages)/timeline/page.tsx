@@ -4,7 +4,6 @@ import { EventCard, FutureEventCard } from "@/components/eventCard";
 import { generations } from "@/data/generation";
 import { GenerationCard } from "@/components/genCard";
 import { H1 } from "@/components";
-import { parse } from 'date-fns';
 import prisma from "@/prisma";
 
 export const metadata: Metadata = {

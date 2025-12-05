@@ -20,7 +20,7 @@ interface AdminPagesListItem {
     href: string;
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     regex?: RegExp;
-    roles: BigInt[]; // Empty array means accessible to all roles that can access the admin panel
+    roles: bigint[]; // Empty array means accessible to all roles that can access the admin panel
 }
 
 interface AdminPagesListGroup {
