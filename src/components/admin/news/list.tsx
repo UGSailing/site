@@ -55,8 +55,14 @@ export default function NewsList() {
 
     return (
         <div className="mx-4 mt-4">
-            <H2 className="flex justify-between items-center">News
-                <Button onClick={fetchNews}>Refresh</Button>
+            <H2 className="flex justify-between items-center">
+                News
+                <div>
+                    <Link href="/admin/news/create">
+                        <Button>Create</Button>
+                    </Link>
+                    <Button onClick={fetchNews}>Refresh</Button>
+                </div>
             </H2>
             <div className="px-4">
                 {

@@ -65,7 +65,12 @@ export default function EventList() {
     return (
         <div className="mx-4 mt-4">
             <H2 className="flex justify-between items-center">Events
-                <Button onClick={fetchEvents}>Refresh</Button>
+                <div>
+                    <Link href="/admin/event/create">
+                        <Button>Create</Button>
+                    </Link>
+                    <Button onClick={fetchEvents}>Refresh</Button>
+                </div>
             </H2>
             <div className="px-4">
                 {

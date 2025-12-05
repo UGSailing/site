@@ -63,8 +63,14 @@ export default function PartnerList() {
 
     return (
         <div className="mx-4 mt-4">
-            <H2 className="flex justify-between items-center">Partners
-                <Button onClick={fetchPartners}>Refresh</Button>
+            <H2 className="flex justify-between items-center">
+                Partners
+                <div>
+                    <Link href="/admin/partner/create">
+                        <Button>Create</Button>
+                    </Link>
+                    <Button onClick={fetchPartners}>Refresh</Button>
+                </div>
             </H2>
             <div className="px-4">
                 {
