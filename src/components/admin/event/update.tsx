@@ -30,7 +30,7 @@ export default function EventUpdate({ eventId }: { eventId: string }) {
         });
         if (response.response.status === 200) {
             const data: ExtendedEvent = { ...response.data!.data };
-            data.attributes.image = (response.data!.included?.filter(a => a.type === "media")[0] as unknown as ApiTypes["Media"]) || null;
+            data.attributes.image = (response.data!.included?.filter((a: Record<string, unknown>) => a.type === "media")[0] as unknown as ApiTypes["Media"]) || null;
             setEvent(data);
         } else {
             setEvent(undefined);

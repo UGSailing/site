@@ -30,7 +30,7 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
         });
         if (response.response.status === 200) {
             const data: ExtendedPartner = { ...response.data!.data };
-            data.attributes.logo = (response.data!.included?.filter(a => a.type === "media")[0] as unknown as ApiTypes["Media"]) || null;
+            data.attributes.logo = (response.data!.included?.filter((a: Record<string, unknown>) => a.type === "media")[0] as unknown as ApiTypes["Media"]) || null;
             setPartner(data);
         } else {
             setPartner(undefined);
