@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import type { SimpleBoard } from "@/data/board";
 import Carousel, { CarouselItem } from "./carousel";
 import { H4 } from ".";
-import { client } from "@/prisma/apiclient";
+import { client, ApiTypes } from "@/prisma/apiclient";
+
+type Board = ApiTypes["BoardListResponse"]["data"][0]
 
 async function getMember(id: string) {
     return client.GET(`/api/model/rest/boardMember/{id}`, {
@@ -18,7 +20,7 @@ async function getMember(id: string) {
         const attributes = res.data!.data.attributes;
         return {
             name: attributes.name,
-            image: attributes.image || null,
+            image: attributes.imageId || null,
             index: attributes.index
         };
     });
@@ -35,12 +37,12 @@ export function BoardHomePage() {
                     setBoard("None");
                     throw new Error(`HTTP ${res.response.status}\n${res.error!.errors}`);
                 }
-                const current_board = res.data!.data.sort((a, b) => b.attributes.year - a.attributes.year)[0];
+                const current_board = res.data!.data.sort((a: Board, b: Board) => b.attributes.year - a.attributes.year)[0];
                 const data = {
                     year: current_board.attributes.year,
                     name: current_board.attributes.name,
                     HTMLid: current_board.attributes.htmlid,
-                    members: await Promise.all(current_board.relationships!.members!.data.map(async (m) => (await getMember(m.id))))
+                    members: await Promise.all(current_board.relationships!.members!.data.map(async (m: { type: string, id: string} ) => (await getMember(m.id))))
                 };
                 setBoard(data);
             })

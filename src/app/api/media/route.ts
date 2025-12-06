@@ -52,7 +52,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
 
         // Validate file extension matches MIME type (optional but recommended)
         const uploadedExt = path.extname(uploadedFilename).toLowerCase().slice(1);
-        var detectedExt = fileTypeResult?.ext || uploadedExt;
+        let detectedExt = fileTypeResult?.ext || uploadedExt;
         
         // Check if both are images (image extensions are interchangeable)
         const isUploadedImage = mimetype.startsWith('image/');
@@ -99,20 +99,6 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
 
         // Write file to disk
         await fs.writeFile(fullFilePath, buffer);
-
-        // Here you would save to Prisma
-        const mediaRecord = await prisma.media.create({
-            data: {
-                id,
-                filename: uploadedFilename,
-                filepath,
-                mimetype,
-                size: buffer.length,
-                width,
-                height,
-                uploadedById: session.user.id,
-            },
-        });
 
         const response: UploadResponse = {
             id,

@@ -55,7 +55,7 @@ export const events: EventType[] = [
     },
     {
         id: "5",
-        title: "Further event",
+        title: "Further events",
         startDate: "29-11-2025",
         location: "Locus, Tech Lane Ghent Science Park, Campus A.",
         intro: "Our prototype boat, which we worked a whole semester on, will be launched.",

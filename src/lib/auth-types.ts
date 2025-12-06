@@ -7,12 +7,12 @@ declare module 'next-auth' {
             name?: string | null;
             email?: string | null;
             image?: string | null;
-            roles?: {id: BigInt, name: string}[];
+            roles?: {id: bigint, name: string}[];
         };
     }
 }
 
-export const ROLES: Record<string, BigInt[]> = {
+export const ROLES: Record<string, bigint[]> = {
     ADMIN: [
         BigInt("1422686308253302874"), // IT
         BigInt("1424125799056806051"), // Captain
