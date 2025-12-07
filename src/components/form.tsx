@@ -155,8 +155,8 @@ export function FormField({
                         const data = await response.json();
                         
                         // Set the media ID to the form field (not the file)
-                        field.onChange(data.id);
-                        handleChange(data.id);
+                        field.onChange(data.data.id);
+                        handleChange(data.data.id);
                         setIsUploading(false);
                     } catch (error) {
                         const errorMessage = error instanceof Error ? error.message : 'Failed to upload image';
