@@ -28,7 +28,7 @@ function ListItem({ partner }: { partner: Partner }) {
             </AccordionTrigger>
             <AccordionContent className="border-red gap-4 p-4 text-balance">
                 <div className='relative'>
-                    <img src={partner.attributes.logo} className="float-right w-full h-full max-w-72 max-h-48 object-contain ml-4 mb-2"></img>
+                    {/* <img src={partner.attributes.logoId} className="float-right w-full h-full max-w-72 max-h-48 object-contain ml-4 mb-2"></img> */}
                     {
                         partner.attributes.active ? (
                             <p className="text-green-700 font-bold">Active Partner</p>
@@ -63,8 +63,14 @@ export default function PartnerList() {
 
     return (
         <div className="mx-4 mt-4">
-            <H2 className="flex justify-between items-center">Partners
-                <Button onClick={fetchPartners}>Refresh</Button>
+            <H2 className="flex justify-between items-center">
+                Partners
+                <div>
+                    <Link href="/admin/partner/create">
+                        <Button>Create</Button>
+                    </Link>
+                    <Button onClick={fetchPartners}>Refresh</Button>
+                </div>
             </H2>
             <div className="px-4">
                 {

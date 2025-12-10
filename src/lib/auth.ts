@@ -13,8 +13,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 id: 'discord',
                 userinfo: `https://discord.com/api/users/@me/guilds/${process.env.GUILD_ID}/member`,
                 async profile(profile) {
-                    console.log("running custom implementation \n\n\n\n\n\n");
-                    console.log(profile);
                     if (profile.avatar === null) {
                         const defaultAvatarNumber =
                             profile.user.discriminator === "0"

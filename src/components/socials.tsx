@@ -35,12 +35,6 @@ const socials: SocialItem[] = [
         href: "https://github.com/UGSailing", 
         icon: "icon-[bi--github]",
         name: "UGSailing",
-    },
-    { 
-        platform: "Nextcloud", 
-        href: "https://sailing.ugent.be", 
-        icon: "icon-[simple-icons--nextcloud]",
-        name: "sailing.ugent.be",
     }
 ]
 

@@ -6,7 +6,7 @@ import * as z from 'zod';
 import React from 'react';
 import { ReactNode, useState } from 'react';
 import { useForm, Controller, ControllerRenderProps, ControllerFieldState, UseFormProps } from 'react-hook-form';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import {
     Field,
     FieldDescription,
@@ -136,7 +136,7 @@ export function FormField({
                         const formData = new FormData();
                         formData.append('file', file);
                         formData.append('filename', file.name);
-                        
+                        formData.append('ignoreExtensionMismatch', 'true')
                         const response = await fetch('/api/media', {
                             method: 'POST',
                             body: formData,
@@ -155,8 +155,8 @@ export function FormField({
                         const data = await response.json();
                         
                         // Set the media ID to the form field (not the file)
-                        field.onChange(data.id);
-                        handleChange(data.id);
+                        field.onChange(data.data.id);
+                        handleChange(data.data.id);
                         setIsUploading(false);
                     } catch (error) {
                         const errorMessage = error instanceof Error ? error.message : 'Failed to upload image';
