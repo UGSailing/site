@@ -12,26 +12,27 @@ export default function Home() {
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                     <section>
-                        <H2>{"Some intro"}</H2>
+                        <H2>Intro</H2>
 
                         We are UGent Sailing, a diverse team of students and young graduates building an autonomous, CO₂-neutral vessel to compete in the Monaco Energy Boat Challenge.
 
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>{"Events"}</H2>
+                        <H2>Events</H2>
 
                         <EventsSection />
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>{"News"}</H2>
+                        <H2>News</H2>
 
                         <NewsSection />
                         
                     </section>
                     <section className="w-full max-w-full">
-                        <H2>{"Board"}</H2>
+                        <H2>Board</H2>
 
-                        <BoardHomePage />
+                        {/* <BoardHomePage /> */}
+                        Coming soon
                     </section>
                 </main>
             </div>
