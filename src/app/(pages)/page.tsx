@@ -14,7 +14,7 @@ export default function Home() {
                     <section>
                         <H2>{"Some intro"}</H2>
 
-                        {"Some intro text about the sailing club."}
+                        We are UGent Sailing, a diverse team of students and young graduates building an autonomous, CO₂-neutral vessel to compete in the Monaco Energy Boat Challenge.
 
                     </section>
                     <section className="w-full max-w-full">

@@ -27,7 +27,7 @@ const About = () => {
                     </A>{" "}
                     , a prestigious international competition. Our first
                     participation will be in July 2026 in the AI class, but we
-                    will also participated in the Sealab class from July 2027
+                    will also participate in the Sealab class from July 2027
                     on.
 
                     <H4>Our Goals</H4>
@@ -69,7 +69,7 @@ const About = () => {
                     <Quote>
                         &quot;Ik zie er echt uit gelijk een blik redbull&quot;
                         <br />
-                        ~ Jorien, Captain Extern
+                        ~ Jorien, Captain
                     </Quote>
                 </section>
             </main>
