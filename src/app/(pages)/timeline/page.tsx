@@ -71,7 +71,7 @@ const Timeline = async () => {
                     }
                     <CarouselItem className="md:basis-1/3" key="future-events">
                         <FutureEventCard></FutureEventCard>
-                    </CarouselItem>)
+                    </CarouselItem>
                 </Carousel>
                 <H1 className="text-center w-full">Our Ship</H1>
                 <Carousel buttonSettings={{ size: "xl" }} key="ship-carousel">

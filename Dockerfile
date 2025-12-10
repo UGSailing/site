@@ -14,9 +14,6 @@ RUN pnpm i --frozen-lockfile
 
 COPY . .
 
-ENV NODE_ENV=production
-
-
 EXPOSE 3000
 
 ENV HOSTNAME="0.0.0.0"

@@ -40,7 +40,13 @@ interface ErrorResponse {
 }
 
 export async function POST(request: Request): Promise<NextResponse<UploadResponse | ErrorResponse>> {
+    let requestBody: string = "";
     try {
+        const clonedRequest = request.clone();
+        requestBody = await clonedRequest.text();
+        console.log('Raw request body (first 500 chars):', requestBody.substring(0, 500));
+        console.log('Request content-type:', request.headers.get('content-type'));        
+        
         // Get authenticated user
         const session = await auth();
         if (!session?.user?.id) {
@@ -123,7 +129,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         const shortId = id.slice(0, 8);
         const filename = path.parse(uploadedFilename).name; // Remove extension
         const fileExtension = detectedExt || uploadedExt || 'bin';
-        const filepath = `/media/${filename}_${shortId}.${fileExtension}`;
+        const filepath = `${MEDIA_DIR.slice(1)}/${filename}_${shortId}.${fileExtension}`;
         const fullFilePath = path.join(MEDIA_DIR, `${filename}_${shortId}.${fileExtension}`);
 
         // Get image dimensions if applicable
@@ -180,6 +186,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         return NextResponse.json(response, { status: 201 });
     } catch (error) {
         console.error('Error processing upload:', error);
+        console.error("Raw request body that caused error:", requestBody.substring(0,1000));
         const errorResponse: ErrorResponse = {
             jsonapi: { version: '1.0' },
             errors: [{

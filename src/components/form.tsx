@@ -136,7 +136,7 @@ export function FormField({
                         const formData = new FormData();
                         formData.append('file', file);
                         formData.append('filename', file.name);
-                        
+                        formData.append('ignoreExtensionMismatch', 'true')
                         const response = await fetch('/api/media', {
                             method: 'POST',
                             body: formData,
