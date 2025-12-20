@@ -3,11 +3,18 @@ import { BoardHomePage } from "@/components/boardHomePage";
 import { EventsSection } from "@/components/home/events";
 import { NewsSection } from "@/components/home/news";
 import TeamImagesSection from "@/components/home/teamImages";
+import Image from "next/image";
+import Gen0 from "@/../public/img/prototype.png";
 
 export default function Home() {
     return (
         <div>
-            <TeamImagesSection />
+            {/* <TeamImagesSection /> */}
+            <Image 
+                src={Gen0}
+                alt="UGent Sailing Team 2023-2024"
+                className="w-full h-auto object-cover"
+            />
             <div className="font-sans items-center min-h-screen px-6">
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
