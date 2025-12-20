@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { HamburgerMenu, NavMenu } from "./navMenu";
 import Image from "next/image";
-import logo from "@/../public/img/logos/cropped_logo.png";
+import logo from "@/../public/images/logos/cropped_logo.png";
 
 
 export function NavBar() {

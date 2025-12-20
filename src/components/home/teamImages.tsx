@@ -1,6 +1,6 @@
 "use client";
 import Carousel, { CarouselItem } from "@/components/carousel";
-import teamImage from "@/../public/img/board2425.jpg";
+import teamImage from "@/../public/img/prototype.png";
 export interface TeamImages {
     src: string;
     alt: string;

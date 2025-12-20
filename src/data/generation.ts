@@ -11,8 +11,8 @@ export const generations: Generation[] = [
         year: "2025-2025",
         dateLaunch: "09/2025",
         name: "Gen 0",
-        image: "/img/gen0.jpg",
-        // link: "/generation/posseidon",
+        image: "/images/prototype.png",
+        link: "/datasheets/De Schepper.pdf",
     },
     {
         year: "2025-2026",
