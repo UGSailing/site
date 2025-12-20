@@ -1,29 +1,65 @@
 services:
-  site:
-    build: .
-    container_name: site
-    env_file: .env.local
-    healthcheck:
-      test: curl --fail -s http://localhost:3000
-      interval: 10s
-      timeout: 10s
-      retries: 5
-    networks:
-      - db-site
-    ports:
-      - 3000:3000
-
   db:
     image: postgres:17
     container_name: postgres
     env_file: .env.local
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 15s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
     networks:
-      - db-site
+      - app-network
+
+  site:
+    build: .
+    container_name: site
+    env_file: .env.local
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_volume:/app/uploads
+    healthcheck:
+      test: curl --fail -s http://localhost:3000
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    networks:
+      - app-network
+
+  uploads_server:
+    image: nginx:alpine
+    container_name: uploads-nginx
+    volumes:
+      - uploads_volume:/usr/share/nginx/html/uploads:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./404.html:/usr/share/nginx/html/404.html:ro
+    networks:
+      - app-network
+
+  reverse_proxy:
+    image: nginx:alpine
+    container_name: reverse-proxy
+    ports:
+      - 3000:80
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - site
+      - uploads_server
+    networks:
+      - app-network
 
 volumes:
   db_data:
+  uploads_volume:
 
 networks:
-  db-site:
+  app-network:
+    driver: bridge

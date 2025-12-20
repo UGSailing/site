@@ -1,14 +1,23 @@
 import { Alert, AlertTitle } from "@/components/ui/alert";
-import { partners } from "@/data/partners";
 import { PartnerCard } from "@/components/partnerCard";
 import { Metadata } from "next";
 import Link from "next/link";
+import prisma from "@/prisma";
 
 export const metadata: Metadata = {
     title: "Partners",
     description: "Partners - UGent Sailing",
 }
-const Partners = () => {
+const Partners = async () => {
+    const partners = await prisma.partner.findMany({
+        include: {
+            logo: true,
+            vacancies: true,
+        },
+        where: {
+            active: true,
+        }
+    });
     return (
         <>
             {/* Hero Section */}

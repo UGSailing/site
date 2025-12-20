@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { A, H2, H3, H4 } from "@/components";
 import socials from "@/components/socials";
+import logo from "@/../public/img/logos/cropped_logo.png";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Contact",
@@ -39,7 +41,11 @@ const Contact = () => {
                     </div>
                     <div className="flex flex-col h-100 items-center">
                         <div className="grid h-full place-items-center">
-                            <img src="/img/logos/cropped_logo.png" alt="Contact us" className="max-h-96 object-cover" />
+                            <Image 
+                                src={logo} 
+                                alt="Contact us" 
+                                className="max-h-96 object-cover" 
+                            />
                         </div>
                     </div>
                 </div>

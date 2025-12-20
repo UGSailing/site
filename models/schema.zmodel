@@ -269,3 +269,14 @@ model Vacancy extends TimestampBase {
     @@allow('create,update,delete', (auth().roles?[role.name == "Captain" || role.name == "IT"] || (this.partner.users?[id == auth().id] && this.partner.active == true)))
     @@allow('read', this.partner.active == true || auth().roles?[role.name == "Captain" || role.name == "IT"])
 }
+
+model News extends TimestampBase {
+    id    Int    @unique @id @default(autoincrement())
+    title String @trim
+    link  String @trim
+
+    @@map("news")
+    
+    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
+    @@allow('read', true)
+}
