@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { A, H2, H3, H4 } from "@/components";
 import socials from "@/components/socials";
-import logo from "@/../public/img/logos/cropped_logo.png";
+import logo from "@/../public/images/logos/cropped_logo.png";
 import Image from "next/image";
 
 export const metadata: Metadata = {

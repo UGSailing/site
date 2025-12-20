@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import board from "@/../public/img/board2425.jpg";
+import board from "@/../public/images/board2425.jpg";
 
 export const metadata: Metadata = {
     title: "Join",
