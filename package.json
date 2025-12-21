@@ -46,7 +46,7 @@
         "embla-carousel-react": "^8.6.0",
         "file-type": "^21.1.1",
         "lucide-react": "^0.542.0",
-        "next": ">=15.5.8",
+        "next": "^16.1.0",
         "next-auth": "^5.0.0-beta.29",
         "next-intl": "^4.4.0",
         "node-emoji": "^2.2.0",
