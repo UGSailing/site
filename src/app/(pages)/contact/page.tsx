@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { A, H2, H3, H4 } from "@/components";
 import socials from "@/components/socials";
-import logo from "@/../public/img/logos/cropped_logo.png";
+import logo from "@/../public/images/logos/cropped_logo.png";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -95,6 +95,58 @@ const Contact = () => {
                                         </tr>
                                     ))
                                 }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                    <div className="flex flex-col h-140 px-6">
+                        <H3>
+                            Company Info
+                        </H3>
+                        <p className="mb-4">UGent Sailing VZW is a student organization affiliated with Ghent University. UGent Sailing vzw is registered as a non-profit organisation in the Kingdom of Belgium.</p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <H4>Company Name:</H4>
+                                    </td>
+                                    <td>
+                                        <p>UGent Sailing VZW</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <H4>Address:</H4>
+                                    </td>
+                                    <td>
+                                        <p>Technologiepark-Zwijnaarde 48, 9052 Zwijnaarde, Belgium</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <H4>Enterprise Number:</H4>
+                                    </td>
+                                    <td>
+                                        <p>BE 1020.324.885</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <H4>Articles of Association:</H4>
+                                    </td>
+                                    <td>
+                                        <A href="/statuten.pdf" target="_blank" rel="noopener noreferrer">View PDF (Dutch)</A>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <H4>Internal regulations:</H4>
+                                    </td>
+                                    <td>
+                                        <A href="/intern_reglement.pdf" target="_blank" rel="noopener noreferrer">View PDF (Dutch)</A>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

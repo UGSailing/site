@@ -42,7 +42,8 @@ const menuItems: MenuItem[] = [
     { title: "Timeline", href: "/timeline" },
     { title: "Partners", href: "/partners" },
     { title: "Join us", href: "/join" },
-    { title: "Living Lab", href: "/living-lab" },
+    { title: "Contact", href: "/contact" },
+    // { title: "Living Lab", href: "/living-lab" },
 ];
 
 const MenuItemComponent: React.FC<{ item: MenuItem; depth?: number }> = (

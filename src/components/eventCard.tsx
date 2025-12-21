@@ -7,6 +7,8 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "./ui/button";
+import future_event_image from "@/../public/images/coming_soon.png";
+import Image from "next/image";
 
 type Event = {
     image: {
@@ -82,7 +84,11 @@ export function FutureEventCard() {
                     </CardAction>
                 </CardHeader>
                 <CardContent>
-                    <img src={"/img/logos/cropped_logo.png"} alt={"Future events image"} className={`mb-4 rounded-md`} />
+                    <Image 
+                        src={future_event_image} 
+                        alt={"Future events image"} 
+                        className="mb-4 rounded-md w-full h-auto"
+                    />
                 </CardContent>
             </Card>
         </div>

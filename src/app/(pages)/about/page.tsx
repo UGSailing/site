@@ -66,11 +66,11 @@ const About = () => {
 
                     Coming soon
                     <br />
-                    <Quote>
+                    {/* <Quote>
                         &quot;Ik zie er echt uit gelijk een blik redbull&quot;
                         <br />
                         ~ Jorien, Captain
-                    </Quote>
+                    </Quote> */}
                 </section>
             </main>
         </div>

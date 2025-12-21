@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import lost_at_sea_image from "@/../public/img/404-sea.png"
+import lost_at_sea_image from "@/../public/images/404-sea.png"
 
 export default function NotFound() {
     return (

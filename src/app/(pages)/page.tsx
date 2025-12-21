@@ -3,16 +3,23 @@ import { BoardHomePage } from "@/components/boardHomePage";
 import { EventsSection } from "@/components/home/events";
 import { NewsSection } from "@/components/home/news";
 import TeamImagesSection from "@/components/home/teamImages";
+import Image from "next/image";
+import Gen0 from "@/../public/images/prototype_flat.png";
 
 export default function Home() {
     return (
         <div>
-            <TeamImagesSection />
+            {/* <TeamImagesSection /> */}
+            <Image 
+                src={Gen0}
+                alt="UGent Sailing Team 2023-2024"
+                className="w-full h-auto object-cover"
+            />
             <div className="font-sans items-center min-h-screen px-6">
 
-                <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
+                <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start mt-4">
                     <section>
-                        <H2>Intro</H2>
+                        <H2>Welcome Aboard</H2>
 
 UGent Sailing brings together students and young researchers with an interest in maritime technology, artificial intelligence, and innovation. Our goal is to create an environment where everyone can gain hands-on experience and grow, both technically and personally. To achieve this, we work with Design Sprints: open sessions held about once a week, where anyone can join to focus collectively on a specific part of the boat.
                         <br/>
