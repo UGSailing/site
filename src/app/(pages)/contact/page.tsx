@@ -102,7 +102,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                     <div className="flex flex-col h-140 px-6">
                         <H3>
-                            Compnay Info
+                            Company Info
                         </H3>
                         <p className="mb-4">UGent Sailing VZW is a student organization affiliated with Ghent University. UGent Sailing vzw is registered as a non-profit organisation in the Kingdom of Belgium.</p>
                         <table>

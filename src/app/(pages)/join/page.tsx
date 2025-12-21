@@ -34,18 +34,18 @@ const Join = () => {
                 <main className="max-w-6xl mx-auto px-6 py-20">
                     {/* Roles Section */}
                     <section className="mb-20">
-                        <H2>Available Roles</H2>
+                        {/* <H2>Available Roles</H2>
                         <div className="grid md:grid-cols-3 gap-8">
                             <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                                 <H3 className="text-xl font-semibold mb-3">Meme Captain</H3>
                                 <p className="text-gray-600">Every organisation needs someone to keep the spirits high and fill the sails with joy. See you in the memeverse!</p>
                             </div>
-                        </div>
+                        </div> */}
                     </section>
 
                     {/* Testimonies Section */}
                     <section className="mb-20">
-                        <H2>Member Stories</H2>
+                        {/* <H2>Member Stories</H2>
                         <div className="grid md:grid-cols-2 gap-8">
                             <Quote inline={false}>
                                 <H3 className="text-gray-700 italic mb-4">Merkel</H3>
@@ -55,7 +55,7 @@ const Join = () => {
                                 <H3 className="text-gray-700 italic mb-4">Darius</H3>
                                 <p className="text-gray-500 font-semibold">Ik ben met hun boot tot in Finland geraakt! Zeker aan te bevelen</p>
                             </Quote>
-                        </div>
+                        </div> */}
                     </section>
 
                     {/* CTA Section */}
