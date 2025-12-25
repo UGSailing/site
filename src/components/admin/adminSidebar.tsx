@@ -11,9 +11,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Newspaper, Users } from "lucide-react";
 import { type Session } from "next-auth";
 import { ROLES } from "@/lib/auth-types";
+import { Calendar, Home, Newspaper, Users, LayoutGrid } from "lucide-react";
 
 interface AdminPagesListItem {
     title: string;
@@ -58,10 +58,18 @@ const groups: AdminPagesListGroup[] = [
                 icon: Newspaper,
                 regex: /^\/admin\/news\/?.*$/,
                 roles: ROLES.MATES,
+            },
+            {
+                title: "Boards",
+                href: "/admin/board",
+                icon: LayoutGrid,
+                regex: /^\/admin\/board\/?.*$/,
+                roles: ROLES.MATES,
             }
         ]
     }
 ];
+
 
 export default function AdminSidebar({ className, user }: { className?: string, user: Session["user"] }) {
     const pathname = usePathname();

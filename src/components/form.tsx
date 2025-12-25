@@ -79,7 +79,6 @@ export function FormField({
         }
         switch (fieldInfo.type) {
         case "text":
-        case "number":
             return <Input
                 {...field}
                 {...fieldInfo.fieldProps}
@@ -90,6 +89,18 @@ export function FormField({
                 type={fieldInfo.type}
                 value={field.value ?? defaultValue}
                 onChange={handleChange}
+            />
+        case "number":
+            return <Input
+                {...field}
+                {...fieldInfo.fieldProps}
+                id={field.name}
+                placeholder={fieldInfo?.placeholder}
+                aria-invalid={fieldState.invalid}
+                autoComplete='off'
+                type={fieldInfo.type}
+                value={field.value ?? defaultValue}
+                onChange={(event) => handleChange(event.target.valueAsNumber)}
             />
         case "datetime":
             return <DateTimePicker
