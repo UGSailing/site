@@ -13,6 +13,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 id: 'discord',
                 userinfo: `https://discord.com/api/users/@me/guilds/${process.env.GUILD_ID}/member`,
                 async profile(profile) {
+                    if (profile.code === 10004) {
+                        throw new Error("User is not a member of the required guild");
+                    }
                     if (profile.avatar === null) {
                         const defaultAvatarNumber =
                             profile.user.discriminator === "0"
