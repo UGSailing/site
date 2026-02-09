@@ -16,10 +16,7 @@ export default function PositionUpdate({ positionId }: { positionId: string }) {
     async function loadForm(id: string) {
         const response = await client.GET("/api/model/rest/position/{id}", {
             params: {
-                path: { id },
-                query: {
-                    include: "image",
-                }
+                path: { id }
             }
         });
         if (response.response.status === 200) {
