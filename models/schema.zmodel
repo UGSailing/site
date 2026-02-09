@@ -191,7 +191,7 @@ model Position extends TimestampBase {
 }
 
 model BoardMember extends TimestampBase {
-    id        BigInt                @id @default(autoincrement())
+    id        Int                @id @default(autoincrement())
     name      String                @trim
 
     years     BoardMemberYear[]
@@ -203,7 +203,7 @@ model BoardMember extends TimestampBase {
 }
 
 model Board extends TimestampBase {
-    id      BigInt            @id @default(autoincrement())
+    id      Int               @id @default(autoincrement())
     year    Int               @unique
     name    String            @trim
     members BoardMemberYear[]
@@ -217,8 +217,8 @@ model Board extends TimestampBase {
 model BoardMemberYear extends TimestampBase {
     id            Int                   @id @default(autoincrement())
     imageId       String?               @map("media_id")
-    boardMemberId BigInt                @map("boardmember_id")
-    boardId       BigInt                @map("board_id")
+    boardMemberId Int                   @map("boardmember_id")
+    boardId       Int                   @map("board_id")
     index         Int                   @default(10) @gte(0)
 
     boardmember   BoardMember           @relation(fields: [boardMemberId], references: [id], onDelete: Cascade)

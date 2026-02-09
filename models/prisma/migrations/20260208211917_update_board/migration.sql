@@ -63,3 +63,40 @@ ALTER TABLE "boardmember_year" ADD CONSTRAINT "boardmember_year_media_id_fkey" F
 
 -- AddForeignKey
 ALTER TABLE "boardmember_position" ADD CONSTRAINT "boardmember_position_boardmember_year_id_fkey" FOREIGN KEY ("boardmember_year_id") REFERENCES "boardmember_year"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*
+  Warnings:
+
+  - You are about to alter the column `boardmember_id` on the `boardmember_year` table. The data in that column could be lost. The data in that column will be cast from `BigInt` to `Integer`.
+  - You are about to alter the column `board_id` on the `boardmember_year` table. The data in that column could be lost. The data in that column will be cast from `BigInt` to `Integer`.
+  - The primary key for the `boardmembers` table will be changed. If it partially fails, the table could be left without primary key constraint.
+  - You are about to alter the column `id` on the `boardmembers` table. The data in that column could be lost. The data in that column will be cast from `BigInt` to `Integer`.
+  - The primary key for the `boards` table will be changed. If it partially fails, the table could be left without primary key constraint.
+  - You are about to alter the column `id` on the `boards` table. The data in that column could be lost. The data in that column will be cast from `BigInt` to `Integer`.
+
+*/
+-- DropForeignKey
+ALTER TABLE "boardmember_year" DROP CONSTRAINT "boardmember_year_board_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "boardmember_year" DROP CONSTRAINT "boardmember_year_boardmember_id_fkey";
+
+-- AlterTable
+ALTER TABLE "boardmember_year" ALTER COLUMN "boardmember_id" SET DATA TYPE INTEGER,
+ALTER COLUMN "board_id" SET DATA TYPE INTEGER;
+
+-- AlterTable
+ALTER TABLE "boardmembers" DROP CONSTRAINT "boardmembers_pkey",
+ALTER COLUMN "id" SET DATA TYPE SERIAL,
+ADD CONSTRAINT "boardmembers_pkey" PRIMARY KEY ("id");
+
+-- AlterTable
+ALTER TABLE "boards" DROP CONSTRAINT "boards_pkey",
+ALTER COLUMN "id" SET DATA TYPE SERIAL,
+ADD CONSTRAINT "boards_pkey" PRIMARY KEY ("id");
+
+-- AddForeignKey
+ALTER TABLE "boardmember_year" ADD CONSTRAINT "boardmember_year_boardmember_id_fkey" FOREIGN KEY ("boardmember_id") REFERENCES "boardmembers"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "boardmember_year" ADD CONSTRAINT "boardmember_year_board_id_fkey" FOREIGN KEY ("board_id") REFERENCES "boards"("id") ON DELETE CASCADE ON UPDATE CASCADE;
