@@ -51,8 +51,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         )
     ],
 });
-<<<<<<< HEAD
-=======
 
 export async function getPrisma() {
     const session = await auth();
@@ -73,4 +71,3 @@ export async function getPrisma() {
     const enhancedPrisma = enhance(prisma, { user } as User | null );
     return enhancedPrisma
 }
->>>>>>> d187ee7 (fancyfied the select options)
