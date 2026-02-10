@@ -35,7 +35,7 @@ export default function BoardMemberYearUpdate({ boardMemberYearId }: { boardMemb
         imageId: {
             label: "Image",
             placeholder: "Board Member Year Image ID",
-            type: 'text',
+            type: 'image',
         },
         boardMemberId: {
             label: "Board Member ID",
