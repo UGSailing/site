@@ -8,8 +8,12 @@ import { ApiTypes, client } from '@/prisma/apiclient';
 
 type BoardMemberYear = ApiTypes["BoardMemberYear"];
 type BoardMemberYearUpdate = ApiTypes["BoardMemberYearUpdateRequest"]["data"]["attributes"];
+type Option = {
+    label: string;
+    value: number;
+}
 
-export default function BoardMemberYearUpdate({ boardMemberYearId }: { boardMemberYearId: string }) {
+export default function BoardMemberYearUpdate({ boardMemberYearId, boardMembers, boards }: { boardMemberYearId: string, boardMembers: Option[], boards: Option[] }) {
     const [boardMemberYear, setBoardMemberYear] = React.useState<BoardMemberYear | null | undefined>(null);
     const { push } = useRouter();
 
@@ -38,14 +42,14 @@ export default function BoardMemberYearUpdate({ boardMemberYearId }: { boardMemb
             type: 'image',
         },
         boardMemberId: {
-            label: "Board Member ID",
-            placeholder: "Board Member ID",
-            type: 'number',
+            label: "Board Member",
+            type: 'select',
+            options: boardMembers,
         },
         boardId: {
-            label: "Board ID",
-            placeholder: "Board ID",
-            type: 'number',
+            label: "Board",
+            type: 'select',
+            options: boards,
         },
         index: {
             label: "Index",

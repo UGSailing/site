@@ -20,7 +20,7 @@ import { DateTimePicker } from './ui/datetime-picker';
 import { Button } from './ui/button';
 import Markdown from './markdown';
 
-type FieldType = "text" | "textarea" | "number" | "datetime" | "checkbox" | "image";
+type FieldType = "text" | "textarea" | "number" | "datetime" | "checkbox" | "image" | "select";
 
 export interface FieldInfo {
     type: FieldType;
@@ -29,6 +29,7 @@ export interface FieldInfo {
     placeholder?: string;
     onChange?: (value: unknown) => void;
     fieldProps?: Partial<ControllerRenderProps>;
+    options?: { label: string; value: string | number }[]; // For select fields
 }
 
 export function FormField({
@@ -128,6 +129,30 @@ export function FormField({
                 checked={field.value as boolean ?? defaultValue}
                 onChange={handleChange}
             />
+        case "select":
+            return <select
+                {...field}
+                {...fieldInfo.fieldProps}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                value={String(field.value ?? defaultValue)}
+                onChange={(event) => {
+                    let value: unknown = event.target.value;
+                    // Convert to number if the option values are numbers
+                    if (value && !isNaN(Number(value))) {
+                        value = Number(value);
+                    }
+                    handleChange(value);
+                }}
+                className="h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+            >
+                <option value="">{fieldInfo?.placeholder || "Select an option"}</option>
+                {fieldInfo?.options?.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </select>
         case "image":
             return <ImageUpload
                 preview={imagePreview || (field.value && (typeof field.value.attributes?.filepath === 'string' ? field.value.attributes.filepath : null)) || null}
