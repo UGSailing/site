@@ -5,13 +5,34 @@ export const metadata: Metadata = {
     title: "Board",
     description: "UGent Sailing Board",
 }
-import board from '@/data/board';
 import Board from '@/components/board';
 import { H2, H3, H4 } from '@/components';
 import Link from 'next/link';
+import prisma from '@/prisma'
+import { enhance } from '@zenstackhq/runtime';
 
-const BoardPage = () => {
+
+
+export default async function CrewPage() {
+    const enhancedPrisma = enhance(prisma);
+    const board = await enhancedPrisma.board.findMany({
+        include: {
+            members: {
+                include: {
+                    boardmember: true,
+                    image: true,
+                    positions: {
+                        include: {
+                            position: true,
+                        }
+                    }
+                }
+            }
+        }    
+    });
     board.sort((a, b) => b.year - a.year);
+    type A = typeof board[0]["members"];
+    const b = board[0];
     
     return (
         <div className="px-6 pt-5">
@@ -40,7 +61,7 @@ const BoardPage = () => {
                             board.map((boardItem, index) => (
                                 <Link 
                                     key={index} 
-                                    href={`#${boardItem.HTMLid}`} 
+                                    href={`#${boardItem.year}`} 
                                     className="px-4 py-2 bg-red text-white rounded-lg hover:bg-red-600 focus:outline-none"
                                 >
                                     {boardItem.name}
@@ -57,7 +78,7 @@ const BoardPage = () => {
                             board.map((boardItem, index) => (
                                 <Link 
                                     key={index} 
-                                    href={`#${boardItem.HTMLid}`} 
+                                    href={`#${boardItem.year}`} 
                                     className="px-4 py-2 bg-red text-white rounded-lg hover:bg-red-600 focus:outline-none"
                                 >
                                     {boardItem.name}
@@ -70,5 +91,3 @@ const BoardPage = () => {
         </div>
     )
 };
-
-export default BoardPage;

@@ -1,39 +1,45 @@
-import { BoardMember } from "@/data/board";
 import { H4 } from ".";
-import HoverCard from "./ui/hover-card";
-import { Card, CardContent } from "./ui/card";
+import { Prisma } from '@prisma/client'
 
-interface BoardMemberCardProps {
-    member: BoardMember;
-}
+type BoardMemberWithDetails = Prisma.BoardMemberYearGetPayload<{
+    include: {
+        boardmember: true,
+        image: true,
+        positions: {
+            include: {
+                position: true,
+            }
+        }
+    }
+}>;
 
 /**
  * A kaartje component that displays a board member's information with a hover :p.
  * @param member - The board member data containing name, image, positions, studies, and email
  */
-const BoardMemberCard = ({ member }: BoardMemberCardProps) => {
-    const popupContent = (member.studies && member.studies.trim() !== "") ||
-            (member.email && member.email.trim() !== "")
-        ? (
-            <>
-                {member.studies && member.studies.trim() !== "" && (
-                    <p>{member.studies}</p>
-                )}
-                {member.email && member.email.trim() !== "" && (
-                    <a
-                        href={`mailto:${member.email}`}
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline"
-                    >
-                        📧 {member.email}
-                    </a>
-                )}
-            </>
-        )
-        : (
-            <p className="text-sm text-gray-500 italic">
-                No extra information
-            </p>
-        );
+const BoardMemberCard = ({ member }: { member: BoardMemberWithDetails} ) => {
+    // const popupContent = (member.studies && member.studies.trim() !== "") ||
+    //         (member.email && member.email.trim() !== "")
+    //     ? (
+    //         <>
+    //             {member.studies && member.studies.trim() !== "" && (
+    //                 <p>{member.studies}</p>
+    //             )}
+    //             {member.email && member.email.trim() !== "" && (
+    //                 <a
+    //                     href={`mailto:${member.email}`}
+    //                     className="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline"
+    //                 >
+    //                     📧 {member.email}
+    //                 </a>
+    //             )}
+    //         </>
+    //     )
+    //     : (
+    //         <p className="text-sm text-gray-500 italic">
+    //             No extra information
+    //         </p>
+    //     );
 
     return (
         <div className="bg-white rounded-lg border border-red-500 p-6 flex items-center hover:bg-red-50">
@@ -44,19 +50,19 @@ const BoardMemberCard = ({ member }: BoardMemberCardProps) => {
         > */ }
             {/* Circular Image */}
             <img
-                src={member.image || "/img/logos/cropped_logo.png"}
-                alt={`image of ${member.name}`}
+                src={member.image?.filepath || "/img/logos/cropped_logo.png"}
+                alt={`image of ${member.boardmember.name}`}
                 className="h-36 aspect-square object-cover rounded-full mr-6"
             />
 
             {/* Member Info */}
             <div className="h-full flex-1">
                 <H4 className="text-xl font-semibold mt-3 mb-2 h-2/6">
-                    {member.name}
+                    {member.boardmember.name}
                 </H4>
                 <ul className="list-disc pl-5 text-sm">
                     {member.positions.map((position, posIndex) => (
-                        <li key={posIndex}>{position.name}</li>
+                        <li key={posIndex}>{position.position.name}</li>
                     ))}
                 </ul>
             </div>
