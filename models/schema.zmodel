@@ -149,6 +149,8 @@ model Media extends TimestampBase {
     partners      Partner[]
 
     @@map("media")
+    @@allow('read', true)
+    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT"])
 }
 
 

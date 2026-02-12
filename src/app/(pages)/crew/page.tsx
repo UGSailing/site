@@ -31,8 +31,6 @@ export default async function CrewPage() {
         }    
     });
     board.sort((a, b) => b.year - a.year);
-    type A = typeof board[0]["members"];
-    const b = board[0];
     
     return (
         <div className="px-6 pt-5">
