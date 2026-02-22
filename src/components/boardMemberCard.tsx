@@ -61,7 +61,7 @@ const BoardMemberCard = ({ member }: { member: BoardMemberWithDetails} ) => {
                     {member.boardmember.name}
                 </H4>
                 <ul className="list-disc pl-5 text-sm">
-                    {member.positions.map((position, posIndex) => (
+                    {member.positions.sort((a, b) => a.position.index - b.position.index).map((position, posIndex) => (
                         <li key={posIndex}>{position.position.name}</li>
                     ))}
                 </ul>
