@@ -3,6 +3,8 @@ import GitHub from 'next-auth/providers/github'
 import Discord from 'next-auth/providers/discord'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/prisma'
+import { enhance } from '@zenstackhq/runtime';
+import { User } from '@prisma/client';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
@@ -49,3 +51,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         )
     ],
 });
+
+export async function getPrisma() {
+    const session = await auth();
+    if (!session?.user) return null;
+
+    const user = await prisma.user.findUnique(
+        { 
+            where: { id: session.user.id }, 
+            include: { 
+                roles: {
+                    include: { role: true }
+                }
+            }
+        }
+    );
+
+    // @ts-expect-error - TypeScript doesn't understand the enhance function and its return type
+    const enhancedPrisma = enhance(prisma, { user } as User | null );
+    return enhancedPrisma
+}

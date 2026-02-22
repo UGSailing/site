@@ -145,10 +145,12 @@ model Media extends TimestampBase {
     uploadedBy    User?         @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
 
     events        Event[]
-    board_members BoardMember[]
+    board_members BoardMemberYear[]
     partners      Partner[]
 
     @@map("media")
+    @@allow('read', true)
+    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT"])
 }
 
 
@@ -176,9 +178,11 @@ model Event extends TimestampBase {
 }
 
 model Position extends TimestampBase {
-    name         String                @trim @unique @id
+    id           Int                   @id @default(autoincrement())
+    name         String                @trim @unique
     description  String                @trim
     email        String?               @trim
+    index        Int                   @default(10) @gte(0)
 
     boardmembers BoardMemberPosition[]
 
@@ -189,18 +193,10 @@ model Position extends TimestampBase {
 }
 
 model BoardMember extends TimestampBase {
-    id        BigInt                @id @default(autoincrement())
+    id        Int                @id @default(autoincrement())
     name      String                @trim
-    index     Int
 
-    imageId   String?               @map("image_id")
-    image     Media?                @relation(fields: [imageId], references: [id], onDelete: SetNull)
-
-    positions BoardMemberPosition[]
-
-    boardId   BigInt                @map("board_id")
-
-    board     Board                 @relation(fields: [boardId], references: [id], onDelete: Cascade)
+    years     BoardMemberYear[]
 
     @@map("boardmembers")
 
@@ -208,29 +204,47 @@ model BoardMember extends TimestampBase {
     @@allow('read', true)
 }
 
-model BoardMemberPosition {
-    id            Int         @id @default(autoincrement())
-    boardMemberId BigInt      @map("boardmember_id")
-    positionId    String      @map("position_id")
+model Board extends TimestampBase {
+    id      Int               @id @default(autoincrement())
+    year    Int               @unique
+    name    String            @trim
+    members BoardMemberYear[]
 
-    boardmember   BoardMember @relation(fields: [boardMemberId], references: [id], onDelete: Cascade)
-    position      Position    @relation(fields: [positionId], references: [name], onDelete: Cascade)
-
-    @@unique([boardMemberId, positionId])
-    @@map("boardmember_position")
+    @@map("boards")
 
     @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
     @@allow('read', true)
 }
 
-model Board extends TimestampBase {
-    id      BigInt        @id @default(autoincrement())
-    year    Int           @unique
-    name    String        @trim
-    htmlid  String        @trim
-    members BoardMember[]
+model BoardMemberYear extends TimestampBase {
+    id            Int                   @id @default(autoincrement())
+    imageId       String?               @map("media_id")
+    boardMemberId Int                   @map("boardmember_id")
+    boardId       Int                   @map("board_id")
+    index         Int                   @default(10) @gte(0)
 
-    @@map("boards")
+    boardmember   BoardMember           @relation(fields: [boardMemberId], references: [id], onDelete: Cascade)
+    board         Board                 @relation(fields: [boardId], references: [id], onDelete: Cascade)
+    positions     BoardMemberPosition[]
+    image         Media?                @relation(fields: [imageId], references: [id], onDelete: SetNull)
+
+    @@unique([boardMemberId, boardId])
+    @@map("boardmember_year")
+
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
+}
+
+model BoardMemberPosition extends TimestampBase {
+    id                Int             @id @default(autoincrement())
+    positionId        Int             @map("position_id")
+    boardMemberYearId Int             @map("boardmember_year_id")
+
+    boardmember       BoardMemberYear @relation(fields: [boardMemberYearId], references: [id], onDelete: Cascade)
+    position          Position        @relation(fields: [positionId], references: [id], onDelete: Cascade)
+
+    @@unique([boardMemberYearId, positionId])
+    @@map("boardmember_position")
 
     @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
     @@allow('read', true)
@@ -276,7 +290,7 @@ model News extends TimestampBase {
     link  String @trim
 
     @@map("news")
-    
+
     @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
 }

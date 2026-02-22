@@ -11,9 +11,10 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Newspaper, Users } from "lucide-react";
 import { type Session } from "next-auth";
 import { ROLES } from "@/lib/auth-types";
+import { Calendar, Home, Newspaper, Users, LayoutGrid, Award, Briefcase, Star } from "lucide-react";
+import { H4 } from "..";
 
 interface AdminPagesListItem {
     title: string;
@@ -58,10 +59,44 @@ const groups: AdminPagesListGroup[] = [
                 icon: Newspaper,
                 regex: /^\/admin\/news\/?.*$/,
                 roles: ROLES.MATES,
+            },
+        ],
+    },
+    {
+        label: "Board",
+        items: [
+            {
+                title: "Boards",
+                href: "/admin/board",
+                icon: LayoutGrid,
+                regex: /^\/admin\/board\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.MATES,
+            },
+            {
+                title: "Members",
+                href: "/admin/board/memberyear",
+                icon: Award,
+                regex: /^\/admin\/board\/memberyear\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.MATES,
+            },
+            {
+                title: "Member Positions",
+                href: "/admin/board/memberposition",
+                icon: Briefcase,
+                regex: /^\/admin\/board\/memberposition\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.MATES,
+            },
+            {
+                title: "Positions",
+                href: "/admin/position",
+                icon: Star,
+                regex: /^\/admin\/position\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.MATES,
             }
         ]
     }
 ];
+
 
 export default function AdminSidebar({ className, user }: { className?: string, user: Session["user"] }) {
     const pathname = usePathname();
@@ -82,7 +117,11 @@ export default function AdminSidebar({ className, user }: { className?: string, 
                     {
                         filteredGroups.map((group, index) => (
                             <div key={index}>
-                                <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+                                <SidebarGroupLabel>
+                                    <H4 className="text-red-500">
+                                        {group.label}
+                                    </H4>
+                                </SidebarGroupLabel>
                                 <SidebarGroupContent>
                                     <SidebarMenu>
                                         {group.items.map((item) => (
