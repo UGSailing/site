@@ -150,7 +150,7 @@ model Media extends TimestampBase {
 
     @@map("media")
     @@allow('read', true)
-    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
 }
 
 
@@ -188,7 +188,7 @@ model Position extends TimestampBase {
 
     @@map("positions")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
 }
 
@@ -200,7 +200,7 @@ model BoardMember extends TimestampBase {
 
     @@map("boardmembers")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
 }
 
@@ -212,7 +212,7 @@ model Board extends TimestampBase {
 
     @@map("boards")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
 }
 
@@ -231,7 +231,7 @@ model BoardMemberYear extends TimestampBase {
     @@unique([boardMemberId, boardId])
     @@map("boardmember_year")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
 }
 
@@ -246,7 +246,7 @@ model BoardMemberPosition extends TimestampBase {
     @@unique([boardMemberYearId, positionId])
     @@map("boardmember_position")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
 }
 
