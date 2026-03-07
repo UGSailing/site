@@ -64,7 +64,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-6">
                     <div className="flex flex-col px-6">
                         <H3>
                             Telephone Numbers
@@ -114,7 +114,7 @@ const Contact = () => {
                         </table>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-6">
                     <div className="flex flex-col px-6">
                         <H3>
                             Socials
