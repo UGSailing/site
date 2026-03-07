@@ -5,7 +5,7 @@ import socials from "./socials";
 
 export function Footer() {
     return (
-        <div className="bg-red px-5 md:px-10 lg:px-15 2xl:px-20 mt-5 py-5 text-white">
+        <div className="bg-red px-5 md:px-10 lg:px-15 2xl:px-20 py-5 text-white">
             <div className="flex flex-col md:flex-row m-4 text-sm">
                 <div className="flex-1 flex flex-col gap-2 items-center md:items-start">
                     <H4 className="text-white">UGent Sailing</H4>

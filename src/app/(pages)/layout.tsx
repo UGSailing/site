@@ -3,6 +3,7 @@ import "./globals.css";
 import { NavBar } from "@/components/navbar";
 import { Partners } from "@/components/layout/partners";
 import { Footer } from "@/components/footer";
+import WaveBackground from "@/components/wave-background";
 // import { cookies } from "next/headers";
 // import { getMessages, resolveLocale } from "@/i18n/config";
 
@@ -31,9 +32,12 @@ export default async function RootLayout({
     return (
         <>
             <NavBar />
-            {/* <Banner {...bannerData} /> */}
-            {children}
-            <Partners />
+                <div className="relative pb-6">
+                <WaveBackground />
+                {/* <Banner {...bannerData} /> */}
+                {children}
+                <Partners />
+            </div>
             <Footer />
         </>
     );

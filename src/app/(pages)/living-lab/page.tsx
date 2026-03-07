@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const LivingLab = () => {
     return (
-        <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-6">
+        <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-20">
             
             <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
                 UGent Sailing Living Lab - More information coming soon

@@ -33,7 +33,7 @@ export default async function CrewPage() {
     board.sort((a, b) => b.year - a.year);
     
     return (
-        <div className="px-6 pt-5">
+        <div className="px-20 pt-5">
             <div>
                 <H2 className="mb-4">Crew</H2>
                 <p className="mb-8">

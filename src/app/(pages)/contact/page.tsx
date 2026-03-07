@@ -26,7 +26,7 @@ const emails: { label: string; email: string }[] = [
 
 const Contact = () => {
     return (
-        <div className="font-sans items-center justify-items-center min-h-screen px-6">
+        <div className="font-sans items-center justify-items-center min-h-screen px-20">
             <main className="w-full flex flex-col gap-[32px] row-start-1 items-center sm:items-start pt-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                     <div className="flex flex-col h-100 items-center">
