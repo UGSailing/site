@@ -120,7 +120,7 @@ const Contact = () => {
                                         <H4>Address:</H4>
                                     </td>
                                     <td>
-                                        <p>Technologiepark-Zwijnaarde 48, 9052 Zwijnaarde, Belgium</p>
+                                        <p>Technologiepark-Zwijnaarde 126, 9052 Zwijnaarde, Belgium</p>
                                     </td>
                                 </tr>
                                 <tr>
