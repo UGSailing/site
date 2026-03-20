@@ -47,12 +47,6 @@ While UGent Sailing is primarily a student team, our community is open to everyo
                         <NewsSection />
                         
                     </section>
-                    <section className="w-full max-w-full">
-                        <H2>Board</H2>
-
-                        {/* <BoardHomePage /> */}
-                        Coming soon
-                    </section>
                 </main>
             </div>
         </div>

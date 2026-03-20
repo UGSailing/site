@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { A, H2, H3, H4 } from "@/components";
 import socials from "@/components/socials";
-import logo from "@/../public/images/logos/cropped_logo.png";
+import logo from "@/../public/images/logos/logo_red_white.svg";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -21,6 +21,21 @@ const emails: { label: string; email: string }[] = [
     {
         label: "Partners",
         email: "partner@ugentsailing.be"
+    }
+];
+
+const telephoneNumbers: { label: string; number: string }[] = [
+    {
+        label: "Jorien Baert (Captain Engineering)",
+        number: "+32 474 72 65 99"
+    },
+    {
+        label: "August Adams (Captain Extern)",
+        number: "+32 483 38 68 33"
+    },
+    {
+        label: "Robin Aerts (Captain Intern)",
+        number: "+32 456 17 23 62"
     }
 ];
 
@@ -49,21 +64,45 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                    <div className="flex flex-col h-100 px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-6">
+                    <div className="flex flex-col px-6">
+                        <H3>
+                            Telephone Numbers
+                        </H3>
+                        <p className="mb-4">You can always reach us by phone. Below are the contact numbers for our captains:</p>
+                        <table>
+                            <tbody>
+                                {
+                                    telephoneNumbers.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className="w-1/2">
+                                                <H4>{item.label}:</H4>
+                                            </td>
+                                            <td className="text-left">
+                                                <A href={`tel:${item.number}`}>
+                                                    {item.number}
+                                                </A>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="flex flex-col px-6">
                         <H3>
                             Email
                         </H3>
                         <p className="mb-4">Feel free to reach out to us via mail with any questions or inquiries. We&apos;re here to help! Below are the email addresses for specific topics: </p>
-                        <table>
+                        <table className="w-full">
                             <tbody>
                                 {
                                     emails.map((item, index) => (
                                         <tr key={index}>
-                                            <td>
+                                            <td className="w-1/2">
                                                 <H4>{item.label}:</H4>
                                             </td>
-                                            <td>
+                                            <td className="text-left">
                                                 <A href={`mailto:${item.email}`}>
                                                     {item.email}
                                                 </A>
@@ -74,7 +113,9 @@ const Contact = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="flex flex-col h-100">
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-6">
+                    <div className="flex flex-col px-6">
                         <H3>
                             Socials
                         </H3>
@@ -84,10 +125,10 @@ const Contact = () => {
                                 {
                                     socials.map((social, index) => (
                                         <tr key={index}>
-                                            <td>
+                                            <td className="w-1/2">
                                                 <H4><span className={`${social.icon} mr-2`} />{social.platform}:</H4>
                                             </td>
-                                            <td>
+                                            <td className="text-left">
                                                 <A href={social.href} target="_blank" rel="noopener noreferrer">
                                                     {social.name}
                                                 </A>
@@ -98,9 +139,7 @@ const Contact = () => {
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                    <div className="flex flex-col h-140 px-6">
+                    <div className="flex flex-col px-6">
                         <H3>
                             Company Info
                         </H3>
@@ -120,7 +159,7 @@ const Contact = () => {
                                         <H4>Address:</H4>
                                     </td>
                                     <td>
-                                        <p>Technologiepark-Zwijnaarde 48, 9052 Zwijnaarde, Belgium</p>
+                                        <p>Technologiepark-Zwijnaarde 126, 9052 Zwijnaarde, Belgium</p>
                                     </td>
                                 </tr>
                                 <tr>

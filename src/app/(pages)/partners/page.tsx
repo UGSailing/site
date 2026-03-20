@@ -35,7 +35,7 @@ const Partners = async () => {
                     <Link href="/contact" className="w-full mb-10 block">
                         <Alert className="w-full border-2 border-red-500 bg-red-50 hover:bg-red-100 transition-colors">
                             <AlertTitle className="text-lg font-semibold text-red-700 flex items-center gap-2">
-                                Want to become a partner? <span className="icon-[bi--arrow-right] h-4"></span> Contact us!
+                               Do you want to be a new wind in our sails? <span className="icon-[bi--arrow-right] h-4"></span> Join us as a partner and help us steer the ship towards Monaco!
                             </AlertTitle>
                         </Alert>
                     </Link>

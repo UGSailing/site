@@ -9,6 +9,7 @@ import {
 import { Button } from "./ui/button";
 import future_event_image from "@/../public/images/coming_soon.png";
 import Image from "next/image";
+import Link from "next/link";
 
 type Event = {
     image: {
@@ -52,13 +53,15 @@ export function EventCard({ event }: { event: Event }) {
                         <p className="text-sm text-gray-600 h-8"><span className="bg-gray-600 icon-[material-symbols--location-on]"></span>{event.location}</p>
                     </CardDescription>
                     <CardAction>
-                        <Button {...disabled} variant="secondary" size="sm" className={`mt-2 ${disabled.disabled ? "" : "cursor-pointer"} ${eventPassed ? "bg-black" : "bg-red-500"} text-white hover:bg-red-600`}>
-                            Register
-                        </Button>
+                        <Link href={`/event/${event.id}`}>
+                            <Button variant="secondary" size="sm" className={`mt-2 cursor-pointer ${eventPassed ? "bg-black hover:bg-gray-600" : "bg-red-500 hover:bg-red-600"} text-white `}>
+                                More info
+                            </Button>
+                        </Link>
                     </CardAction>
                 </CardHeader>
                 <CardContent>
-                    <img src={event.image?.filepath || "/img/logos/cropped_logo.png"} alt={event.title + " image"} className={`mb-4 rounded-md ${eventPassed ? "grayscale" : ""}`} />
+                    <img src={event.image?.filepath || "/images/logos/cropped_logo.png"} alt={event.title + " image"} className={`mb-4 rounded-md ${eventPassed ? "grayscale" : ""}`} />
                 </CardContent>
             </Card>
         </div>
