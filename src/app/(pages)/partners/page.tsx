@@ -3,12 +3,33 @@ import { PartnerCard } from "@/components/partnerCard";
 import { Metadata } from "next";
 import Link from "next/link";
 import prisma from "@/prisma";
+import { H2 } from "@/components";
+
+// Fisher-Yates shuffle with seed
+function seededShuffle<T>(array: T[], seed: number): T[] {
+    const arr = [...array];
+    const random = (index: number) => {
+        const x = Math.sin(seed + index) * 10000;
+        return x - Math.floor(x);
+    };
+    
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(random(i) * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
 
 export const metadata: Metadata = {
     title: "Partners",
     description: "Partners - UGent Sailing",
 }
 const Partners = async () => {
+    // Generate seed based on current date (changes daily, consistent across reloads)
+    const today = new Date();
+    const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    const seed = parseInt(dateString.replace(/-/g, ''), 10);
+    
     const partners = await prisma.partner.findMany({
         include: {
             logo: true,
@@ -18,6 +39,11 @@ const Partners = async () => {
             active: true,
         }
     });
+
+    // Shuffle partners by category using the seed
+    const headPartners = seededShuffle(partners.filter(p => p.isHead), seed);
+    const regularPartners = seededShuffle(partners.filter(p => !p.isHead), seed + 1);
+    
     return (
         <>
             {/* Hero Section */}
@@ -40,10 +66,24 @@ const Partners = async () => {
                         </Alert>
                     </Link>
 
+                    <H2>Our Head Partners</H2>
+
                     {/* Partners List */}
                     <div className="flex flex-col gap-8">
                         {
-                            partners.map((partner) => (
+                            headPartners.map((partner) => (
+                                <div key={partner.name} className="transform hover:scale-[1.02] transition-transform duration-300">
+                                    <PartnerCard partner={partner}></PartnerCard>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <H2 className="mt-12">Our Partners</H2>
+
+                    <div className="flex flex-col gap-8">
+                        {
+                            regularPartners.map((partner) => (
                                 <div key={partner.name} className="transform hover:scale-[1.02] transition-transform duration-300">
                                     <PartnerCard partner={partner}></PartnerCard>
                                 </div>
