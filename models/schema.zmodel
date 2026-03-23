@@ -257,6 +257,8 @@ model Partner extends TimestampBase {
     url         String    @trim
     description String?
 
+    isHead      Boolean   @default(false) @map("is_head")
+
     logoId      String?   @map("logo_id")
     logo        Media?    @relation(fields: [logoId], references: [id], onDelete: SetNull)
 

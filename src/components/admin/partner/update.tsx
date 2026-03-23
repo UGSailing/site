@@ -49,6 +49,10 @@ export default function PartnerUpdate({ partnerId }: { partnerId: string } ) {
             label: "Active",
             type: 'checkbox',
         },
+        isHead: {
+            label: "Head Partner",
+            type: 'checkbox',
+        },
         url: {
             label: "Link to site",
             placeholder: "Partner Site URL",

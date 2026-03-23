@@ -48,6 +48,10 @@ export default function Partner() {
                 label: "Active",
                 type: 'checkbox',
             },
+            isHead: {
+                label: "Head Partner",
+                type: 'checkbox',
+            },
             url: {
                 label: "Link to site",
                 placeholder: "Partner Site URL",
