@@ -3,6 +3,7 @@ import { PartnerCard } from "@/components/partnerCard";
 import { Metadata } from "next";
 import Link from "next/link";
 import prisma from "@/prisma";
+import { PartnerType } from "@prisma/client";
 import { H2 } from "@/components";
 
 // Fisher-Yates shuffle with seed
@@ -41,8 +42,9 @@ const Partners = async () => {
     });
 
     // Shuffle partners by category using the seed
-    const headPartners = seededShuffle(partners.filter(p => p.isHead), seed);
-    const regularPartners = seededShuffle(partners.filter(p => !p.isHead), seed + 1);
+    const headPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.HEAD), seed);
+    const mediumPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.MEDIUM), seed + 1);
+    const smallPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.SMALL), seed + 2);
     
     return (
         <>
@@ -83,7 +85,19 @@ const Partners = async () => {
 
                     <div className="flex flex-col gap-8">
                         {
-                            regularPartners.map((partner) => (
+                            mediumPartners.map((partner) => (
+                                <div key={partner.name} className="transform hover:scale-[1.02] transition-transform duration-300">
+                                    <PartnerCard partner={partner}></PartnerCard>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <H2 className="mt-12">Supporting Partners</H2>
+
+                    <div className="flex flex-col gap-8">
+                        {
+                            smallPartners.map((partner) => (
                                 <div key={partner.name} className="transform hover:scale-[1.02] transition-transform duration-300">
                                     <PartnerCard partner={partner}></PartnerCard>
                                 </div>

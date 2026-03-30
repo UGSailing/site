@@ -250,6 +250,12 @@ model BoardMemberPosition extends TimestampBase {
     @@allow('read', true)
 }
 
+enum PartnerType {
+    HEAD
+    MEDIUM
+    SMALL
+}
+
 model Partner extends TimestampBase {
     id          Int       @id @default(autoincrement())
     name        String    @trim
@@ -257,7 +263,7 @@ model Partner extends TimestampBase {
     url         String    @trim
     description String?
 
-    isHead      Boolean   @default(false) @map("is_head")
+    partnerType PartnerType @default(SMALL) @map("partner_type")
 
     logoId      String?   @map("logo_id")
     logo        Media?    @relation(fields: [logoId], references: [id], onDelete: SetNull)
