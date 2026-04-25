@@ -1,13 +1,24 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@/lib/auth'; // adjust import to your auth setup
 import fs from 'fs/promises';
 import path from 'path';
 import prisma from "@/prisma";
 import { UploadResponse, ErrorResponse, validateRequest, jsonApiResponse } from '@/lib/file-helpers';
 
-const MEDIA_DIR = process.env.MEDIA_DIR || './public/media';
+const WORKER_DIR = process.env.WORKER_DIR || './public/worker';
 
 export async function POST(request: Request): Promise<NextResponse<UploadResponse | ErrorResponse>> {
+    // The security implications of allowing file uploads by any user, not even being logged in, are significant.
+    // Until we have a clear solution for this, the endpoint is disabled and file uploads to this endpoint will fail.
+    return jsonApiResponse({
+        jsonapi: { version: '1.0' },
+        errors: [{
+            status: '503',
+            title: 'Service Unavailable',
+            detail: 'The worker file upload endpoint is currently disabled. Please try again later.',
+        }],
+    }, 503);
+}
+/*
     let requestBody: string = "";
     try {
         const clonedRequest = request.clone();
@@ -15,28 +26,39 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         console.log('Raw request body (first 500 chars):', requestBody.substring(0, 500));
         console.log('Request content-type:', request.headers.get('content-type'));        
         
-        // Get authenticated user
-        const session = await auth();
-        if (!session?.user?.id) {
-            const errorResponse: ErrorResponse = {
-                jsonapi: { version: '1.0' },
-                errors: [{
-                    status: '401',
-                    title: 'Unauthorized',
-                    detail: 'Authentication required',
-                }],
-            };
-            return jsonApiResponse(errorResponse, 401);
-        }
-        // const session = { user: { id: 'test-user-id' } }; // Placeholder for testing without auth
+        // User does not need auth
 
         const fileData = await validateRequest(request);
         if ('errors' in fileData) {
             return jsonApiResponse(fileData as ErrorResponse, 400);
         }
 
+        if (fileData.size > 10 * 1024 * 1024) { // 10MB limit for worker uploads
+            const errorResponse: ErrorResponse = {
+                jsonapi: { version: '1.0' },
+                errors: [{
+                    status: '413',
+                    title: 'Payload Too Large',
+                    detail: 'File size exceeds the 10MB limit for worker uploads',
+                }],
+            };
+            return jsonApiResponse(errorResponse, 413);
+        }
+
+        if (!fileData.filename.endsWith('.npz')) {
+            const errorResponse: ErrorResponse = {
+                jsonapi: { version: '1.0' },
+                errors: [{
+                    status: '415',
+                    title: 'Unsupported Media Type',
+                    detail: 'Only .npz files are allowed for worker uploads',
+                }],
+            };
+            return jsonApiResponse(errorResponse, 415);
+        }
+
         // Ensure directory exists
-        const fullFilePath = path.join(MEDIA_DIR, fileData.filepath);
+        const fullFilePath = path.join(WORKER_DIR, fileData.filepath);
         await fs.mkdir(path.dirname(fullFilePath), { recursive: true });
 
         // Write file to disk
@@ -46,12 +68,12 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
             data: {
                 id: fileData.id,
                 filename: fileData.filename,
-                filepath: fullFilePath,
+                filepath: fullFilePath.slice(1),
                 mimetype: fileData.mimetype,
                 size: fileData.size,
                 width: fileData.width,
                 height: fileData.height,
-                uploadedById: session.user.id,
+                uploadedById: null,
             },
         });
 
@@ -91,3 +113,4 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         return jsonApiResponse(errorResponse, 500);
     }
 }
+**/
