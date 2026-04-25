@@ -130,19 +130,19 @@ abstract model TimestampBase {
 /// Media models ///
 ////////////////////
 model Media extends TimestampBase {
-    id            String        @id @unique
-    filename      String        @trim
-    filepath      String        @trim @unique
-    mimetype      String        @trim
-    size          Int           @gte(0)
+    id            String            @id @unique
+    filename      String            @trim
+    filepath      String            @trim @unique
+    mimetype      String            @trim
+    size          Int               @gte(0)
 
     // Image metadata
-    width         Int?          @gte(0)
-    height        Int?          @gte(0)
+    width         Int?              @gte(0)
+    height        Int?              @gte(0)
 
     // Uploader
-    uploadedById  String?       @map("uploaded_by_id")
-    uploadedBy    User?         @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+    uploadedById  String?           @map("uploaded_by_id")
+    uploadedBy    User?             @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
 
     events        Event[]
     board_members BoardMemberYear[]
@@ -193,10 +193,10 @@ model Position extends TimestampBase {
 }
 
 model BoardMember extends TimestampBase {
-    id        Int                @id @default(autoincrement())
-    name      String                @trim
+    id    Int               @id @default(autoincrement())
+    name  String            @trim
 
-    years     BoardMemberYear[]
+    years BoardMemberYear[]
 
     @@map("boardmembers")
 
@@ -293,4 +293,19 @@ model News extends TimestampBase {
 
     @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+}
+
+model Job extends TimestampBase {
+    id               Int     @id @default(autoincrement())
+    type             String  @trim @length(1, 50)
+    status           String  @trim @length(1, 50)
+    request_payload  String  @db.Text
+    response_payload String? @db.Text
+
+    @@allow('read', true)
+    @@allow('create', true)
+    @@allow('update', auth().roles?[role.name == "IT"])
+    @@allow('delete', auth().roles?[role.name == "IT"])
+
+    @@map("jobs")
 }
