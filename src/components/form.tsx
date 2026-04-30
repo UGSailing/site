@@ -30,6 +30,7 @@ export interface FieldInfo {
     onChange?: (value: unknown) => void;
     fieldProps?: Partial<ControllerRenderProps>;
     options?: { label: string; value: string | number }[]; // For select fields
+    hidden?: boolean;
 }
 
 export function FormField({
@@ -62,6 +63,11 @@ export function FormField({
         }
     })();
 
+    var className = "";
+    if (fieldInfo.hidden === true) {
+        className += "hidden ";
+    }
+
     const renderField = (
         field: ControllerRenderProps, 
         fieldState: ControllerFieldState
@@ -90,6 +96,7 @@ export function FormField({
                 type={fieldInfo.type}
                 value={field.value ?? defaultValue}
                 onChange={handleChange}
+                className={className}
             />
         case "number":
             return <Input
@@ -102,6 +109,7 @@ export function FormField({
                 type={fieldInfo.type}
                 value={field.value ?? defaultValue}
                 onChange={(event) => handleChange(event.target.valueAsNumber)}
+                className={className}
             />
         case "datetime":
             return <DateTimePicker
@@ -109,6 +117,7 @@ export function FormField({
                 {...fieldInfo.fieldProps}
                 value={field.value as Date ?? defaultValue}
                 onChange={handleChange}
+                className={className}
             />
         case "textarea":
             return <Markdown
@@ -117,6 +126,7 @@ export function FormField({
                 value={field.value as string ?? defaultValue}
                 onChange={handleChange}
                 textareaProps={{ placeholder: fieldInfo.placeholder }}
+                className={className}
             />
         case "checkbox":
             return <input
@@ -128,6 +138,7 @@ export function FormField({
                 type="checkbox"
                 checked={field.value as boolean ?? defaultValue}
                 onChange={handleChange}
+                className={className}
             />
         case "select":
             return <select
@@ -152,6 +163,7 @@ export function FormField({
                         {option.label}
                     </option>
                 ))}
+                className={className}
             </select>
         case "image":
             return <ImageUpload
@@ -217,7 +229,7 @@ export function FormField({
             render={({ field, fieldState }) => (
                 (
                     <Field data-invalid={fieldState.invalid}>
-                        {fieldInfo?.label && <FieldLabel htmlFor={field.name}>{fieldInfo.label}</FieldLabel>}
+                        {fieldInfo?.label && !fieldInfo.hidden && <FieldLabel htmlFor={field.name}>{fieldInfo.label}</FieldLabel>}
                         {renderField(field, fieldState)}
                         {fieldInfo?.description && (
                             <FieldDescription>
