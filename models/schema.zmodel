@@ -252,8 +252,8 @@ model BoardMemberPosition extends TimestampBase {
 
 enum PartnerType {
     HEAD
-    MEDIUM
-    SMALL
+    STRATEGIC
+    COLLABORATIVE
 }
 
 model Partner extends TimestampBase {
@@ -263,7 +263,7 @@ model Partner extends TimestampBase {
     url         String    @trim
     description String?
 
-    partnerType PartnerType @default(SMALL) @map("partner_type")
+    partnerType PartnerType @default(COLLABORATIVE) @map("partner_type")
 
     logoId      String?   @map("logo_id")
     logo        Media?    @relation(fields: [logoId], references: [id], onDelete: SetNull)

@@ -53,8 +53,8 @@ export default function Partner() {
                 type: 'select',
                 options: [
                     { value: PartnerEnum.HEAD, label: "Head Partner" },
-                    { value: PartnerEnum.MEDIUM, label: "Medium Partner" },
-                    { value: PartnerEnum.SMALL, label: "Small Partner" }
+                    { value: PartnerEnum.STRATEGIC, label: "Strategic Partner" },
+                    { value: PartnerEnum.COLLABORATIVE, label: "Collaborative Partner" }
                 ]
             },
             url: {

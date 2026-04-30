@@ -43,8 +43,8 @@ const Partners = async () => {
 
     // Shuffle partners by category using the seed
     const headPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.HEAD), seed);
-    const mediumPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.MEDIUM), seed + 1);
-    const smallPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.SMALL), seed + 2);
+    const strategicPartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.STRATEGIC), seed + 1);
+    const collaborativePartners = seededShuffle(partners.filter(p => p.partnerType === PartnerType.COLLABORATIVE), seed + 2);
     
     return (
         <>
@@ -81,11 +81,11 @@ const Partners = async () => {
                         }
                     </div>
 
-                    <H2 className="mt-12">Our Partners</H2>
+                    <H2 className="mt-12">Our Strategic Partners</H2>
 
                     <div className="flex flex-col gap-8">
                         {
-                            mediumPartners.map((partner) => (
+                            strategicPartners.map((partner) => (
                                 <div key={partner.name} className="transform hover:scale-[1.02] transition-transform duration-300">
                                     <PartnerCard partner={partner}></PartnerCard>
                                 </div>
@@ -93,11 +93,11 @@ const Partners = async () => {
                         }
                     </div>
 
-                    <H2 className="mt-12">Supporting Partners</H2>
+                    <H2 className="mt-12">Our Collaborative Partners</H2>
 
                     <div className="flex flex-col gap-8">
                         {
-                            smallPartners.map((partner) => (
+                            collaborativePartners.map((partner) => (
                                 <div key={partner.name} className="transform hover:scale-[1.02] transition-transform duration-300">
                                     <PartnerCard partner={partner}></PartnerCard>
                                 </div>

@@ -36,6 +36,7 @@ function ListItem({ partner }: { partner: Partner }) {
                             <p className="text-red-500 font-bold">Inactive Partner</p>
                         )
                     }
+                    <p>Partner type: {partner.attributes.partnerType}</p>
                     <A href={partner.attributes.url}>Site</A>
                     <p>{partner.attributes.description}</p>
                 </div>
