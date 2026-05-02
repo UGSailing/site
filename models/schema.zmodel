@@ -250,12 +250,20 @@ model BoardMemberPosition extends TimestampBase {
     @@allow('read', true)
 }
 
+enum PartnerType {
+    HEAD
+    STRATEGIC
+    COLLABORATIVE
+}
+
 model Partner extends TimestampBase {
     id          Int       @id @default(autoincrement())
     name        String    @trim
     active      Boolean   @default(true)
     url         String    @trim
     description String?
+
+    partnerType PartnerType @default(COLLABORATIVE) @map("partner_type")
 
     logoId      String?   @map("logo_id")
     logo        Media?    @relation(fields: [logoId], references: [id], onDelete: SetNull)

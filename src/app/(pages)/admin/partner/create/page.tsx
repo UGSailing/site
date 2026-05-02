@@ -4,7 +4,7 @@ import React from 'react';
 import { PartnerCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
-import { client, type ApiTypes } from '@/prisma/apiclient';
+import { client, ApiTypes, PartnerType as PartnerEnum } from '@/prisma/apiclient';
 
 type PartnerType = ApiTypes["PartnerCreateRequest"]["data"]["attributes"];
 
@@ -47,6 +47,15 @@ export default function Partner() {
             active: {
                 label: "Active",
                 type: 'checkbox',
+            },
+            partnerType: {
+                label: "Partner Type",
+                type: 'select',
+                options: [
+                    { value: PartnerEnum.HEAD, label: "Head Partner" },
+                    { value: PartnerEnum.STRATEGIC, label: "Strategic Partner" },
+                    { value: PartnerEnum.COLLABORATIVE, label: "Collaborative Partner" }
+                ]
             },
             url: {
                 label: "Link to site",
