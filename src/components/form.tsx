@@ -258,9 +258,11 @@ export interface SchemaInfo {
 
 
 export default function Form({
-    schemaInfo
+    schemaInfo,
+    children
 } : {
     schemaInfo: SchemaInfo;
+    children: React.ReactNode;
 }) {
     type Input = z.TypeOf<typeof schemaInfo.schema>;
     // @ts-expect-error - zodResolver types are broken
@@ -269,9 +271,15 @@ export default function Form({
         // @ts-expect-error - zodResolver types are broken
         resolver: zodResolver(schemaInfo.schema),
     });
+    
+    const onError = (errors: any) => {
+	  console.error("submit validation errors:", errors);
+	  setServerError(JSON.stringify(errors, null, 2));
+	};
 
     const [serverError, setServerError] = useState<string>("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    console.log(serverError);
     
     async function onSubmit(data: Input) {
         try {
@@ -282,6 +290,7 @@ export default function Form({
         }
     }
 
+	console.log("schemaInfo-children: ", children);
     return (
         <Card className="w-full border-none shadow-none">
             <CardHeader>
@@ -291,7 +300,8 @@ export default function Form({
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <form id={`${schemaInfo.name}-form`} onSubmit={form.handleSubmit(onSubmit)}>
+            	{children}
+                <form id={`${schemaInfo.name}-form`} onSubmit={form.handleSubmit(onSubmit, onError)}>
                     <FieldGroup>
                         {
                             Object.entries(schemaInfo.fields).map(([fieldName, fieldInfo]) => (

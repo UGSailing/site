@@ -23,6 +23,7 @@ export default function JobFormFrame({
     formTitle = `Create new ${jobName} Job`,
     formDescription = "Here you can create a new job."
 }: JobFrameProps) {
+	console.log("children: ", children);
     const schemaInfo: SchemaInfo = {
         schema: 
     JobCreateSchema.superRefine((data, ctx) => {
@@ -33,6 +34,7 @@ export default function JobFormFrame({
         formDescription,
         onSubmit: async (data, setErrors) => {
             const attributes = data as JobType;
+            console.log(attributes);
             attributes.request_payload = await getRequestPayload();
             console.log(attributes);
             
@@ -56,26 +58,28 @@ export default function JobFormFrame({
             type: {
                 label: "Job Name",
                 type: 'text',
-                fieldProps: {
-                    disabled: true,
-                },
                 hidden: true
             },
             status: {
                 label: "Status",
                 type: 'text',
-                fieldProps: {
-                    disabled: true,
-                },
                 hidden: true
             }
         },
+        formProps: {
+            values: {
+                type: jobName,
+                status: "queued",
+                request_payload: "",
+            }
+        }
     };
     
     return (
         <>
-            {children}
-            <Form schemaInfo={schemaInfo} />
+            <Form schemaInfo={schemaInfo}>
+            	{children}
+            </Form>
         </>
     );
 }
