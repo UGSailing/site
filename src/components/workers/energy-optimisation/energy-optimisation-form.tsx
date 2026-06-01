@@ -13,6 +13,26 @@ import {
 import { Input } from "@/components/ui/input";
 import JobFormFrame from "../base-form";
 
+const tracks: [string, string][] = [
+	["AI_Figure_8", "Some yapping from Sander"],
+	["AI_Slalom", "Some yapping from Sander"],
+	["AI_Docking", "Some yapping from Sander"],
+	["AI_Sprint", "Some yapping from Sander"],
+]
+
+const batteries: [string, string][] = [
+	["High-Drain_NMC_Molicel_P42A", "Some yapping from Sander"],
+	["Lithium_Titanate_Yinlong_LTO", "Some yapping from Sander"],
+	["High-Power_LFP_A123", "Some yapping from Sander"],
+]
+
+const engines: [string, string][] = [
+	["Marine_Diesel_Turbocharged", "Some yapping from Sander"],
+	["Racing_Gasoline_Methanol", "Some yapping from Sander"],
+	["Hydrogen_PEM_Fuel_Cell", "Some yapping from Sander"],
+]
+
+
 function FancyCheckbox({
 	title, 
 	description,
@@ -98,10 +118,18 @@ export function EnergyOptimisationForm() {
         	Text yapping from Sander
         </i>
         <ul>
-        	<CheckboxWithNumber id="AI_Figure_8" checkboxId="ai-figure-8" title="AI Figure 8" description="Some yapping from Sander" inputProps={{"type": "number"}} />
-        	<CheckboxWithNumber id="AI_Slalom" checkboxId="ai-slalom" title="AI Slalom" description="Some yapping from Sander" inputProps={{"type": "number"}} />
-        	<CheckboxWithNumber id="AI_Docking" checkboxId="ai-docking" title="AI Docking" description="Some yapping from Sander" inputProps={{"type": "number"}} />
-        	<CheckboxWithNumber id="AI_Sprint" checkboxId="ai-sprint" title="AI Sprint" description="Some yapping from Sander" inputProps={{"type": "number"}} />
+        	{
+        		tracks.map(([track, description]) => {
+        			const track_id = track.toLowerCase().replace(/[\s_]/g, "-")
+        			const list_item_id = `li-${track_id}`
+        			const title = track.replace(/_/g, " ")
+        			return (
+		    			<li id={list_item_id} key={list_item_id}>
+		    				<CheckboxWithNumber checkboxId={track_id} title={title} description={description} inputProps={{"type": "number", "value": "0"}} />
+		    			</li>
+        			)
+        		})
+        	}
         </ul>
         <H4 className="text-red-500">
         	Choose your candidate batteries.
@@ -110,9 +138,18 @@ export function EnergyOptimisationForm() {
         	Text yapping from Sander
         </i>
         <ul id="batteries">
-        	<FancyCheckbox id="High-Drain_NMC_Molicel_P42A" checkboxId="high-drain-nmc-molicel-p42a" title="High-Drain NMC Molicel P42A" description="Some yapping from Sander" />
-        	<FancyCheckbox id="Lithium_Titanate_Yinlong_LTO" checkboxId="lithium-titanate-yinlong-lto" title="Lithium Titanate Yinlong LTO" description="Some yapping from Sander" />
-        	<FancyCheckbox id="High-Power_LFP_A123" checkboxId="high-power-lfp-a123" title="High-Power LFP A123" description="Some yapping from Sander" />
+        	{
+        		batteries.map(([battery, description]) => {
+        			const battery_id = battery.toLowerCase().replace(/[\s_]/g, "-")
+        			const list_item_id = `li-${battery_id}`
+        			const title = battery.replace(/_/g, " ")
+        			return (
+		    			<li id={list_item_id} key={list_item_id}>
+		    				<FancyCheckbox checkboxId={battery_id} title={title} description={description}/>
+		    			</li>
+        			)
+        		})
+        	}
         </ul>
         
         <H4 className="text-red-500">
@@ -122,9 +159,18 @@ export function EnergyOptimisationForm() {
         	Text yapping from Sander
         </i>
         <ul id="engines">
-        	<FancyCheckbox id="Marine_Diesel_Turbocharged" checkboxId="marine-diesel-turbocharged" title="Marine Diesel Turbocharged" description="Some yapping from Sander" />
-        	<FancyCheckbox id="Racing_Gasoline_Methanol" checkboxId="racing-gasoline-methanol" title="Racing Gasoline Methanol" description="Some yapping from Sander" />
-        	<FancyCheckbox id="Hydrogen_PEM_Fuel_Cell" checkboxId="hydrogen-pem-fuel-cell" title="Hydrogen PEM Fuel Cell" description="Some yapping from Sander" />
+        	{
+        		engines.map(([engine, description]) => {
+        			const engine_id = engine.toLowerCase().replace(/[\s_]/g, "-")
+        			const list_item_id = `li-${engine_id}`
+        			const title = engine.replace(/_/g, " ")
+        			return (
+		    			<li id={list_item_id} key={list_item_id}>
+		    				<FancyCheckbox checkboxId={engine_id} title={title} description={description}/>
+		    			</li>
+        			)
+        		})
+        	}
         </ul>
         
     </JobFormFrame>
