@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 import { A, H2, H4, Quote } from "@/components";
+import Section from "@/components/layout/sections";
+import SomeImage from "@/../public/images/prototype_flat.png";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "About",
@@ -10,7 +13,7 @@ const About = () => {
     return (
         <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-6">
             <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
-                <section>
+                <Section>
                     <H2>Info</H2>
 
                     <H4>Who We Are</H4>
@@ -55,13 +58,13 @@ const About = () => {
                     we organize design sprints every one to two weeks, open to
                     all members who want to contribute and learn together. Our
                     locals are at the Technology Park, in Zwijnaarde.
-                </section>
-                <section>
+                </Section>
+                <Section>
                     <H2>History</H2>
 
                     Coming soon
-                </section>
-                <section>
+                </Section>
+                <Section>
                     <H2>From the team</H2>
 
                     Coming soon
@@ -71,7 +74,7 @@ const About = () => {
                         <br />
                         ~ Jorien, Captain
                     </Quote> */}
-                </section>
+                </Section>
             </main>
         </div>
     );

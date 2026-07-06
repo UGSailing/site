@@ -5,6 +5,7 @@ import { generations } from "@/data/generation";
 import { GenerationCard } from "@/components/genCard";
 import { H1 } from "@/components";
 import prisma from "@/prisma";
+import Section from "@/components/layout/sections";
 
 export const metadata: Metadata = {
     title: "Timeline",
@@ -60,23 +61,27 @@ const Timeline = async () => {
     return (
         <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-6">
             <main className="w-full flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
-                <H1 className="text-center w-full">Events</H1>
-                <Carousel startIndex={getNextEventIndex(events)} buttonSettings={{ size: "xl" }} key="timeline-carousel">
-                    {
-                        events.map((event) => (
-                            <CarouselItem className="md:basis-1/3" key={event.id}>
-                                <EventCard event={event}></EventCard>
-                            </CarouselItem>)
-                        )
-                    }
-                    <CarouselItem className="md:basis-1/3" key="future-events">
-                        <FutureEventCard></FutureEventCard>
-                    </CarouselItem>
-                </Carousel>
-                <H1 className="text-center w-full">Our Ship</H1>
-                <Carousel buttonSettings={{ size: "xl" }} key="ship-carousel">
-                    {generations.map((generation) => <CarouselItem className="md:basis-1/3" key={generation.name}><GenerationCard generation={generation}></GenerationCard></CarouselItem>)}
-                </Carousel>
+                <Section>
+                    <H1 className="text-center w-full">Events</H1>
+                    <Carousel startIndex={getNextEventIndex(events)} buttonSettings={{ size: "xl" }} key="timeline-carousel">
+                        {
+                            events.map((event) => (
+                                <CarouselItem className="md:basis-1/3" key={event.id}>
+                                    <EventCard event={event}></EventCard>
+                                </CarouselItem>)
+                            )
+                        }
+                        <CarouselItem className="md:basis-1/3" key="future-events">
+                            <FutureEventCard></FutureEventCard>
+                        </CarouselItem>
+                    </Carousel>
+                </Section>
+                <Section>
+                    <H1 className="text-center w-full">Our Ship</H1>
+                    <Carousel buttonSettings={{ size: "xl" }} key="ship-carousel">
+                        {generations.map((generation) => <CarouselItem className="md:basis-1/3" key={generation.name}><GenerationCard generation={generation}></GenerationCard></CarouselItem>)}
+                    </Carousel>
+                </Section>
             </main>
         </div>
     )
