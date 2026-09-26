@@ -1,6 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 
+// Inside docker, the DB is reachable under the compose service name
+if (process.env.DB_HOST && process.env.DATABASE_URL) {
+    process.env.DATABASE_URL = process.env.DATABASE_URL.replace(/@([^:/]+)/, `@${process.env.DB_HOST}`);
+}
+
 const globalForPrisma = global as unknown as { 
     prisma: PrismaClient
 }
