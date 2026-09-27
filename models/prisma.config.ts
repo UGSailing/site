@@ -8,8 +8,12 @@ const host = process.env.DB_HOST;                    // "db" inside compose
 if (host) {
     if (process.env.DATABASE_URL)
         process.env.DATABASE_URL = process.env.DATABASE_URL.replace(/@([^:/]+)/, `@${host}`);
+}
+
+const shadow_host = process.env.SHADOW_DB_HOST
+if (shadow_host) {
     if (process.env.SHADOW_DATABASE_URL)
-        process.env.SHADOW_DATABASE_URL = process.env.SHADOW_DATABASE_URL.replace(/@([^:/]+)/, `@${host}`);
+        process.env.SHADOW_DATABASE_URL = process.env.SHADOW_DATABASE_URL.replace(/@([^:/]+)/, `@${shadow_host}`);
 }
 
 export default defineConfig({

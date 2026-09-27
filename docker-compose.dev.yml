@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:17
     env_file: .env.local
-    volumes: [db_data:/var/lib/postgresql/data]
+    volumes: [dev_data:/var/lib/postgresql/data]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ugs"]
       interval: 2s
@@ -25,8 +25,8 @@ services:
       dockerfile: Dockerfile.dev
     env_file: .env.local
     environment:                       # overrides the localhost URLs from .env.local
-      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-ugs}
-      SHADOW_DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@shadowdb:5432/ugs_shadow
+      DB_HOST: db
+      SHADOW_DB_HOST: shadow_db
     ports: ["3000:3000"]
     volumes:
       - .:/app                                # whole project, writable — lockfile edits work
@@ -37,7 +37,7 @@ services:
 
 
 volumes:
-  db_data:
+  dev_data:
   shadow_data:
   node_modules:
   next_cache:
