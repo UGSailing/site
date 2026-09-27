@@ -15,7 +15,6 @@ const SignInPage = async () => {
                 <section>
                     {!session ? (
                         <div className="text-center">
-                            <SignIn provider="github" />
                             <SignIn provider="discord" />
                         </div>
                     ) : (

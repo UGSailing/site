@@ -123,16 +123,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-/* Red classes since Tailwind doesn't use the brightest reddest color */
-.red {
-  color: #f00;
-}
-
-.bg-red {
-  background-color: #f00;
-}
-
-.border-red {
-  border-color: #f00;
-}

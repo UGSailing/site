@@ -17,8 +17,8 @@ type News = ApiTypes["News"];
 
 function ListItem({ news }: { news: News }) {
     return (
-        <AccordionItem value={news.id.toString()} className="border border-1 border-b rounded-lg border-red w-full">
-            <AccordionTrigger arrow_size="size-10" className="border border-red px-6 text-red-500">
+        <AccordionItem value={news.id.toString()} className="border border-1 border-b rounded-lg border-ugs w-full">
+            <AccordionTrigger arrow_size="size-10" className="border border-ugs px-6 text-ugs">
                 <div className="flex justify-between w-full">
                     <H3>{news.attributes.title}</H3>
                     <Link href={`/admin/news/${news.id}`}>
@@ -26,7 +26,7 @@ function ListItem({ news }: { news: News }) {
                     </Link>
                 </div>
             </AccordionTrigger>
-            <AccordionContent className="border-red gap-4 p-4 text-balance">
+            <AccordionContent className="border-ugs gap-4 p-4 text-balance">
                 <div className='relative'>
                     <p>{news.attributes.title}</p>
                     <A>{news.attributes.link}</A>

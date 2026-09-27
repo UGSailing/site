@@ -17,8 +17,8 @@ type MemberPosition = ApiTypes["BoardMemberPosition"];
 
 function ListItem({ boardMemberPosition }: { boardMemberPosition: MemberPosition }) {
     return (
-        <AccordionItem value={boardMemberPosition.id.toString()} className="border border-1 border-b rounded-lg border-red w-full">
-            <AccordionTrigger arrow_size="size-10" className="border border-red px-6 text-red-500">
+        <AccordionItem value={boardMemberPosition.id.toString()} className="border border-1 border-b rounded-lg border-ugs w-full">
+            <AccordionTrigger arrow_size="size-10" className="border border-ugs px-6 text-ugs">
                 <div className="flex justify-between w-full">
                     <H3>{boardMemberPosition.id}</H3>
                     <Link href={`/admin/board/memberposition/${boardMemberPosition.id}`}>
@@ -26,7 +26,7 @@ function ListItem({ boardMemberPosition }: { boardMemberPosition: MemberPosition
                     </Link>
                 </div>
             </AccordionTrigger>
-            <AccordionContent className="border-red gap-4 p-4 text-balance">
+            <AccordionContent className="border-ugs gap-4 p-4 text-balance">
                 <div className='relative'>
                     <p>Position ID: {boardMemberPosition.attributes.positionId}</p>
                     <p>Board Member Year ID: {boardMemberPosition.attributes.boardMemberYearId}</p>

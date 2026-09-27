@@ -128,7 +128,7 @@ export default function AdminSidebar({ className, user }: { className?: string, 
                                             <SidebarMenuItem key={item.title}>
                                                 <SidebarMenuButton
                                                     asChild
-                                                    className={`${item.regex?.test(pathname) ? "bg-red text-white" : ""} hover:text-white`}
+                                                    className={`${item.regex?.test(pathname) ? "bg-ugs text-white" : ""} hover:text-white`}
                                                 >
                                                     <a href={item.href}>
                                                         <item.icon />

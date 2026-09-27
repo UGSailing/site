@@ -61,7 +61,7 @@ export default async function CrewPage() {
                                     <Link 
                                         key={index} 
                                         href={`#${boardItem.year}`} 
-                                        className="px-4 py-2 bg-red text-white rounded-lg hover:bg-red-600 focus:outline-none"
+                                        className="px-4 py-2 bg-ugs text-white rounded-lg hover:bg-red-600 focus:outline-none"
                                     >
                                         {boardItem.name}
                                     </Link>
@@ -78,7 +78,7 @@ export default async function CrewPage() {
                                     <Link 
                                         key={index} 
                                         href={`#${boardItem.year}`} 
-                                        className="px-4 py-2 bg-red text-white rounded-lg hover:bg-red-600 focus:outline-none"
+                                        className="px-4 py-2 bg-ugs text-white rounded-lg hover:bg-red-600 focus:outline-none"
                                     >
                                         {boardItem.name}
                                     </Link>

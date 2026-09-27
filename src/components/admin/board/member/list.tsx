@@ -17,8 +17,8 @@ type Member = ApiTypes["BoardMember"];
 
 function ListItem({ member }: { member: Member }) {
     return (
-        <AccordionItem value={member.id.toString()} className="border border-1 border-b rounded-lg border-red w-full">
-            <AccordionTrigger arrow_size="size-10" className="border border-red px-6 text-red-500">
+        <AccordionItem value={member.id.toString()} className="border border-1 border-b rounded-lg border-ugs w-full">
+            <AccordionTrigger arrow_size="size-10" className="border border-ugs px-6 text-ugs">
                 <div className="flex justify-between w-full">
                     <H3>{member.attributes.name}</H3>
                     <Link href={`/admin/board/member/${member.id}`}>
@@ -26,7 +26,7 @@ function ListItem({ member }: { member: Member }) {
                     </Link>
                 </div>
             </AccordionTrigger>
-            <AccordionContent className="border-red gap-4 p-4 text-balance">
+            <AccordionContent className="border-ugs gap-4 p-4 text-balance">
                 <div className='relative'>
                     {/* <img src={member.attributes.image || "/img/logos/cropped_logo.png"} className="float-right w-full h-full max-w-72 max-h-48 object-contain ml-4 mb-2"></img> */}
                 </div>
