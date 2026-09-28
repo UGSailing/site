@@ -10,6 +10,7 @@ services:
 
   shadowdb:
     image: postgres:17
+    env_file: .env.local
     environment:
       POSTGRES_DB: ugs_shadow
     volumes: [shadow_data:/var/lib/postgresql/data]
@@ -26,7 +27,7 @@ services:
     env_file: .env.local
     environment:                       # overrides the localhost URLs from .env.local
       DB_HOST: db
-      SHADOW_DB_HOST: shadow_db
+      SHADOW_DB_HOST: shadowdb
     ports: ["3000:3000"]
     volumes:
       - .:/app                                # whole project, writable — lockfile edits work
