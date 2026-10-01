@@ -224,6 +224,15 @@ export function CrudUpdate<A extends Record<string, unknown>>({
             fieldProps: { disabled: true },
         };
     }
+    for (const [fieldName, includeKey] of Object.entries(config.imageFields ?? {})) {
+        const media = (item.attributes as Record<string, unknown>)[includeKey] as
+            | { attributes?: { filepath?: string } }
+            | null
+            | undefined;
+        if (fields[fieldName] && media?.attributes?.filepath) {
+            fields[fieldName] = { ...fields[fieldName], preview: media.attributes.filepath };
+        }
+    }
 
     const onSubmit: SchemaInfo["onSubmit"] = async (data, setErrors) => {
         const attributes = config.transform

@@ -46,6 +46,7 @@ export interface CrudConfig<A extends Record<string, unknown>> {
     /** per-action role gate; enforced server-side by the page and the delete action */
     access?: CrudAccess;
     renderListItem?: (item: Resource<A>) => React.ReactNode;
+    imageFields?: Record<string, string>;
 }
 
 type EndpointResult<R> = Promise<{ response: Response; data?: R; error?: unknown }>;

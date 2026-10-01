@@ -40,6 +40,7 @@ export const partnerConfig: CrudConfig<PartnerAttributes> = {
         if (url && !url.startsWith("http")) attributes.url = `https://${url}`;
         return attributes;
     },
+    imageFields: { logoId: "logo" },
     renderListItem: (partner) => (
         <>
             <p className={partner.attributes.active ? "text-green-700 font-bold" : "text-red-500 font-bold"}>

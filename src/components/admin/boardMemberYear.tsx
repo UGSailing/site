@@ -15,6 +15,7 @@ export const memberYearConfig: CrudConfig<MemberYearAttributes> = {
     displayField: "index",
     displayItem: (item) => `Board Member Year #${item.id}`,
     schema: BoardMemberYearCreateSchema,
+    include: { query: "image", type: "media" },
     readonlyFields: ["createdAt", "updatedAt"],
     fields: {
         imageId: { label: "Image", placeholder: "Board Member Year Image ID", type: "image" },
@@ -38,6 +39,7 @@ export const memberYearConfig: CrudConfig<MemberYearAttributes> = {
             })),
         };
     },
+    imageFields: { imageId: "image" },
     renderListItem: (item) => (
         <>
             <p>

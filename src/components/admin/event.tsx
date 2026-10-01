@@ -31,6 +31,7 @@ export const eventConfig: CrudConfig<EventAttributes> = {
         intro: { label: "Introduction", placeholder: "Event Introduction", type: "textarea" },
         imageId: { label: "Event Image", placeholder: "Event Image URL", type: "image" },
     },
+    imageFields: { imageId: "image" },
     renderListItem: (event) => {
         const attrs = event.attributes;
         const future = Date.parse(String(attrs.startDate)) > Date.now();
