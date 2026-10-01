@@ -3,7 +3,7 @@ import { requireRole } from "@/lib/auth-helpers";
 import { Http403 } from "@/components/http";
 
 import { CrudRouter } from "@/components/admin/crudRouter";
-import { registry, resolveAction, resolveEntry } from "@/components/admin/registry";
+import { resolveAction, resolveEntry } from "@/components/admin/registry";
 import { defaultAccess } from "@/components/admin/crud-types";
 
 export default async function ModelsPage({

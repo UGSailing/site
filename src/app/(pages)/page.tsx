@@ -1,5 +1,4 @@
 import { H2 } from "@/components";
-import { BoardHomePage } from "@/components/boardHomePage";
 import { EventsSection } from "@/components/home/events";
 import { NewsSection } from "@/components/home/news";
 import TeamImagesSection from "@/components/home/teamImages";
