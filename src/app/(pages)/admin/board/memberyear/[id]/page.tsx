@@ -1,8 +1,15 @@
 import React from 'react';
 import MemberYearUpdate from '@/components/admin/board/memberyear/update';
 import { getPrisma } from '@/lib/auth';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 export default async function MemberYearPage({ params }: { params: Promise<{ id: string }> }) {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     const { id } = await params; 
     const prisma = await getPrisma();
     if (prisma === null) {

@@ -5,10 +5,17 @@ import { PositionCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
 import { client, type ApiTypes } from '@/prisma/apiclient';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 type PositionType = ApiTypes["PositionCreateRequest"]["data"]["attributes"];
 
 export default function Position() {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     console.log('PositionCreateSchema:', PositionCreateSchema);
     const currentYear = new Date().getFullYear().toString();
     const schemaInfo: SchemaInfo = {

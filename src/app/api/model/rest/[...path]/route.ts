@@ -7,7 +7,7 @@ import { auth } from '@/lib/auth';
 async function getPrisma() {
     const session = await auth();
     if (session?.user) {
-        const user = await prisma.user.findUniqueOrThrow({
+        const user = await prisma.user.findUnique({
             where: { id: session.user.id },
             include: {
                 roles: {

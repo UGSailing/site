@@ -5,10 +5,17 @@ import { EventCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
 import { client, type ApiTypes } from '@/prisma/apiclient';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 type EventType = ApiTypes["EventCreateRequest"]["data"]["attributes"];
 
-export default function Event() {
+export default async function Event() {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     const schemaInfo: SchemaInfo = {
         schema: EventCreateSchema,
         name: "event-create-form",

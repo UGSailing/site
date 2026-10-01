@@ -5,10 +5,17 @@ import { NewsCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
 import { client, type ApiTypes } from '@/prisma/apiclient';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 type NewsType = ApiTypes["NewsCreateRequest"]["data"]["attributes"];
 
-export default function News() {
+export default async function News() {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     const schemaInfo: SchemaInfo = {
         schema: NewsCreateSchema,
         name: "news-create-form",

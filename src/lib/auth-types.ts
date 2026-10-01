@@ -26,3 +26,5 @@ export const ROLES: Record<string, bigint[]> = {
         BigInt("1442468154034094221"), // Partner
     ],
 }
+
+export const ALL_ROLES = [...new Set(Object.values(ROLES).flat())];

@@ -95,9 +95,9 @@ const groups: AdminPagesListGroup[] = [
             },
             {
                 title: "People",
-                href: "/admin/member",
+                href: "/admin/board/member",
                 icon: Users,
-                regex: /^\/admin\/member\/?(?:create\/?)?(?:\d+\/?)?$/,
+                regex: /^\/admin\/board\/member\/?(?:create\/?)?(?:\d+\/?)?$/,
                 roles: ROLES.TEAM,
             }
         ]

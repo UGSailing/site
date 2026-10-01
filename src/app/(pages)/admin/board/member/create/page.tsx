@@ -5,10 +5,17 @@ import { BoardMemberCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
 import { client, type ApiTypes } from '@/prisma/apiclient';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 type MemberType = ApiTypes["BoardMemberCreateRequest"]["data"]["attributes"];
 
-export default function Member() {
+export default async function Member() {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     console.log('BoardMemberCreateSchema:', BoardMemberCreateSchema);
     const currentYear = new Date().getFullYear().toString();
     const schemaInfo: SchemaInfo = {

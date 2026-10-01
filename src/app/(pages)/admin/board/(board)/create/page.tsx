@@ -5,10 +5,17 @@ import { BoardCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
 import { client, type ApiTypes } from '@/prisma/apiclient';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 type BoardType = ApiTypes["BoardCreateRequest"]["data"]["attributes"];
 
-export default function Board() {
+export default async function Board() {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     console.log('BoardCreateSchema:', BoardCreateSchema);
     const currentYear = new Date().getFullYear().toString();
     const schemaInfo: SchemaInfo = {

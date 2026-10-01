@@ -4,8 +4,11 @@ import { SessionProvider } from "next-auth/react";
 import { redirect, RedirectType } from "next/navigation";
 import prisma from "@/prisma"
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { requireRole } from "@/lib/auth-helpers";
+import { ALL_ROLES } from "@/lib/auth-types";
 
 import AdminSidebar from "@/components/admin/adminSidebar";
+import { Http403 } from "@/components/http";
 
 export default async function AdminLayout({ children }: PropsWithChildren) {
     const session = await auth()
@@ -25,6 +28,11 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
     } else {
         return redirect("/login", RedirectType.replace);
     }
+
+    // const res = await requireRole(ALL_ROLES);
+    // if (res.status == 403) {
+    //     return <Http403/>
+    // }
 
     return (
         <SessionProvider session={session}>

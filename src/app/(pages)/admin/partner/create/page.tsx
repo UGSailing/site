@@ -5,10 +5,17 @@ import { PartnerCreateSchema } from '@zenstackhq/runtime/zod/models';
 import Form, { type SchemaInfo } from '@/components/form';
 import { redirect } from 'next/navigation';
 import { client, ApiTypes, PartnerType as PartnerEnum } from '@/prisma/apiclient';
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
+import { Http403 } from '@/components/http';
 
 type PartnerType = ApiTypes["PartnerCreateRequest"]["data"]["attributes"];
 
-export default function Partner() {
+export default async function Partner() {
+    const role = await requireRole(ROLES.TEAM)
+    if (role.status == 403) {
+        return <Http403/>
+    }
     const schemaInfo: SchemaInfo = {
         schema: PartnerCreateSchema,
         name: "partner-create-form",

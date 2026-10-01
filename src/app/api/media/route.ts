@@ -6,6 +6,8 @@ import { auth } from '@/lib/auth'; // adjust import to your auth setup
 import fs from 'fs/promises';
 import path from 'path';
 import prisma from "@/prisma";
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
 
 const MEDIA_DIR = process.env.MEDIA_DIR || './public/media';
 
@@ -47,9 +49,9 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         console.log('Raw request body (first 500 chars):', requestBody.substring(0, 500));
         console.log('Request content-type:', request.headers.get('content-type'));        
         
-        // Get authenticated user
-        const session = await auth();
-        if (!session?.user?.id) {
+        // Authenticate user
+        const res = await requireRole(ROLES.TEAM)
+        if (res.status == 401) {
             const errorResponse: ErrorResponse = {
                 jsonapi: { version: '1.0' },
                 errors: [{
@@ -57,10 +59,22 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
                     title: 'Unauthorized',
                     detail: 'Authentication required',
                 }],
-            };
+            }
             return NextResponse.json(errorResponse, { status: 401 });
         }
-        // const session = { user: { id: 'test-user-id' } }; // Placeholder for testing without auth
+        if (res.status == 403) {
+            const errorResponse: ErrorResponse = {
+                jsonapi: { version: '1.0' },
+                errors: [{
+                    status: '403',
+                    title: 'Forbidden',
+                    detail: 'User does not have required roles in the discord. Log out and log back in to update roles.',
+                }],
+            }
+            return NextResponse.json(errorResponse, { status: 403 });
+        }
+
+        const session = await auth();
 
         // Parse form data
         const formData = await request.formData();
@@ -160,7 +174,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
                 size: buffer.length,
                 width,
                 height,
-                uploadedById: session.user.id,
+                uploadedById: session!.user.id,
             },
         });
 
