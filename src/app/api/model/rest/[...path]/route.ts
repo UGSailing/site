@@ -15,11 +15,12 @@ async function getPrisma() {
                 }
             }
         });
-        return enhance(prisma, { user });
-    } else {
-        // anonymous user
-        return enhance(prisma);
+        if (user) {
+            return enhance(prisma, { user });
+        }
     }
+    // anonymous user
+    return enhance(prisma);
 }
 
 const handler = NextRequestHandler({

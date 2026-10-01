@@ -9,7 +9,6 @@ import { User } from '@prisma/client';
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
     providers: [
-        GitHub,
         Discord(
             {
                 id: 'discord',
@@ -50,6 +49,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             }
         )
     ],
+    trustHost: true
 });
 
 export async function getPrisma() {
