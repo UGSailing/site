@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { H4 } from ".";
 import socials from "./socials";
-// import { LocaleSwitcher } from "./locale-switcher";
 
 export function Footer() {
     return (
