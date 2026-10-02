@@ -27,7 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                         const format = profile.avatar.startsWith("a_") ? "gif" : "png"
                         profile.image_url = `https://cdn.discordapp.com/avatars/${profile.user.id}/${profile.user.avatar}.${format}`
                     }
-                    // Ugly fix ma bon
+                    // Filter roles for admin page access
                     const roles = (await prisma.role.findMany()).map(role => role.id.toString());
                     profile.valid_roles = profile.roles.filter((role_id: string) => roles.includes(role_id));
 

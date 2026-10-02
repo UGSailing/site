@@ -68,12 +68,6 @@ const About = () => {
                     <H2>From the team</H2>
 
                     Coming soon
-                    <br />
-                    {/* <Quote>
-                        &quot;Ik zie er echt uit gelijk een blik redbull&quot;
-                        <br />
-                        ~ Jorien, Captain
-                    </Quote> */}
                 </Section>
             </main>
         </div>

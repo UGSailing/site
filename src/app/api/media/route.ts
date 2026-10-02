@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import { NextResponse } from 'next/server';
 import { createId } from '@paralleldrive/cuid2';
 import { fileTypeFromBuffer } from 'file-type';
-import { auth } from '@/lib/auth'; // adjust import to your auth setup
+import { auth } from '@/lib/auth';
 import fs from 'fs/promises';
 import path from 'path';
 import prisma from "@/prisma";
@@ -45,9 +45,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
     let requestBody: string = "";
     try {
         const clonedRequest = request.clone();
-        requestBody = await clonedRequest.text();
-        console.log('Raw request body (first 500 chars):', requestBody.substring(0, 500));
-        console.log('Request content-type:', request.headers.get('content-type'));        
+        requestBody = await clonedRequest.text();    
         
         // Authenticate user
         const res = await requireRole(ROLES.TEAM)
@@ -200,7 +198,6 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         return NextResponse.json(response, { status: 201 });
     } catch (error) {
         console.error('Error processing upload:', error);
-        console.error("Raw request body that caused error:", requestBody.substring(0,1000));
         const errorResponse: ErrorResponse = {
             jsonapi: { version: '1.0' },
             errors: [{

@@ -182,7 +182,7 @@ export function FormField({
                         if (!response.ok) {
                             const errorData = await response.json().catch(() => ({}));
                             const errorMessage = errorData.error || `Upload failed with status ${response.status}`;
-                            console.log(errorMessage);
+                            console.log("form error: ", errorMessage);
                             setError?.(errorMessage);
                             setImagePreview(null);
                             setIsUploading(false);
