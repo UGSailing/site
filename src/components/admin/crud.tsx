@@ -100,14 +100,20 @@ export function CrudList<A extends Record<string, unknown>>({
     const fetchItems = useCallback(async () => {
         setLoading(true);
         setError(null);
-        const { response, data } = await endpoints.list();
-        if (response.status === 200 && data) {
-            setItems(data.data);
-        } else {
+        try {
+            const { response, data } = await endpoints.list();
+            if (response.ok && data) {
+                setItems(data.data);
+            } else {
+                setItems([]);
+                setError(`Could not load ${config.title.toLowerCase()} (status ${response.status}).`);
+            }
+        } catch {
             setItems([]);
-            setError(`Could not load ${config.title.toLowerCase()} (status ${response.status}).`);
+            setError(`Could not reach the server while loading ${config.title.toLowerCase()}.`);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     }, [endpoints, config.title]);
 
     useEffect(() => {
@@ -192,21 +198,26 @@ export function CrudUpdate<A extends Record<string, unknown>>({
     useEffect(() => {
         let cancelled = false;
         (async () => {
-            const { response, data } = await endpoints.get(id, config.include?.query);
-            if (cancelled) return;
-            if (response.status !== 200 || !data) {
-                setItem(null);
-                return;
+            try {
+                const { response, data } = await endpoints.get(id, config.include?.query);
+                if (cancelled) return;
+                if (response.status !== 200 || !data) {
+                    setItem(null);
+                    return;
+                }
+                const resource = data.data;
+                const include = config.include;           // capture to drop the `!` below
+                if (include) {
+                    const included = (data as { included?: Resource<A>[] }).included?.find(
+                        (i) => i.type === include.type,
+                    );
+                    (resource.attributes as Record<string, unknown>)[include.query] =
+                        included ?? null;
+                }
+                setItem(resource);
+            } catch {
+                if (!cancelled) setItem(null);
             }
-            const resource = data.data;
-            if (config.include) {
-                const included = (data as { included?: Resource<A>[] }).included?.find(
-                    (i) => i.type === config.include!.type,
-                );
-                (resource.attributes as Record<string, unknown>)[config.include.query] =
-                    included ?? null;
-            }
-            setItem(resource);
         })();
         return () => {
             cancelled = true;
@@ -242,7 +253,7 @@ export function CrudUpdate<A extends Record<string, unknown>>({
             delete attributes[readonlyField];
         }
         const { response, error } = await endpoints.update(id, attributes);
-        if (response.status === 200) {
+        if (response.ok) {
             push(`${basePath}/${id}`);
         } else {
             setErrors(error ? JSON.stringify(error) : `Update failed (status ${response.status}).`);
@@ -254,7 +265,7 @@ export function CrudUpdate<A extends Record<string, unknown>>({
         setDeleting(true);
         setDeleteError(null);
         const { response, error } = await endpoints.delete(id);
-        if (response.status == 200) {
+        if (response.ok) {
             push(basePath);
         } else {
             setDeleteError(error ? JSON.stringify(error) : `Delete failed (status ${response.status}).`);
@@ -306,7 +317,7 @@ export function CrudCreate<A extends Record<string, unknown>>({
             ? config.transform(data as Partial<A>)
             : (data as Partial<A>);
         const { response, data: created, error } = await endpoints.create(attributes);
-        if (response.status === 201 && created) {
+        if (response.ok && created) {
             push(`${basePath}/${created.data.id}`);
         } else {
             setErrors(error ? JSON.stringify(error) : `Create failed (status ${response.status}).`);
