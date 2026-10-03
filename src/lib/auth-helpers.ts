@@ -2,7 +2,7 @@ import { cache } from 'react';
 import prisma from '@/prisma';
 import { auth } from '@/lib/auth';
 
-const getUserWithRoles = cache(async () => {
+export const getUserWithRoles = cache(async () => {
     const session = await auth();
     if (!session?.user?.id) return null;
     return prisma.user.findUnique({

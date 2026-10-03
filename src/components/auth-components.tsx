@@ -20,7 +20,7 @@ export async function SignOut() {
         <form
             action={async () => {
                 "use server"
-                await signOut()
+                await signOut({ redirectTo: "/" })
             }}
         >
             <button className="bg-neutral-700 text-white p-2 rounded-md">
