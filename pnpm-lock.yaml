@@ -168,7 +168,7 @@ importers:
     dependencies:
       '@auth/prisma-adapter':
         specifier: ^2.11.0
-        version: 2.11.1(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))
+        version: 2.11.1(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.67.0(react@19.1.0))
@@ -179,14 +179,11 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4
       '@prisma/adapter-pg':
-        specifier: ^6.17.1
-        version: 6.19.0
+        specifier: 6.16.3
+        version: 6.16.3
       '@prisma/client':
-        specifier: ^6.16.3
-        version: 6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)
-      '@prisma/extension-accelerate':
-        specifier: ^2.0.2
-        version: 2.0.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))
+        specifier: 6.16.3
+        version: 6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3)
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -222,10 +219,10 @@ importers:
         version: 4.0.9(@types/react@19.2.7)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(supports-color@10.2.2)
       '@zenstackhq/runtime':
         specifier: ^2.19.2
-        version: 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
+        version: 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
       '@zenstackhq/server':
         specifier: ^2.19.2
-        version: 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
+        version: 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -259,6 +256,9 @@ importers:
       node-emoji:
         specifier: ^2.2.0
         version: 2.2.0
+      prisma:
+        specifier: 6.16.3
+        version: 6.16.3(typescript@5.9.3)
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -315,11 +315,8 @@ importers:
         specifier: ^5.18.0
         version: 5.18.0
       '@zenstackhq/openapi':
-        specifier: ^2.20.1
-        version: 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
-      '@zenstackhq/trpc':
-        specifier: ^2.21.1
-        version: 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
+        specifier: ^2.19.2
+        version: 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
       eslint:
         specifier: ^9
         version: 9.39.1(jiti@2.6.1)(supports-color@10.2.2)
@@ -332,9 +329,6 @@ importers:
       openapi-typescript:
         specifier: ^7.10.1
         version: 7.10.1(typescript@5.9.3)
-      prisma:
-        specifier: ^6.16.3
-        version: 6.19.0(typescript@5.9.3)
       tailwindcss:
         specifier: ^4
         version: 4.1.17
@@ -346,7 +340,7 @@ importers:
         version: 5.9.3
       zenstack:
         specifier: 2.19.2
-        version: 2.19.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(prisma@6.19.0(typescript@5.9.3))(supports-color@10.2.2)(typescript@5.9.3)(zod@4.1.13)
+        version: 2.19.2(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(prisma@6.16.3(typescript@5.9.3))(supports-color@10.2.2)(typescript@5.9.3)(zod@4.1.13)
 
 packages:
 
@@ -869,11 +863,11 @@ packages:
     resolution: {integrity: sha512-sM6M2PWrByOEpN2QYAdulhEbSZmChwj0e52u4hpwB7u4PznFiNAavtE6m7O8tWUlzX+jT2eKKtc5/ZgX+IHrtg==}
     hasBin: true
 
-  '@prisma/adapter-pg@6.19.0':
-    resolution: {integrity: sha512-F8f2kvU+igmxERA9oM+D2maMaxrST1P6vO7ayvdlAdcJI47nKNPdkLBGZKic9otghfA9CQnjNOGB56q2VXqnHw==}
+  '@prisma/adapter-pg@6.16.3':
+    resolution: {integrity: sha512-7P0+NbVQYrFcwpfmCWiFUUdXTi2GU+CtSnWLrR93oupvFG+GtZXociT9eXbsOUNF9+g74yVe6hsOgsuW/uPHaQ==}
 
-  '@prisma/client@6.19.0':
-    resolution: {integrity: sha512-QXFT+N/bva/QI2qoXmjBzL7D6aliPffIwP+81AdTGq0FXDoLxLkWivGMawG8iM5B9BKfxLIXxfWWAF6wbuJU6g==}
+  '@prisma/client@6.16.3':
+    resolution: {integrity: sha512-JfNfAtXG+/lIopsvoZlZiH2k5yNx87mcTS4t9/S5oufM1nKdXYxOvpDC1XoTCFBa5cQh7uXnbMPsmZrwZY80xw==}
     engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
@@ -919,12 +913,6 @@ packages:
 
   '@prisma/engines@6.19.0':
     resolution: {integrity: sha512-pMRJ+1S6NVdXoB8QJAPIGpKZevFjxhKt0paCkRDTZiczKb7F4yTgRP8M4JdVkpQwmaD4EoJf6qA+p61godDokw==}
-
-  '@prisma/extension-accelerate@2.0.2':
-    resolution: {integrity: sha512-yZK6/k7uOEFpEsKoZezQS1CKDboPtBCQ0NyI70e1Un8tDiRgg80iWGyjsJmRpps2ZIut3MroHP+dyR3wVKh8lA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@prisma/client': '>=4.16.1'
 
   '@prisma/fetch-engine@6.16.3':
     resolution: {integrity: sha512-bUoRIkVaI+CCaVGrSfcKev0/Mk4ateubqWqGZvQ9uCqFv2ENwWIR3OeNuGin96nZn5+SkebcD7RGgKr/+mJelw==}
@@ -1881,11 +1869,6 @@ packages:
 
   '@zenstackhq/server@2.22.0':
     resolution: {integrity: sha512-u/r9t7pbkpe4oP22LGXOizQZTATdpS7wNDBCGyVBZvAXRi36MKaY9+6lppXE8kPmZPXxKXYdPOFwiMiucKqi5Q==}
-    peerDependencies:
-      zod: ^3.25.0 || ^4.0.0
-
-  '@zenstackhq/trpc@2.22.0':
-    resolution: {integrity: sha512-/l5+GNhyEgUOJWVfIVFTfo/lixW+77B5jyQ3i9WOxxfrSPYSOsBBJPiEqdwAgRk2Z0y5j9H/TYzrYkAjlxs8yw==}
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
 
@@ -3686,30 +3669,30 @@ packages:
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  pg-cloudflare@1.2.7:
-    resolution: {integrity: sha512-YgCtzMH0ptvZJslLM1ffsY4EuGaU0cx4XSdXLRFae8bPP4dS5xL1tNB3k2o/N64cHJpwU7dxKli/nZ2lUa5fLg==}
+  pg-cloudflare@1.4.1:
+    resolution: {integrity: sha512-6PQbsFWZcp9EmJEwy5cGQ2La+AMWpP46lgbb8X+U/XsHIUweYDNCpeuKck5RxL2MdVFi7krbbEi5nX4Zh7JhrQ==}
 
-  pg-connection-string@2.9.1:
-    resolution: {integrity: sha512-nkc6NpDcvPVpZXxrreI/FOtX3XemeLl8E0qFr6F2Lrm/I8WOnaWNhIPK2Z7OHpw7gh5XJThi6j6ppgNoaT1w4w==}
+  pg-connection-string@2.14.1:
+    resolution: {integrity: sha512-qR3kGNPBLpCNtz0evbKA0Y/MRFXwSSdT+pTJvYp/bXTcReZbvX1kzF0IyTc1QnxqF7AZbOeBhNL8R5mYQZV/MA==}
 
   pg-int8@1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
 
-  pg-pool@3.10.1:
-    resolution: {integrity: sha512-Tu8jMlcX+9d8+QVzKIvM/uJtp07PKr82IUOYEphaWcoBhIYkoHpLXN3qO59nAI11ripznDsEzEv8nUxBVWajGg==}
+  pg-pool@3.14.0:
+    resolution: {integrity: sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==}
     peerDependencies:
       pg: '>=8.0'
 
-  pg-protocol@1.10.3:
-    resolution: {integrity: sha512-6DIBgBQaTKDJyxnXaLiLR8wBpQQcGWuAESkRBX/t6OwA8YsqP+iVSiond2EDy6Y/dsGk8rh/jtax3js5NeV7JQ==}
+  pg-protocol@1.16.1:
+    resolution: {integrity: sha512-p9VOFMiHB/ZbJATetbg+99PxssTVSQRnyuPSQ67mN1+1KBOjZaZ83ZQzltnxPhJwSsC3nwVjJ10DVJlerbFzLg==}
 
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.16.3:
-    resolution: {integrity: sha512-enxc1h0jA/aq5oSDMvqyW3q89ra6XIIDZgCX9vkMrnz5DFTw/Ny3Li2lFQ+pt3L6MCgm/5o2o8HW9hiJji+xvw==}
+  pg@8.23.1:
+    resolution: {integrity: sha512-aL96AHANtWjPLDOLqnhx+ngp9+UK7ETEU8VJrDCGvsSSi/mGLcWYsS6Herg7lmaBJe4uwrfqsa7gTEFaSizDoQ==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -3761,8 +3744,8 @@ packages:
     resolution: {integrity: sha512-nAUSGfSDGOaOAEGwqsRY27GPOea7CNipJPOA7lPbdEpx5Kg3qzdP0AaWC5MlhTWV9s4hFX39nomVZ+C4tnGOJQ==}
     engines: {node: '>=12'}
 
-  postgres-bytea@1.0.0:
-    resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
+  postgres-bytea@1.0.1:
+    resolution: {integrity: sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ==}
     engines: {node: '>=0.10.0'}
 
   postgres-date@1.0.7:
@@ -3789,8 +3772,8 @@ packages:
     resolution: {integrity: sha512-Ve+ZNS5fwxylks3TTR4su7SaNAHVOh++7J5R8VKFAHIjmAMS8X79rnETc/JJoqay52cfgeHum7vm2+9hFSys9Q==}
     engines: {node: '>=14'}
 
-  prisma@6.19.0:
-    resolution: {integrity: sha512-F3eX7K+tWpkbhl3l4+VkFtrwJlLXbAM+f9jolgoUZbFcm1DgHZ4cq9AgVEgUym2au5Ad/TDLN8lg83D+M10ycw==}
+  prisma@6.16.3:
+    resolution: {integrity: sha512-4tJq3KB9WRshH5+QmzOLV54YMkNlKOtLKaSdvraI5kC/axF47HuOw6zDM8xrxJ6s9o2WodY654On4XKkrobQdQ==}
     engines: {node: '>=18.18'}
     hasBin: true
     peerDependencies:
@@ -4724,10 +4707,10 @@ snapshots:
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
 
-  '@auth/prisma-adapter@2.11.1(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))':
+  '@auth/prisma-adapter@2.11.1(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))':
     dependencies:
       '@auth/core': 0.41.1
-      '@prisma/client': 6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)
+      '@prisma/client': 6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
@@ -5208,17 +5191,17 @@ snapshots:
       bignumber.js: 9.3.1
       error-causes: 3.0.2
 
-  '@prisma/adapter-pg@6.19.0':
+  '@prisma/adapter-pg@6.16.3':
     dependencies:
-      '@prisma/driver-adapter-utils': 6.19.0
-      pg: 8.16.3
+      '@prisma/driver-adapter-utils': 6.16.3
+      pg: 8.23.1
       postgres-array: 3.0.4
     transitivePeerDependencies:
       - pg-native
 
-  '@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)':
+  '@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3)':
     optionalDependencies:
-      prisma: 6.19.0(typescript@5.9.3)
+      prisma: 6.16.3(typescript@5.9.3)
       typescript: 5.9.3
 
   '@prisma/config@6.16.3':
@@ -5272,10 +5255,6 @@ snapshots:
       '@prisma/engines-version': 6.19.0-26.2ba551f319ab1df4bc874a89965d8b3641056773
       '@prisma/fetch-engine': 6.19.0
       '@prisma/get-platform': 6.19.0
-
-  '@prisma/extension-accelerate@2.0.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))':
-    dependencies:
-      '@prisma/client': 6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)
 
   '@prisma/fetch-engine@6.16.3':
     dependencies:
@@ -6502,10 +6481,10 @@ snapshots:
     dependencies:
       langium: 1.3.1
 
-  '@zenstackhq/openapi@2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
+  '@zenstackhq/openapi@2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
     dependencies:
-      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
-      '@zenstackhq/sdk': 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
+      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
+      '@zenstackhq/sdk': 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
       openapi-types: 12.1.3
       semver: 7.7.3
       ts-pattern: 4.3.0
@@ -6517,9 +6496,9 @@ snapshots:
       - magicast
       - typescript
 
-  '@zenstackhq/runtime@2.19.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)':
+  '@zenstackhq/runtime@2.19.2(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)':
     dependencies:
-      '@prisma/client': 6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)
+      '@prisma/client': 6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3)
       bcryptjs: 2.4.3
       buffer: 6.0.3
       decimal.js-light: 2.5.1
@@ -6535,9 +6514,9 @@ snapshots:
       zod: 4.1.13
       zod-validation-error: 4.0.2(zod@4.1.13)
 
-  '@zenstackhq/runtime@2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)':
+  '@zenstackhq/runtime@2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)':
     dependencies:
-      '@prisma/client': 6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)
+      '@prisma/client': 6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3)
       bcryptjs: 2.4.3
       buffer: 6.0.3
       decimal.js-light: 2.5.1
@@ -6553,12 +6532,12 @@ snapshots:
       zod: 4.1.13
       zod-validation-error: 4.0.2(zod@4.1.13)
 
-  '@zenstackhq/sdk@2.19.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
+  '@zenstackhq/sdk@2.19.2(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
     dependencies:
       '@prisma/generator-helper': 6.16.3
       '@prisma/internals': 6.16.3(typescript@5.9.3)
       '@zenstackhq/language': 2.19.2
-      '@zenstackhq/runtime': 2.19.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
+      '@zenstackhq/runtime': 2.19.2(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
       langium: 1.3.1
       semver: 7.7.3
       ts-morph: 26.0.0
@@ -6569,12 +6548,12 @@ snapshots:
       - typescript
       - zod
 
-  '@zenstackhq/sdk@2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
+  '@zenstackhq/sdk@2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
     dependencies:
       '@prisma/generator-helper': 6.19.0
       '@prisma/internals': 6.19.0(typescript@5.9.3)
       '@zenstackhq/language': 2.22.0
-      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
+      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
       langium: 1.3.1
       semver: 7.7.3
       ts-morph: 26.0.0
@@ -6585,9 +6564,9 @@ snapshots:
       - typescript
       - zod
 
-  '@zenstackhq/server@2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)':
+  '@zenstackhq/server@2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)':
     dependencies:
-      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
+      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
       decimal.js: 10.6.0
       superjson: 1.13.3
       ts-japi: 1.12.1
@@ -6595,18 +6574,6 @@ snapshots:
       zod: 4.1.13
     transitivePeerDependencies:
       - '@prisma/client'
-
-  '@zenstackhq/trpc@2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)':
-    dependencies:
-      '@zenstackhq/runtime': 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(zod@4.1.13)
-      '@zenstackhq/sdk': 2.22.0(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
-      ts-morph: 26.0.0
-      tslib: 2.8.1
-      zod: 4.1.13
-    transitivePeerDependencies:
-      - '@prisma/client'
-      - magicast
-      - typescript
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
@@ -8831,36 +8798,36 @@ snapshots:
 
   perfect-debounce@1.0.0: {}
 
-  pg-cloudflare@1.2.7:
+  pg-cloudflare@1.4.1:
     optional: true
 
-  pg-connection-string@2.9.1: {}
+  pg-connection-string@2.14.1: {}
 
   pg-int8@1.0.1: {}
 
-  pg-pool@3.10.1(pg@8.16.3):
+  pg-pool@3.14.0(pg@8.23.1):
     dependencies:
-      pg: 8.16.3
+      pg: 8.23.1
 
-  pg-protocol@1.10.3: {}
+  pg-protocol@1.16.1: {}
 
   pg-types@2.2.0:
     dependencies:
       pg-int8: 1.0.1
       postgres-array: 2.0.0
-      postgres-bytea: 1.0.0
+      postgres-bytea: 1.0.1
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.16.3:
+  pg@8.23.1:
     dependencies:
-      pg-connection-string: 2.9.1
-      pg-pool: 3.10.1(pg@8.16.3)
-      pg-protocol: 1.10.3
+      pg-connection-string: 2.14.1
+      pg-pool: 3.14.0(pg@8.23.1)
+      pg-protocol: 1.16.1
       pg-types: 2.2.0
       pgpass: 1.0.5
     optionalDependencies:
-      pg-cloudflare: 1.2.7
+      pg-cloudflare: 1.4.1
 
   pgpass@1.0.5:
     dependencies:
@@ -8904,7 +8871,7 @@ snapshots:
 
   postgres-array@3.0.4: {}
 
-  postgres-bytea@1.0.0: {}
+  postgres-bytea@1.0.1: {}
 
   postgres-date@1.0.7: {}
 
@@ -8927,10 +8894,10 @@ snapshots:
       emphasize: 4.2.0
       strip-ansi: 6.0.1
 
-  prisma@6.19.0(typescript@5.9.3):
+  prisma@6.16.3(typescript@5.9.3):
     dependencies:
-      '@prisma/config': 6.19.0
-      '@prisma/engines': 6.19.0
+      '@prisma/config': 6.16.3
+      '@prisma/engines': 6.16.3
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -10058,11 +10025,11 @@ snapshots:
 
   zenscroll@4.0.2: {}
 
-  zenstack@2.19.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(prisma@6.19.0(typescript@5.9.3))(supports-color@10.2.2)(typescript@5.9.3)(zod@4.1.13):
+  zenstack@2.19.2(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(prisma@6.16.3(typescript@5.9.3))(supports-color@10.2.2)(typescript@5.9.3)(zod@4.1.13):
     dependencies:
       '@paralleldrive/cuid2': 2.3.1
       '@zenstackhq/language': 2.19.2
-      '@zenstackhq/sdk': 2.19.2(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
+      '@zenstackhq/sdk': 2.19.2(@prisma/client@6.16.3(prisma@6.16.3(typescript@5.9.3))(typescript@5.9.3))(typescript@5.9.3)(zod@4.1.13)
       async-exit-hook: 2.0.1
       colors: 1.4.0
       commander: 8.3.0
@@ -10072,7 +10039,7 @@ snapshots:
       ora: 5.4.1
       pluralize: 8.0.0
       pretty-repl: 4.0.1
-      prisma: 6.19.0(typescript@5.9.3)
+      prisma: 6.16.3(typescript@5.9.3)
       semver: 7.7.3
       strip-color: 0.1.0
       terminal-link: 2.1.1

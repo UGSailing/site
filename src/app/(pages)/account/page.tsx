@@ -5,12 +5,8 @@ import { getUserWithRoles } from "@/lib/auth-helpers";
 import { SignOut } from "@/components/auth-components";
 
 export default async function AccountPage() {
-    const session = await auth();
-    if (!session) redirect("/login?callbackUrl=/account");
-
     const user = await getUserWithRoles();
-
-    console.log(user);
+    if (!user) redirect("/login?callbackUrl=/account");
 
     return (
         <div className="mx-6 mt-6">
