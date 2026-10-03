@@ -7,7 +7,7 @@ import logo from "@/../public/images/logos/cropped_logo.png";
 
 export function NavBar() {
     return (
-        <nav className="bg-red border-red-200 dark:bg-red-500">
+        <nav className="bg-ugs border-red-200 dark:bg-red-500">
             <div className="w-full flex flex-wrap items-center justify-between p-3">
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <Image 

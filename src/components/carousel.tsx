@@ -1,11 +1,12 @@
 "use client";
+
 import {
-    Carousel as ChadcnCarousel,
+    Carousel as EmblaCarousel,
     CarouselContent,
     type CarouselApi,
     type CarouselOptions,
-    type CarouselPlugin
-} from "@/components/ui/carousel"
+    type CarouselPlugin,
+} from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 
@@ -14,105 +15,110 @@ const arrowSizes: Record<string, string> = {
     md: "w-8 h-8",
     lg: "w-10 h-10",
     xl: "w-12 h-12",
-}
+};
+const defaultSize = "md";
 
-const defaultSize = "md"
 const spacingSizes: Record<string, [string, string]> = {
     sm: ["left-1", "right-1"],
     md: ["left-2", "right-2"],
     lg: ["left-2", "right-2"],
     xl: ["left-3", "right-3"],
-}
+};
 
 const widthSizes: Record<string, string> = {
     sm: "w-18",
     md: "w-22",
     lg: "w-26",
     xl: "w-30",
-}
+};
 
-function NextButton({ nextEvent, size }: { nextEvent?: (e: React.MouseEvent<HTMLElement>) => void, size?: string }) {
-    size = size ?? defaultSize
+function ArrowButton({
+    direction, onClick, disabled, size,
+}: {
+    direction: "prev" | "next";
+    onClick: () => void;
+    disabled: boolean;
+    size: string;
+}) {
+    const isNext = direction === "next";
     return (
-        <div onClick={ nextEvent } className={
-            cn(
-                "h-full absolute top-1/2 right-0 transform -translate-y-1/2 z-12 hover:opacity-100 transition-opacity opacity-20 duration-300 cursor-pointer",
-                widthSizes[size]
-            )
-        }>
+        <button
+            type="button"
+            onClick={onClick}
+            disabled={disabled}
+            aria-label={isNext ? "Next slide" : "Previous slide"}
+            className={cn(
+                "h-full absolute top-1/2 -translate-y-1/2 z-12",
+                "opacity-20 hover:opacity-100 transition-opacity duration-300",
+                "disabled:opacity-0 disabled:pointer-events-none",
+                isNext ? "right-0" : "left-0",
+                widthSizes[size],
+            )}
+        >
             <div className="bg-white w-full h-full opacity-20"></div>
-            <div className={
-                cn(
-                    "bg-white absolute top-1/2 transform -translate-y-1/2 rounded-full",
+            <div className={cn(
+                "bg-white absolute top-1/2 -translate-y-1/2 rounded-full",
+                arrowSizes[size],
+                spacingSizes[size][isNext ? 1 : 0],
+            )}>
+                <span className={cn(
+                    isNext ? "icon-[bi--arrow-right-circle-fill]" : "icon-[bi--arrow-left-circle-fill]",
+                    "bg-red-500",
                     arrowSizes[size],
-                    spacingSizes[size][1]
-                )
-            }>
-                <span className={
-                    cn(
-                        "icon-[bi--arrow-right-circle-fill] bg-red-500",
-                        arrowSizes[size]
-                    )
-                }></span>
+                )}></span>
             </div>
-        </div>
-    )
-}
-
-function PreviousButton({ previousEvent, size }: { previousEvent?: (e: React.MouseEvent<HTMLElement>) => void, size?: string }) {
-    size = size ?? defaultSize
-    return (
-        <div onClick={ previousEvent } className={
-            cn(
-                "h-full absolute top-1/2 left-0 transform -translate-y-1/2 z-12 hover:opacity-100 transition-opacity opacity-20 duration-300 cursor-pointer",
-                widthSizes[size]
-            )
-        }>
-            <div className="bg-white w-full h-full opacity-20"></div>
-            <div className={
-                cn(
-                    "bg-white absolute top-1/2 transform -translate-y-1/2 rounded-full",
-                    arrowSizes[size],
-                    spacingSizes[size][0]
-                )
-            }>
-                <span className={
-                    cn(
-                        "icon-[bi--arrow-left-circle-fill] bg-red-500",
-                        arrowSizes[size]
-                    )
-                }></span>
-            </div>
-        </div>
-    )
+        </button>
+    );
 }
 
 export { CarouselItem } from "@/components/ui/carousel";
-export default function Carousel({ children, buttonSettings, padding = true, opts = {}, plugins = [], startIndex = 0 }: { children?: React.ReactNode, buttonSettings?: { size: string }, padding?: boolean, opts?: CarouselOptions, plugins?: CarouselPlugin, startIndex?: number }) {
-    const [api, setApi] = useState<CarouselApi>()
+
+export default function Carousel({
+    children,
+    buttonSettings,
+    padding = true,
+    opts = {},
+    plugins = [],
+    startIndex = 0,
+}: {
+    children?: React.ReactNode;
+    buttonSettings?: { size: string };
+    padding?: boolean;
+    opts?: CarouselOptions;
+    plugins?: CarouselPlugin;
+    startIndex?: number;
+}) {
+    const [api, setApi] = useState<CarouselApi>();
+    const [canScrollPrev, setCanScrollPrev] = useState(false);
+    const [canScrollNext, setCanScrollNext] = useState(false);
 
     useEffect(() => {
-        if (!api) {
-            return
-        }
-        api.scrollTo(startIndex, false); // can't use startIndex in opts because of jumping behavior
-    }, [api, startIndex])
+        if (!api) return;
+        const onSelect = () => {
+            setCanScrollPrev(api.canScrollPrev());
+            setCanScrollNext(api.canScrollNext());
+        };
+        onSelect();
+        api.on("select", onSelect);
+        api.on("reInit", onSelect);
+        // can't use startIndex in opts because of jumping behavior
+        api.scrollTo(startIndex, false);
+        return () => {
+            api.off("select", onSelect);
+            api.off("reInit", onSelect);
+        };
+    }, [api, startIndex]);
+
     return (
-        <ChadcnCarousel
-            opts={{
-                align: "start",
-                watchDrag: false,
-                ...opts
-            }}
+        <EmblaCarousel
+            opts={{ align: "start", watchDrag: false, ...opts }}
             plugins={[...plugins]}
-            className={"w-full relative" + (padding ? "px-2 py-2 " : "")}
+            className={cn("w-full relative", padding && "px-2 py-2")}
             setApi={setApi}
         >
-            <CarouselContent>
-                { children }
-            </CarouselContent>
-            <PreviousButton previousEvent={() => api?.scrollPrev() } {...buttonSettings}></PreviousButton>
-            <NextButton nextEvent={() => api?.scrollNext()} {...buttonSettings}></NextButton>
-        </ChadcnCarousel>
-    )
+            <CarouselContent>{children}</CarouselContent>
+            <ArrowButton direction="prev" onClick={() => api?.scrollPrev()} disabled={!canScrollPrev} size={buttonSettings?.size ?? defaultSize} />
+            <ArrowButton direction="next" onClick={() => api?.scrollNext()} disabled={!canScrollNext} size={buttonSettings?.size ?? defaultSize} />
+        </EmblaCarousel>
+    );
 }

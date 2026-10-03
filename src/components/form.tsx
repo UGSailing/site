@@ -30,6 +30,7 @@ export interface FieldInfo {
     onChange?: (value: unknown) => void;
     fieldProps?: Partial<ControllerRenderProps>;
     options?: { label: string; value: string | number }[]; // For select fields
+    preview?: string | null; // For image preview
 }
 
 export function FormField({
@@ -155,7 +156,7 @@ export function FormField({
             </select>
         case "image":
             return <ImageUpload
-                preview={imagePreview || (field.value && (typeof field.value.attributes?.filepath === 'string' ? field.value.attributes.filepath : null)) || null}
+                preview={imagePreview || fieldInfo.preview || (field.value && (typeof field.value.attributes?.filepath === 'string' ? field.value.attributes.filepath : null)) || null}
                 isUploading={isUploading}
                 onImageSelected={async (file, setError) => {
                     // Show preview immediately
@@ -181,7 +182,7 @@ export function FormField({
                         if (!response.ok) {
                             const errorData = await response.json().catch(() => ({}));
                             const errorMessage = errorData.error || `Upload failed with status ${response.status}`;
-                            console.log(errorMessage);
+                            console.log("form error: ", errorMessage);
                             setError?.(errorMessage);
                             setImagePreview(null);
                             setIsUploading(false);

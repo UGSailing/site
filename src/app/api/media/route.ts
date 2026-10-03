@@ -2,10 +2,12 @@ import sharp from 'sharp';
 import { NextResponse } from 'next/server';
 import { createId } from '@paralleldrive/cuid2';
 import { fileTypeFromBuffer } from 'file-type';
-import { auth } from '@/lib/auth'; // adjust import to your auth setup
+import { auth } from '@/lib/auth';
 import fs from 'fs/promises';
 import path from 'path';
 import prisma from "@/prisma";
+import { requireRole } from '@/lib/auth-helpers';
+import { ROLES } from '@/lib/auth-types';
 
 const MEDIA_DIR = process.env.MEDIA_DIR || './public/media';
 
@@ -40,16 +42,10 @@ interface ErrorResponse {
 }
 
 export async function POST(request: Request): Promise<NextResponse<UploadResponse | ErrorResponse>> {
-    let requestBody: string = "";
     try {
-        const clonedRequest = request.clone();
-        requestBody = await clonedRequest.text();
-        console.log('Raw request body (first 500 chars):', requestBody.substring(0, 500));
-        console.log('Request content-type:', request.headers.get('content-type'));        
-        
-        // Get authenticated user
-        const session = await auth();
-        if (!session?.user?.id) {
+        // Authenticate user
+        const res = await requireRole(ROLES.TEAM)
+        if (res.status == 401) {
             const errorResponse: ErrorResponse = {
                 jsonapi: { version: '1.0' },
                 errors: [{
@@ -57,10 +53,22 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
                     title: 'Unauthorized',
                     detail: 'Authentication required',
                 }],
-            };
+            }
             return NextResponse.json(errorResponse, { status: 401 });
         }
-        // const session = { user: { id: 'test-user-id' } }; // Placeholder for testing without auth
+        if (res.status == 403) {
+            const errorResponse: ErrorResponse = {
+                jsonapi: { version: '1.0' },
+                errors: [{
+                    status: '403',
+                    title: 'Forbidden',
+                    detail: 'User does not have required roles in the discord. Log out and log back in to update roles.',
+                }],
+            }
+            return NextResponse.json(errorResponse, { status: 403 });
+        }
+
+        const session = await auth();
 
         // Parse form data
         const formData = await request.formData();
@@ -160,7 +168,7 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
                 size: buffer.length,
                 width,
                 height,
-                uploadedById: session.user.id,
+                uploadedById: session!.user.id,
             },
         });
 
@@ -186,7 +194,6 @@ export async function POST(request: Request): Promise<NextResponse<UploadRespons
         return NextResponse.json(response, { status: 201 });
     } catch (error) {
         console.error('Error processing upload:', error);
-        console.error("Raw request body that caused error:", requestBody.substring(0,1000));
         const errorResponse: ErrorResponse = {
             jsonapi: { version: '1.0' },
             errors: [{

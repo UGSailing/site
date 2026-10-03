@@ -1,15 +1,13 @@
 import { H2 } from "@/components";
-import { BoardHomePage } from "@/components/boardHomePage";
 import { EventsSection } from "@/components/home/events";
 import { NewsSection } from "@/components/home/news";
-import TeamImagesSection from "@/components/home/teamImages";
 import Image from "next/image";
 import Gen0 from "@/../public/images/prototype_flat.png";
+import Section from "@/components/layout/sections";
 
 export default function Home() {
     return (
         <div>
-            {/* <TeamImagesSection /> */}
             <Image 
                 src={Gen0}
                 alt="UGent Sailing Team 2023-2024"
@@ -18,7 +16,7 @@ export default function Home() {
             <div className="font-sans items-center min-h-screen px-6">
 
                 <main className="flex flex-col gap-[32px] row-start-1 items-center sm:items-start mt-4">
-                    <section>
+                    <Section>
                         <H2>Welcome Aboard</H2>
 
 UGent Sailing brings together students and young researchers with an interest in maritime technology, artificial intelligence, and innovation. Our goal is to create an environment where everyone can gain hands-on experience and grow, both technically and personally. To achieve this, we work with Design Sprints: open sessions held about once a week, where anyone can join to focus collectively on a specific part of the boat.
@@ -35,18 +33,18 @@ This year, we are competing in the AI class, but our ambition reaches further. I
                         <br/>
 While UGent Sailing is primarily a student team, our community is open to everyone — from bachelor’s and master’s students to PhD candidates and young graduates. Together, we are working towards innovation on the water and a smarter, cleaner maritime future.
 
-                    </section>
-                    <section className="w-full max-w-full">
+                    </Section>
+                    <Section className="w-full max-w-full">
                         <H2>Events</H2>
 
                         <EventsSection />
-                    </section>
-                    <section className="w-full max-w-full">
+                    </Section>
+                    <Section className="w-full max-w-full">
                         <H2>News</H2>
 
                         <NewsSection />
                         
-                    </section>
+                    </Section>
                 </main>
             </div>
         </div>

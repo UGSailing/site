@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { A, H2, H3 } from "@/components";
+import { H2, H3 } from "@/components";
 import Image from "next/image";
 import { MarkdownPreview } from '@/components/markdown';
 
@@ -33,7 +33,7 @@ type EventWithImage = {
     imageId: string | null;
 }
 
-export const EventPage = ({event}: {event: EventWithImage}) => {
+export const EventPage = ({ event }: {event: EventWithImage}) => {
     return (
         <>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
