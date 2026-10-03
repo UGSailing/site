@@ -9,8 +9,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint",
-        "lint:fix": "next lint --fix",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
         "db:makemigrations": "npx zenstack generate && npx prisma migrate --config models/prisma.config.ts dev --create-only",
         "db:migrate": "npx zenstack generate && npx prisma --config models/prisma.config.ts migrate deploy && npm run db:generate",
         "db:reset": "npx prisma --config models/prisma.config.ts migrate reset",
@@ -60,7 +60,6 @@
         "zod": "^4.1.12"
     },
     "devDependencies": {
-        "@eslint/eslintrc": "^3",
         "@iconify-icon/react": "^3.0.0",
         "@iconify-json/bi": "^1.2.4",
         "@iconify-json/material-symbols": "^1.2.33",
@@ -73,7 +72,7 @@
         "@zenstackhq/openapi": "^2.20.1",
         "@zenstackhq/trpc": "^2.21.1",
         "eslint": "^9",
-        "eslint-config-next": "15.4.2",
+        "eslint-config-next": "16.3.8",
         "openapi-fetch": "^0.15.0",
         "openapi-typescript": "^7.10.1",
         "prisma": "^6.16.3",
