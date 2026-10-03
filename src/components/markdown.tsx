@@ -19,7 +19,7 @@ const MDEditor = dynamic<MDEditorProps>(
 );
 
 const components: Components = {
-    a: ({ href, children }: any) => (
+    a: ({ href, children }) => (
         <A href={href || "#"}>
             {children}
         </A>
@@ -38,9 +38,9 @@ export const MarkdownPreview = ({ value = "" }: { value: string }) => {
         <ReactMarkdown
             components={components}
         >
-                {value || "Preview will appear here..."}
-            </ReactMarkdown>
-            );
+            {value || "Preview will appear here..."}
+        </ReactMarkdown>
+    );
 }
 
 export default function Markdown({ value = "", onChange, ...props }: MDEditorProps) {

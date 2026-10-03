@@ -42,11 +42,7 @@ interface ErrorResponse {
 }
 
 export async function POST(request: Request): Promise<NextResponse<UploadResponse | ErrorResponse>> {
-    let requestBody: string = "";
     try {
-        const clonedRequest = request.clone();
-        requestBody = await clonedRequest.text();    
-        
         // Authenticate user
         const res = await requireRole(ROLES.TEAM)
         if (res.status == 401) {

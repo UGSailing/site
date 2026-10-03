@@ -7,7 +7,7 @@
 import type { ApiTypes } from "@/prisma/apiclient";
 import { EventCreateSchema } from "@zenstackhq/runtime/zod/models";
 
-import { createEndpoints, type CrudConfig, type CrudEndpoints } from "./crud-types";
+import { createEndpoints, type CrudConfig } from "./crud-types";
 
 export type EventAttributes = ApiTypes["Event"]["attributes"] & {
     /** hoisted from ?include=image by the factory */
@@ -27,7 +27,7 @@ export const eventConfig: CrudConfig<EventAttributes> = {
         title: { label: "Title", placeholder: "Event Title", type: "text" },
         startDate: { label: "Start Date", type: "datetime" },
         endDate: { label: "End Date", type: "datetime" },
-        location: {label: "Location", placeholder: "Event Location", type: "text" },
+        location: { label: "Location", placeholder: "Event Location", type: "text" },
         intro: { label: "Introduction", placeholder: "Event Introduction", type: "textarea" },
         imageId: { label: "Event Image", placeholder: "Event Image URL", type: "image" },
     },

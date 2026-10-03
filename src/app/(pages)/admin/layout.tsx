@@ -29,10 +29,10 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
         return redirect("/login", RedirectType.replace);
     }
 
-    // const res = await requireRole(ALL_ROLES);
-    // if (res.status == 403) {
-    //     return <Http403/>
-    // }
+    const res = await requireRole(ALL_ROLES);
+    if (res.status == 403) {
+        return <Http403/>
+    }
 
     return (
         <SessionProvider session={session}>

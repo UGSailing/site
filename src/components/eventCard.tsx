@@ -38,9 +38,8 @@ type Event = {
     imageId: string | null;
 }
 
-export function EventCard({ event }: { event: Event }) {
-    const eventPassed = event.startDate.getTime() < Date.now() + 1.5 * 3600 * 1000;
-    const disabled = { disabled: eventPassed || !event.registration };
+export function EventCard({ event, now }: { event: Event, now: number }) {
+    const eventPassed = event.startDate.getTime() < now + 1.5 * 3600 * 1000;
     return (
         <div className="w-full grid grid-flow-col py-1 justify-items-center">
             <Card className={`w-full max-w-sm ${eventPassed ? "border-grey-700 opacity-70" : "border-red-500"}`}>

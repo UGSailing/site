@@ -1,4 +1,4 @@
-import { ApiTypes, client, paths } from "@/prisma/apiclient";
+import { client } from "@/prisma/apiclient";
 import type { z } from "zod";
 import { FieldInfo } from "@/components/form";
 import { ROLES } from "@/lib/auth-types";
@@ -68,29 +68,6 @@ export interface CrudEndpoints<A extends Record<string, unknown>> {
  * (Step 3's plugin generates this from the zmodel, replacing the cast
  * with codegen'd literals.)
  */
-
-type ItemPath = Extract<
-  keyof paths,
-  `/api/model/rest/${string}/{id}`
->;
-
-type CollectionPath = Exclude<
-  Extract<keyof paths, `/api/model/rest/${string}`>,
-  `${string}/{id}`
->;
-
-type RouteFromPath<P> =
-  P extends `/api/model/rest/${infer R}` ? R : never;
-
-type CollectionPathFor<R extends string> = Extract<
-  CollectionPath,
-  `/api/model/rest/${R}`
->;
-
-type ItemPathFor<R extends string> = Extract<
-  ItemPath,
-  `${CollectionPathFor<R>}/{id}`
->;
 
 type LooseInit = {
   params?: {

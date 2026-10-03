@@ -1,7 +1,6 @@
 import { H2 } from "@/components";
 import { EventsSection } from "@/components/home/events";
 import { NewsSection } from "@/components/home/news";
-import TeamImagesSection from "@/components/home/teamImages";
 import Image from "next/image";
 import Gen0 from "@/../public/images/prototype_flat.png";
 import Section from "@/components/layout/sections";
@@ -9,7 +8,6 @@ import Section from "@/components/layout/sections";
 export default function Home() {
     return (
         <div>
-            {/* <TeamImagesSection /> */}
             <Image 
                 src={Gen0}
                 alt="UGent Sailing Team 2023-2024"

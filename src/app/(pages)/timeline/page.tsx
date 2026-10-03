@@ -58,6 +58,8 @@ const Timeline = async () => {
             image: true,
         }
     });
+    // eslint-disable-next-line react-hooks/purity -- Server Component (renders once per request);
+    const now = Date.now();
     return (
         <div className="mt-5 font-sans items-center justify-items-center min-h-screen px-6">
             <main className="w-full flex flex-col gap-[32px] row-start-1 items-center sm:items-start">
@@ -67,7 +69,7 @@ const Timeline = async () => {
                         {
                             events.map((event) => (
                                 <CarouselItem className="md:basis-1/3" key={event.id}>
-                                    <EventCard event={event}></EventCard>
+                                    <EventCard event={event} now={now}></EventCard>
                                 </CarouselItem>)
                             )
                         }

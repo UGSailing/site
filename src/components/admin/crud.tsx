@@ -104,6 +104,7 @@ export function CrudList<A extends Record<string, unknown>>({
             const { response, data } = await endpoints.list();
             if (response.ok && data) {
                 setItems(data.data);
+                setError(null);
             } else {
                 setItems([]);
                 setError(`Could not load ${config.title.toLowerCase()} (status ${response.status}).`);
@@ -117,6 +118,7 @@ export function CrudList<A extends Record<string, unknown>>({
     }, [endpoints, config.title]);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- The set function happen after an await
         fetchItems();
     }, [fetchItems]);
 
@@ -130,7 +132,7 @@ export function CrudList<A extends Record<string, unknown>>({
                             <Button>Create</Button>
                         </Link>
                     )}
-                    <Button onClick={fetchItems}>Refresh</Button>
+                    <Button onClick={() => { setLoading(true); setError(null); fetchItems(); }}>Refresh</Button>
                 </div>
             </H2>
             <div className="px-4">

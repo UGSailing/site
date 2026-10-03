@@ -1,8 +1,6 @@
 import { Metadata } from "next";
-import { A, H2, H4, Quote } from "@/components";
+import { A, H2, H4 } from "@/components";
 import Section from "@/components/layout/sections";
-import SomeImage from "@/../public/images/prototype_flat.png";
-import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "About",
