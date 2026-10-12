@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { H2, H4 } from "@/components";
+import { H2 } from "@/components";
 import { getPrisma } from "@/lib/auth";
 import { EventPage as EventPageComponent } from "@/components/eventPage";
 

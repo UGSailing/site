@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Carousel, { CarouselItem } from "@/components/carousel";
 import Autoplay from 'embla-carousel-autoplay';
-import { H2 } from "..";
 
 type ExtendedPartner ={
     logo: {

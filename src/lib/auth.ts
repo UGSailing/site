@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth'
-import GitHub from 'next-auth/providers/github'
 import Discord from 'next-auth/providers/discord'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/prisma'
@@ -9,7 +8,6 @@ import { User } from '@prisma/client';
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
     providers: [
-        GitHub,
         Discord(
             {
                 id: 'discord',
@@ -28,7 +26,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                         const format = profile.avatar.startsWith("a_") ? "gif" : "png"
                         profile.image_url = `https://cdn.discordapp.com/avatars/${profile.user.id}/${profile.user.avatar}.${format}`
                     }
-                    // Ugly fix ma bon
+                    // Filter roles for admin page access
                     const roles = (await prisma.role.findMany()).map(role => role.id.toString());
                     profile.valid_roles = profile.roles.filter((role_id: string) => roles.includes(role_id));
 
@@ -50,6 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             }
         )
     ],
+    trustHost: true
 });
 
 export async function getPrisma() {

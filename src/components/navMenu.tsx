@@ -57,7 +57,7 @@ const MenuItemComponent: React.FC<{ item: MenuItem; depth?: number }> = (
                 <CollapsibleTrigger asChild>
                     <button
                         className={cn(
-                            "flex w-full items-center justify-between py-2 text-lg text-white font-medium bg-red transition-colors hover:text-white",
+                            "flex w-full items-center justify-between py-2 text-lg text-white font-medium bg-ugs transition-colors hover:text-white",
                             depth > 0 && "pl-4",
                         )}
                     >
@@ -110,7 +110,7 @@ export function HamburgerMenu() {
             </SheetTrigger>
             <SheetContent
                 side="right"
-                className="bg-red w-[240px] text-white font-semibold pt-1 sm:w-[300px]"
+                className="bg-ugs w-[240px] text-white font-semibold pt-1 sm:w-[300px]"
             >
                 <SheetTitle className="space-y-4 block py-2 px-4 text-lg font-bold text-white">
                     Menu
@@ -127,11 +127,11 @@ export function HamburgerMenu() {
 
 export function NavMenu() {
     return (
-        <NavigationMenu className="hidden lg:block bg-red">
+        <NavigationMenu className="hidden lg:block bg-ugs">
             <NavigationMenuList>
                 {
                     menuItems.map((menu) => (
-                        <NavigationMenuItem className="red" key={menu.title}>
+                        <NavigationMenuItem className="text-ugs" key={menu.title}>
                             <NavigationMenuLink
                                 asChild
                                 className={`group inline-flex h-9 text-lg text-white w-max items-center justify-center rounded-md px-4 py-2 font-semibold hover:text-white focus:text-white focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`}

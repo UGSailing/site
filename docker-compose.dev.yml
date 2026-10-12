@@ -2,11 +2,45 @@ services:
   db:
     image: postgres:17
     env_file: .env.local
-    ports:
-      - 127.0.0.1:5432:5432
+    volumes: [dev_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ugs"]
+      interval: 2s
+      retries: 15
+
+  shadowdb:
+    image: postgres:17
+    env_file: .env.local
+    environment:
+      POSTGRES_DB: ugs_shadow
+    volumes: [shadow_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ugs"]
+      interval: 2s
+      retries: 15
+
+  app:
+    container_name: site-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file: .env.local
+    environment:                       # overrides the localhost URLs from .env.local
+      DB_HOST: db
+      SHADOW_DB_HOST: shadowdb
+    ports: ["3000:3000"]
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - .:/app                                # whole project, writable — lockfile edits work
+      - node_modules:/app/node_modules        # shadows host node_modules (platform-safe)
+      - next_cache:/app/.next
+      - pnpm_store:/root/.local/share/pnpm/store   # install cache survives --rm
+      - gen_cache:/app/.cache
+
 
 volumes:
-  db_data:
-
+  dev_data:
+  shadow_data:
+  node_modules:
+  next_cache:
+  pnpm_store:
+  gen_cache:

@@ -37,28 +37,28 @@ const groups: AdminPagesListGroup[] = [
                 href: "/admin",
                 icon: Home,
                 regex: /^\/admin\/?$/,
-                roles: ROLES.TEAM_MEMBER.concat(ROLES.SPONSOR),
+                roles: ROLES.TEAM,
             },
             {
                 title: "Events",
-                href: "/admin/event",
+                href: "/admin/model/event",
                 icon: Calendar,
-                regex: /^\/admin\/event\/?.*$/,
-                roles: ROLES.TEAM_MEMBER,
+                regex: /^\/admin\/model\/event\/?.*$/,
+                roles: ROLES.TEAM,
             },
             {
                 title: "Partners",
-                href: "/admin/partner",
+                href: "/admin/model/partner",
                 icon: Users,
-                regex: /^\/admin\/partner\/?.*$/,
-                roles: ROLES.MATES,
+                regex: /^\/admin\/model\/partner\/?.*$/,
+                roles: ROLES.TEAM,
             },
             {
                 title: "News",
-                href: "/admin/news",
+                href: "/admin/model/news",
                 icon: Newspaper,
-                regex: /^\/admin\/news\/?.*$/,
-                roles: ROLES.MATES,
+                regex: /^\/admin\/model\/news\/?.*$/,
+                roles: ROLES.TEAM,
             },
         ],
     },
@@ -67,31 +67,38 @@ const groups: AdminPagesListGroup[] = [
         items: [
             {
                 title: "Boards",
-                href: "/admin/board",
+                href: "/admin/model/board",
                 icon: LayoutGrid,
-                regex: /^\/admin\/board\/?(?:create\/?)?(?:\d+\/?)?$/,
-                roles: ROLES.MATES,
+                regex: /^\/admin\/model\/board\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.TEAM,
             },
             {
                 title: "Members",
-                href: "/admin/board/memberyear",
+                href: "/admin/model/memberyear",
                 icon: Award,
-                regex: /^\/admin\/board\/memberyear\/?(?:create\/?)?(?:\d+\/?)?$/,
-                roles: ROLES.MATES,
+                regex: /^\/admin\/model\/memberyear\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.TEAM,
             },
             {
                 title: "Member Positions",
-                href: "/admin/board/memberposition",
+                href: "/admin/model/memberposition",
                 icon: Briefcase,
-                regex: /^\/admin\/board\/memberposition\/?(?:create\/?)?(?:\d+\/?)?$/,
-                roles: ROLES.MATES,
+                regex: /^\/admin\/model\/memberposition\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.TEAM,
             },
             {
                 title: "Positions",
-                href: "/admin/position",
+                href: "/admin/model/position",
                 icon: Star,
-                regex: /^\/admin\/position\/?(?:create\/?)?(?:\d+\/?)?$/,
-                roles: ROLES.MATES,
+                regex: /^\/admin\/model\/position\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.TEAM,
+            },
+            {
+                title: "People",
+                href: "/admin/model/member",
+                icon: Users,
+                regex: /^\/admin\/model\/member\/?(?:create\/?)?(?:\d+\/?)?$/,
+                roles: ROLES.TEAM,
             }
         ]
     }
@@ -128,7 +135,7 @@ export default function AdminSidebar({ className, user }: { className?: string, 
                                             <SidebarMenuItem key={item.title}>
                                                 <SidebarMenuButton
                                                     asChild
-                                                    className={`${item.regex?.test(pathname) ? "bg-red text-white" : ""} hover:text-white`}
+                                                    className={`${item.regex?.test(pathname) ? "bg-ugs text-white" : ""} hover:text-white`}
                                                 >
                                                     <a href={item.href}>
                                                         <item.icon />

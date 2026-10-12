@@ -35,7 +35,7 @@ type ExtendedPartner ={
 
 export function PartnerCard({ partner }: { partner: ExtendedPartner }) {
     return (
-        <div className="w-full flex flex-wrap justify-center border border-red rounded-lg p-2">
+        <div className="w-full flex flex-wrap justify-center border border-ugs rounded-lg p-2">
             <div className="flex flex-col w-full md:w-1/2 lg:w-3/4 xl:w-8/10">
                 <div className="w-full flex flex-wrap">
                     <div className="lg:px-3 flex flex-col w-full lg:w-2/3">

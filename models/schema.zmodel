@@ -44,7 +44,7 @@ model Account {
     @@unique([provider, providerAccountId])
     @@map("accounts")
 
-    @@allow('read', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model Session {
@@ -56,7 +56,7 @@ model Session {
 
     @@map("sessions")
 
-    @@allow('read', auth().roles?[role.name == "IT"])
+    @@allow('read', auth().roles?[role.name == "Web"])
 }
 
 model User {
@@ -76,8 +76,7 @@ model User {
 
     @@map("users")
 
-    @@allow('read,update', auth() == this || auth().roles?[role.name == "Captain"])
-    @@allow('read', auth().roles?[role.name == "IT"])
+    @@allow('read,update', auth() == this || auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model VerificationToken {
@@ -88,7 +87,7 @@ model VerificationToken {
     @@unique([identifier, token])
     @@map("verification_tokens")
 
-    @@allow('read', auth().roles?[role.name == "IT"])
+    @@allow('read', auth().roles?[role.name == "Web"])
 }
 
 ///////////////////
@@ -101,7 +100,7 @@ model Role {
     users UserRole[]
     @@map("roles")
 
-    @@allow('read', auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model UserRole {
@@ -115,15 +114,14 @@ model UserRole {
     @@unique([userId, roleId])
     @@map("user_roles")
 
-    @@allow('read,create,update', auth().roles?[role.name == "Captain" || role.name == "IT"])
-    @@allow('create', auth().roles?[role.name == "Sponsor"] && this.role.name == "Sponsor")
+    @@allow('read,create,update', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 abstract model TimestampBase {
     createdAt DateTime @default(now()) @map("created_at") @deny('update', true) @meta("zod", "omit()")
     updatedAt DateTime @updatedAt @map("updated_at") @deny('update', true)
 
-    @@allow('read', auth().roles?[role.name == "IT"])
+    @@allow('read', auth().roles?[role.name == "Web" || role.name == "Captain"])
 }
 
 ////////////////////
@@ -149,8 +147,10 @@ model Media extends TimestampBase {
     partners      Partner[]
 
     @@map("media")
+
     @@allow('read', true)
-    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 
@@ -174,7 +174,9 @@ model Event extends TimestampBase {
 
     @@map("events")
 
-    @@allow('all', true)
+    @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model Position extends TimestampBase {
@@ -188,8 +190,9 @@ model Position extends TimestampBase {
 
     @@map("positions")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model BoardMember extends TimestampBase {
@@ -200,8 +203,9 @@ model BoardMember extends TimestampBase {
 
     @@map("boardmembers")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model Board extends TimestampBase {
@@ -212,8 +216,9 @@ model Board extends TimestampBase {
 
     @@map("boards")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model BoardMemberYear extends TimestampBase {
@@ -231,8 +236,9 @@ model BoardMemberYear extends TimestampBase {
     @@unique([boardMemberId, boardId])
     @@map("boardmember_year")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model BoardMemberPosition extends TimestampBase {
@@ -246,11 +252,13 @@ model BoardMemberPosition extends TimestampBase {
     @@unique([boardMemberYearId, positionId])
     @@map("boardmember_position")
 
-    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 enum PartnerType {
+    NAME
     HEAD
     STRATEGIC
     COLLABORATIVE
@@ -273,8 +281,9 @@ model Partner extends TimestampBase {
 
     @@map("partners")
 
-    @@allow('create,update', (auth().roles?[role.name == "Captain" || role.name == "IT"] || (this.users?[id == auth().id] && this.active == true)))
-    @@allow('read', this.active == true || auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model Vacancy extends TimestampBase {
@@ -288,8 +297,9 @@ model Vacancy extends TimestampBase {
 
     @@map("vacancies")
 
-    @@allow('create,update,delete', (auth().roles?[role.name == "Captain" || role.name == "IT"] || (this.partner.users?[id == auth().id] && this.partner.active == true)))
-    @@allow('read', this.partner.active == true || auth().roles?[role.name == "Captain" || role.name == "IT"])
+    @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
 
 model News extends TimestampBase {
@@ -299,6 +309,7 @@ model News extends TimestampBase {
 
     @@map("news")
 
-    @@allow('create,update,delete', auth().roles?[role.name == "Captain" || role.name == "IT" || role.name == "MATES"])
     @@allow('read', true)
+    @@allow('create,update', auth().roles?[role.name == "Captain" || role.name == "Web" || role.name == "Team"])
+    @@allow('delete', auth().roles?[role.name == "Captain" || role.name == "Web"])
 }
