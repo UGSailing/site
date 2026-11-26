@@ -12,7 +12,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             {
                 id: 'discord',
                 name: 'Discord',
-                issuer: undefined,
+                // Discord returns an `iss` param on the callback (RFC 9207); it must match this exactly
+                issuer: 'https://discord.com',
                 authorization: {
                     url: 'https://discord.com/api/oauth2/authorize',
                     params: { scope: 'guilds.members.read identify email' },
