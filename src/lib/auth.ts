@@ -12,7 +12,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             {
                 id: 'discord',
                 name: 'Discord',
-                type: 'oauth',
                 issuer: undefined,
                 authorization: {
                     url: 'https://discord.com/api/oauth2/authorize',
