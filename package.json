@@ -7,6 +7,7 @@
     },
     "scripts": {
         "dev": "next dev",
+        "start:dev": "bash scripts/start.sh",
         "build": "next build",
         "start": "next start",
         "lint": "eslint .",
@@ -18,7 +19,7 @@
     },
     "packageManager": "pnpm@12.6.0",
     "dependencies": {
-        "@auth/prisma-adapter": "^2.11.0",
+        "@auth/prisma-adapter": "^2.11.3",
         "@hookform/resolvers": "^5.2.2",
         "@iconify-json/simple-icons": "^1.2.49",
         "@paralleldrive/cuid2": "^3.0.4",
@@ -43,10 +44,10 @@
         "dotenv": "^17.2.3",
         "embla-carousel-autoplay": "^8.6.0",
         "embla-carousel-react": "^8.6.0",
-        "file-type": "^21.1.1",
+        "file-type": "^21.3.4",
         "lucide-react": "^0.542.0",
-        "next": "^16.1.0",
-        "next-auth": "^5.0.0-beta.29",
+        "next": "^16.4.6",
+        "next-auth": "^5.0.0-beta.32",
         "node-emoji": "^2.2.0",
         "prisma": "6.16.3",
         "react": "19.1.0",
@@ -54,10 +55,20 @@
         "react-dom": "19.1.0",
         "react-hook-form": "^7.66.0",
         "react-markdown": "^10.1.0",
-        "sharp": "^0.34.5",
-        "swagger-ui-react": "^5.30.0",
+        "sharp": "^0.35.5",
+        "swagger-ui-react": "^5.36.0",
         "tailwind-merge": "^3.3.1",
-        "zod": "^4.1.12"
+        "zod": "^4.6.7"
+    },
+    "pnpm": {
+        "overrides": {
+            "axios": "^1.20.0",
+            "brace-expansion@^1.0.0": "^1.1.12",
+            "brace-expansion@^2.0.0": "^2.1.7",
+            "form-data": "^4.0.6",
+            "nanoid": "^3.3.18",
+            "postcss": "^8.5.23"
+        }
     },
     "devDependencies": {
         "@iconify-icon/react": "^3.0.0",
