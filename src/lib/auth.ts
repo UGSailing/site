@@ -49,9 +49,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                         },
                     }
                 },
-                authorization: {
-                    params: { scope: "guilds.members.read identify email" },
-                },
             }
         )
     ],
