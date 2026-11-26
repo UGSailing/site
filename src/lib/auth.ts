@@ -3,7 +3,6 @@ import Discord from 'next-auth/providers/discord'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/prisma'
 import { enhance } from '@zenstackhq/runtime';
-import { User } from '@prisma/client';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
@@ -11,14 +10,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         Discord(
             {
                 id: 'discord',
-                name: 'Discord',
-                // Discord returns an `iss` param on the callback (RFC 9207); it must match this exactly
-                issuer: 'https://discord.com',
-                authorization: {
-                    url: 'https://discord.com/api/oauth2/authorize',
-                    params: { scope: 'guilds.members.read identify email' },
-                },
-                token: 'https://discord.com/api/oauth2/token',
                 userinfo: `https://discord.com/api/users/@me/guilds/${process.env.GUILD_ID}/member`,
                 async profile(profile) {
                     if (profile.code === 10004) {
@@ -34,25 +25,43 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                         const format = profile.avatar.startsWith("a_") ? "gif" : "png"
                         profile.image_url = `https://cdn.discordapp.com/avatars/${profile.user.id}/${profile.user.avatar}.${format}`
                     }
-                    // Filter roles for admin page access
-                    const roles = (await prisma.role.findMany()).map(role => role.id.toString());
-                    profile.valid_roles = profile.roles.filter((role_id: string) => roles.includes(role_id));
-
+                    // Roles are synced in `events.signIn` so they also update for existing users
                     return {
                         id: profile.user.id,
                         name: profile.nick ?? profile.user.global_name ?? profile.user.username,
                         email: profile.user.email,
                         image: profile.image_url,
-                        roles: {
-                            createMany: {
-                                data: profile.valid_roles.map((role_id : string) => ({ roleId : BigInt(role_id) })),
-                            }
-                        },
                     }
+                },
+                authorization: {
+                    params: { scope: "guilds.members.read identify email" },
                 },
             }
         )
     ],
+    events: {
+        // Runs on every sign-in (new and existing users) with the DB user and the raw
+        // Discord guild member profile, so the user's roles mirror their current Discord roles.
+        async signIn({ user, account, profile }) {
+            if (account?.provider !== 'discord' || !user.id || !profile) return;
+
+            const discordRoleIds: string[] = (profile.roles as string[] | undefined) ?? [];
+            const knownRoles = await prisma.role.findMany({ select: { id: true } });
+            const roleIds: bigint[] = knownRoles
+                .map((role: { id: bigint }) => role.id)
+                .filter((id: bigint) => discordRoleIds.includes(id.toString()));
+
+            await prisma.$transaction([
+                prisma.userRole.deleteMany({
+                    where: { userId: user.id, roleId: { notIn: roleIds } },
+                }),
+                prisma.userRole.createMany({
+                    data: roleIds.map(roleId => ({ userId: user.id!, roleId })),
+                    skipDuplicates: true,
+                }),
+            ]);
+        },
+    },
     trustHost: true
 });
 
@@ -71,7 +80,6 @@ export async function getPrisma() {
         }
     );
 
-    // @ts-expect-error - TypeScript doesn't understand the enhance function and its return type
-    const enhancedPrisma = enhance(prisma, { user } as User | null );
+    const enhancedPrisma = enhance(prisma, { user } as any);
     return enhancedPrisma
 }
