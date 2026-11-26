@@ -10,6 +10,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         Discord(
             {
                 id: 'discord',
+                // Discord returns an `iss` param on the callback (RFC 9207); it must match this exactly
+                issuer: 'https://discord.com',
                 userinfo: `https://discord.com/api/users/@me/guilds/${process.env.GUILD_ID}/member`,
                 async profile(profile) {
                     if (profile.code === 10004) {
