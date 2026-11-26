@@ -10,8 +10,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     providers: [
         Discord(
             {
-                id: 'discord',
-                issuer: 'https://discord.com/api',
+                id: 'discord',,
+                name: 'Discord',
+                type: 'oauth',
+                issuer: undefined,
+                authorization: {
+                    url: 'https://discord.com/api/oauth2/authorize',
+                    params: { scope: 'guilds.members.read identify email' },
+                },
+                token: 'https://discord.com/api/oauth2/token',
                 userinfo: `https://discord.com/api/users/@me/guilds/${process.env.GUILD_ID}/member`,
                 async profile(profile) {
                     if (profile.code === 10004) {
