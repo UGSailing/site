@@ -10,7 +10,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     providers: [
         Discord(
             {
-                id: 'discord',,
+                id: 'discord',
                 name: 'Discord',
                 type: 'oauth',
                 issuer: undefined,
